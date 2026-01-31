@@ -1,0 +1,6 @@
+name: tiny
+num_samples: 1000
+splits:
+  train: 800
+  val: 100
+  test: 100

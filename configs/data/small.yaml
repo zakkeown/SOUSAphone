@@ -1,0 +1,6 @@
+name: small
+num_samples: 10000
+splits:
+  train: 8000
+  val: 1000
+  test: 1000

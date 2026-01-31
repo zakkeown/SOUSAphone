@@ -1,0 +1,38 @@
+defaults:
+  - model: ast
+  - strategy: lora
+  - data: tiny
+  - _self_
+
+# Training hyperparameters
+training:
+  max_epochs: 50
+  learning_rate: 5e-5
+  batch_size: 16
+  gradient_accumulation_steps: 2
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  label_smoothing: 0.1
+  early_stopping_patience: 10
+
+# Augmentation
+augmentation:
+  specaugment: true
+  mixup_alpha: 0.2
+  time_stretch_range: [0.9, 1.1]
+
+# System
+seed: 42
+precision: "16-mixed"
+accelerator: "auto"
+num_workers: 4
+
+# Experiment tracking
+wandb:
+  project: "sousa-rudiment-classification"
+  entity: null  # Set to your W&B username
+  mode: "online"  # or "offline" for local dev
+  tags: ["${model.name}", "${strategy.type}"]
+
+# Paths
+dataset_path: "~/Code/SOUSA/output/dataset"
