@@ -1,0 +1,24 @@
+{
+  "config": {
+    "model": "beats",
+    "strategy": "adalora",
+    "augmentation": false,
+    "data": "tiny",
+    "max_epochs": 5
+  },
+  "metrics": {
+    "trainable_params": 885312,
+    "total_params": 94402472,
+    "test_acc": 0.0,
+    "test_f1_macro": 0.0
+  },
+  "efficiency": {
+    "training_time_seconds": 134.53402400016785,
+    "avg_epoch_time": 26.90678400993347
+  },
+  "status": "completed",
+  "error": null,
+  "timestamp": "2026-02-01T14:51:39.324230",
+  "git_commit": "ce38d15ee120e048138800f80fa590c439213bfd",
+  "experiment_id": "beats_adalora_noaug_tiny_20260201_145139"
+}

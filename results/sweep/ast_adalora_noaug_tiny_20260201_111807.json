@@ -1,0 +1,24 @@
+{
+  "config": {
+    "model": "ast",
+    "strategy": "adalora",
+    "augmentation": false,
+    "data": "tiny",
+    "max_epochs": 5
+  },
+  "metrics": {
+    "trainable_params": 663984,
+    "total_params": 86219560,
+    "test_acc": 0.0,
+    "test_f1_macro": 0.0
+  },
+  "efficiency": {
+    "training_time_seconds": 981.7888629436493,
+    "avg_epoch_time": 196.35648517608644
+  },
+  "status": "completed",
+  "error": null,
+  "timestamp": "2026-02-01T11:18:07.287992",
+  "git_commit": "7c5730ac764efe8b2003ac5685eea8e88a8208db",
+  "experiment_id": "ast_adalora_noaug_tiny_20260201_111807"
+}

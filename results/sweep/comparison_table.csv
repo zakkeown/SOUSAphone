@@ -1,0 +1,56 @@
+experiment_id,model,strategy,augmentation,data,max_epochs,status,timestamp,val_acc,val_f1_macro,test_acc,test_f1_macro,best_epoch,final_train_loss,final_val_loss,total_params,trainable_params,param_efficiency,training_time_seconds,avg_epoch_time,error
+ast_lora_noaug_tiny_20260201_102512,ast,lora,False,tiny,5,failed,2026-02-01T10:25:12.829819,,,,,,,,,,,10.333749055862427,,Training failed with return code 1
+efficientat_ia3_aug_tiny_20260201_115948,efficientat,ia3,True,tiny,5,failed,2026-02-01T11:59:48.275495,,,,,,,,,,,3.5931437015533447,,Training failed with return code 1
+beats_adalora_noaug_tiny_20260201_145139,beats,adalora,False,tiny,5,completed,2026-02-01T14:51:39.324230,,,0.0,0.0,,,,,,,134.53402400016785,26.90678400993347,
+ast_lora_noaug_tiny_20260201_130455,ast,lora,False,tiny,5,completed,2026-02-01T13:04:55.724521,,,0.4000000059604645,0.2857142984867096,,,,,,,1137.0238642692566,227.40432844161987,
+efficientat_lora_noaug_tiny_20260201_145908,efficientat,lora,False,tiny,5,completed,2026-02-01T14:59:08.375106,,,0.0,0.0,,,,,,,46.59606885910034,9.319192361831664,
+htsat_lora_aug_tiny_20260201_115842,htsat,lora,True,tiny,5,failed,2026-02-01T11:58:42.831299,,,,,,,,,,,4.43713903427124,,Training failed with return code 1
+beats_ia3_aug_tiny_20260201_115925,beats,ia3,True,tiny,5,failed,2026-02-01T11:59:25.413302,,,,,,,,,,,4.2336649894714355,,Training failed with return code 1
+ast_adalora_aug_tiny_20260201_132352,ast,adalora,True,tiny,5,completed,2026-02-01T13:23:52.783691,,,0.0,0.0,,,,,,,1059.1945168972015,211.83839359283448,
+htsat_ia3_noaug_tiny_20260201_115904,htsat,ia3,False,tiny,5,failed,2026-02-01T11:59:04.181227,,,,,,,,,,,4.234364986419678,,Training failed with return code 1
+htsat_ia3_aug_tiny_20260201_115859,htsat,ia3,True,tiny,5,failed,2026-02-01T11:58:59.932617,,,,,,,,,,,4.239588975906372,,Training failed with return code 1
+ast_lora_aug_tiny_20260201_102500,ast,lora,True,tiny,5,failed,2026-02-01T10:25:00.169508,,,,,,,,,,,12.650842905044556,,Training failed with return code 1
+beats_adalora_aug_tiny_20260201_115917,beats,adalora,True,tiny,5,failed,2026-02-01T11:59:17.007914,,,,,,,,,,,4.196004152297974,,Training failed with return code 1
+htsat_adalora_aug_tiny_20260201_144133,htsat,adalora,True,tiny,5,completed,2026-02-01T14:41:33.670615,,,0.0,0.0,,,,,,,52.271738052368164,10.45432744026184,
+beats_lora_noaug_tiny_20260201_115912,beats,lora,False,tiny,5,failed,2026-02-01T11:59:12.675732,,,,,,,,,,,4.3233771324157715,,Training failed with return code 1
+ast_lora_aug_tiny_20260201_103137,ast,lora,True,tiny,5,completed,2026-02-01T10:31:37.202933,,,0.0,0.0,,,,,,,863.7179162502289,172.74302024841307,
+efficientat_adalora_aug_tiny_20260201_145954,efficientat,adalora,True,tiny,5,completed,2026-02-01T14:59:54.981540,,,0.0,0.0,,,,,,,47.28860282897949,9.457698345184326,
+efficientat_ia3_noaug_tiny_20260201_150132,efficientat,ia3,False,tiny,5,failed,2026-02-01T15:01:32.514956,,,,,,,,,,,3.3697750568389893,,Training failed with return code 1
+beats_lora_noaug_tiny_20260201_144710,beats,lora,False,tiny,5,completed,2026-02-01T14:47:10.401151,,,0.0,0.0,,,,,,,134.16249012947083,26.832480001449586,
+beats_lora_aug_tiny_20260201_115908,beats,lora,True,tiny,5,failed,2026-02-01T11:59:08.424292,,,,,,,,,,,4.243083953857422,,Training failed with return code 1
+efficientat_lora_aug_tiny_20260201_115933,efficientat,lora,True,tiny,5,failed,2026-02-01T11:59:33.842172,,,,,,,,,,,3.5418272018432617,,Training failed with return code 1
+beats_ia3_noaug_tiny_20260201_145607,beats,ia3,False,tiny,5,completed,2026-02-01T14:56:07.859272,,,0.0,0.0,,,,,,,133.94655513763428,26.78928985595703,
+beats_adalora_aug_tiny_20260201_144924,beats,adalora,True,tiny,5,completed,2026-02-01T14:49:24.572485,,,0.0,0.0,,,,,,,134.74266982078552,26.948510360717773,
+efficientat_ia3_aug_tiny_20260201_150128,efficientat,ia3,True,tiny,5,failed,2026-02-01T15:01:28.964859,,,,,,,,,,,3.5402419567108154,,Training failed with return code 1
+beats_lora_aug_tiny_20260201_144455,beats,lora,True,tiny,5,completed,2026-02-01T14:44:55.534498,,,0.0,0.0,,,,,,,134.85749292373657,26.97147641181946,
+efficientat_lora_noaug_tiny_20260201_115937,efficientat,lora,False,tiny,5,failed,2026-02-01T11:59:37.392414,,,,,,,,,,,3.6027448177337646,,Training failed with return code 1
+htsat_lora_noaug_tiny_20260201_144043,htsat,lora,False,tiny,5,completed,2026-02-01T14:40:43.872834,,,1.0,1.0,,,,,,,49.786136865615845,9.957206535339356,
+htsat_adalora_noaug_tiny_20260201_144225,htsat,adalora,False,tiny,5,completed,2026-02-01T14:42:25.953710,,,0.0,0.0,,,,,,,50.54533410072327,10.109046030044556,
+ast_adalora_aug_tiny_20260201_110100,ast,adalora,True,tiny,5,completed,2026-02-01T11:01:00.842183,,,0.0,0.0,,,,,,,1026.4268980026245,205.28506402969361,
+ast_ia3_aug_tiny_20260201_113429,ast,ia3,True,tiny,5,completed,2026-02-01T11:34:29.091095,,,0.0,0.0,,,,,,,726.5278828144073,145.2880783557892,
+efficientat_adalora_noaug_tiny_20260201_150042,efficientat,adalora,False,tiny,5,completed,2026-02-01T15:00:42.280428,,,0.0,0.0,,,,,,,46.67401599884033,9.334781789779663,
+efficientat_adalora_aug_tiny_20260201_115941,efficientat,adalora,True,tiny,5,failed,2026-02-01T11:59:41.006975,,,,,,,,,,,3.6189098358154297,,Training failed with return code 1
+beats_adalora_noaug_tiny_20260201_115921,beats,adalora,False,tiny,5,failed,2026-02-01T11:59:21.212091,,,,,,,,,,,4.192591905593872,,Training failed with return code 1
+htsat_lora_noaug_tiny_20260201_115847,htsat,lora,False,tiny,5,failed,2026-02-01T11:58:47.283411,,,,,,,,,,,4.205361843109131,,Training failed with return code 1
+htsat_ia3_noaug_tiny_20260201_144406,htsat,ia3,False,tiny,5,completed,2026-02-01T14:44:06.340742,,,0.0,0.0,,,,,,,49.185044050216675,9.836984395980835,
+beats_ia3_aug_tiny_20260201_145353,beats,ia3,True,tiny,5,completed,2026-02-01T14:53:53.867656,,,0.0,0.0,,,,,,,133.982892036438,26.796556758880616,
+ast_adalora_noaug_tiny_20260201_102533,ast,adalora,False,tiny,5,failed,2026-02-01T10:25:33.605786,,,,,,,,,,,10.482120037078857,,Training failed with return code 1
+ast_adalora_aug_tiny_20260201_102523,ast,adalora,True,tiny,5,failed,2026-02-01T10:25:23.173343,,,,,,,,,,,10.422820806503296,,Training failed with return code 1
+ast_adalora_noaug_tiny_20260201_111807,ast,adalora,False,tiny,5,completed,2026-02-01T11:18:07.287992,,,0.0,0.0,,,,,,,981.7888629436493,196.35648517608644,
+ast_lora_noaug_tiny_20260201_104600,ast,lora,False,tiny,5,completed,2026-02-01T10:46:00.933138,,,0.0,0.0,,,,,,,899.8796198368073,179.9754339694977,
+htsat_adalora_noaug_tiny_20260201_115855,htsat,adalora,False,tiny,5,failed,2026-02-01T11:58:55.711004,,,,,,,,,,,4.212800741195679,,Training failed with return code 1
+ast_ia3_noaug_tiny_20260201_102554,ast,ia3,False,tiny,5,failed,2026-02-01T10:25:54.482167,,,,,,,,,,,10.24809718132019,,Training failed with return code 1
+htsat_lora_aug_tiny_20260201_143952,htsat,lora,True,tiny,5,completed,2026-02-01T14:39:52.432146,,,0.0,0.0,,,,,,,51.429178953170776,10.285773420333863,
+efficientat_lora_aug_tiny_20260201_145821,efficientat,lora,True,tiny,5,completed,2026-02-01T14:58:21.814741,,,0.0,0.0,,,,,,,46.550442934036255,9.31006498336792,
+ast_ia3_noaug_tiny_20260201_114635,ast,ia3,False,tiny,5,completed,2026-02-01T11:46:35.637441,,,0.0,0.0,,,,,,,727.180712223053,145.4354109764099,
+htsat_adalora_aug_tiny_20260201_115851,htsat,adalora,True,tiny,5,failed,2026-02-01T11:58:51.497583,,,,,,,,,,,4.2048609256744385,,Training failed with return code 1
+ast_adalora_noaug_tiny_20260201_134132,ast,adalora,False,tiny,5,completed,2026-02-01T13:41:32.040035,,,0.0,0.0,,,,,,,1162.3968799114227,232.47868037223816,
+htsat_ia3_aug_tiny_20260201_144316,htsat,ia3,True,tiny,5,completed,2026-02-01T14:43:16.508463,,,0.0,0.0,,,,,,,49.823121786117554,9.964602184295654,
+ast_ia3_aug_tiny_20260201_102544,ast,ia3,True,tiny,5,failed,2026-02-01T10:25:44.097951,,,,,,,,,,,10.37443995475769,,Training failed with return code 1
+efficientat_ia3_noaug_tiny_20260201_115951,efficientat,ia3,False,tiny,5,failed,2026-02-01T11:59:51.877867,,,,,,,,,,,3.5832271575927734,,Training failed with return code 1
+htsat_lora_aug_tiny_20260201_102604,htsat,lora,True,tiny,5,running,2026-02-01T10:26:04.740192,,,,,,,,,,,,,
+ast_ia3_noaug_tiny_20260201_142117,ast,ia3,False,tiny,5,completed,2026-02-01T14:21:17.842760,,,0.0,0.0,,,,,,,1114.5729701519012,222.91357798576354,
+ast_ia3_aug_tiny_20260201_140054,ast,ia3,True,tiny,5,completed,2026-02-01T14:00:54.474504,,,0.0,0.0,,,,,,,1223.3450531959534,244.66804580688478,
+beats_ia3_noaug_tiny_20260201_115929,beats,ia3,False,tiny,5,failed,2026-02-01T11:59:29.655860,,,,,,,,,,,4.17773699760437,,Training failed with return code 1
+ast_lora_aug_tiny_20260201_124742,ast,lora,True,tiny,5,completed,2026-02-01T12:47:42.635389,,,0.0,0.0,,,,,,,1033.0769517421722,206.61417894363404,
+efficientat_adalora_noaug_tiny_20260201_115944,efficientat,adalora,False,tiny,5,failed,2026-02-01T11:59:44.634747,,,,,,,,,,,3.632101058959961,,Training failed with return code 1

@@ -1,0 +1,19 @@
+{
+  "config": {
+    "model": "efficientat",
+    "strategy": "lora",
+    "augmentation": false,
+    "data": "tiny",
+    "max_epochs": 5
+  },
+  "metrics": {},
+  "efficiency": {
+    "training_time_seconds": 3.6027448177337646
+  },
+  "status": "failed",
+  "error": "Training failed with return code 1",
+  "timestamp": "2026-02-01T11:59:37.392414",
+  "git_commit": "ce38d15ee120e048138800f80fa590c439213bfd",
+  "experiment_id": "efficientat_lora_noaug_tiny_20260201_115937",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/zakkeown/Code/SOUSAphone/.worktrees/training-pipeline-implementation/scripts/run_sweep.py\", line 235, in run_experiment\n    raise RuntimeError(f\"Training failed with return code {process.returncode}\")\nRuntimeError: Training failed with return code 1\n"
+}

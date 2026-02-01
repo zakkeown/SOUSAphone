@@ -41,13 +41,16 @@ class SOUSAClassifier(pl.LightningModule):
             # Log original trainable params
             original_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
 
+            # Get model-specific target modules
+            target_modules = list(config.model.peft_target_modules)
+
             # Create PEFT config based on strategy type
             if config.strategy.type == "lora":
                 peft_config = LoraConfig(
                     r=config.strategy.rank,
                     lora_alpha=config.strategy.alpha,
                     lora_dropout=config.strategy.dropout,
-                    target_modules=list(config.strategy.target_modules),
+                    target_modules=target_modules,
                     bias="none",
                     task_type="FEATURE_EXTRACTION",
                 )
@@ -56,7 +59,7 @@ class SOUSAClassifier(pl.LightningModule):
                     r=config.strategy.rank,
                     lora_alpha=config.strategy.alpha,
                     lora_dropout=config.strategy.dropout,
-                    target_modules=list(config.strategy.target_modules),
+                    target_modules=target_modules,
                     init_r=config.strategy.init_r,
                     target_r=config.strategy.target_r,
                     tinit=config.strategy.tinit,
@@ -69,11 +72,10 @@ class SOUSAClassifier(pl.LightningModule):
             elif config.strategy.type == "ia3":
                 # For IA3, feedforward_modules must be a subset of target_modules
                 # We identify which target modules are feedforward layers
-                target_modules_list = list(config.strategy.target_modules)
-                feedforward_modules = [m for m in target_modules_list if "feed_forward" in m or "dense" in m]
+                feedforward_modules = [m for m in target_modules if "feed_forward" in m or "dense" in m or "out_proj" in m or "classifier" in m]
 
                 peft_config = IA3Config(
-                    target_modules=target_modules_list,
+                    target_modules=target_modules,
                     feedforward_modules=feedforward_modules if feedforward_modules else None,
                     task_type="FEATURE_EXTRACTION",
                 )
@@ -86,17 +88,17 @@ class SOUSAClassifier(pl.LightningModule):
             print(f"{config.strategy.type.upper()} applied: {original_params:,} -> {peft_params:,} trainable params")
             print(f"Trainable params reduced to {100 * peft_params / original_params:.2f}%")
 
-        # Initialize Mixup if configured
-        if hasattr(config, 'augmentation') and config.augmentation.mixup:
-            self.mixup = Mixup(alpha=config.augmentation.mixup_alpha)
-        else:
-            self.mixup = None
-
         # Save hyperparameters
         self.save_hyperparameters(ignore=['model'])
 
         # Metrics
         num_classes = model.num_classes
+
+        # Initialize Mixup if configured (after num_classes is set)
+        if hasattr(config, 'augmentation') and config.augmentation.mixup:
+            self.mixup = Mixup(alpha=config.augmentation.mixup_alpha, num_classes=num_classes)
+        else:
+            self.mixup = None
         self.train_acc = Accuracy(task="multiclass", num_classes=num_classes)
         self.val_acc = Accuracy(task="multiclass", num_classes=num_classes)
         self.test_acc = Accuracy(task="multiclass", num_classes=num_classes)
@@ -134,8 +136,19 @@ class SOUSAClassifier(pl.LightningModule):
         )
 
     def forward(self, audio: torch.Tensor) -> torch.Tensor:
-        """Forward pass through model."""
-        return self.model(audio)
+        """
+        Forward pass through model.
+
+        When using PEFT, we need to access the base model directly because
+        PeftModel.forward() expects language model arguments (input_ids, attention_mask)
+        that our audio models don't accept.
+        """
+        # Check if model is wrapped with PEFT
+        if hasattr(self.model, 'base_model'):
+            # Access the base model directly to bypass PEFT's forward signature
+            return self.model.base_model.model(audio)
+        else:
+            return self.model(audio)
 
     def training_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) -> torch.Tensor:
         """Training step."""

@@ -68,8 +68,9 @@ class Mixup:
     Mixes two samples and their labels.
     """
 
-    def __init__(self, alpha: float = 0.2):
+    def __init__(self, alpha: float = 0.2, num_classes: int = 40):
         self.alpha = alpha
+        self.num_classes = num_classes
 
     def __call__(self, batch: Dict[str, torch.Tensor]) -> Dict[str, torch.Tensor]:
         """Apply Mixup to a batch.
@@ -101,8 +102,7 @@ class Mixup:
         mixed_audio = lam * audio + (1 - lam) * audio[indices]
 
         # Mix labels (one-hot encoding)
-        num_classes = labels.max().item() + 1
-        labels_one_hot = torch.nn.functional.one_hot(labels, num_classes).float()
+        labels_one_hot = torch.nn.functional.one_hot(labels, self.num_classes).float()
         lam_labels = lam.squeeze()
         mixed_labels = lam_labels.unsqueeze(1) * labels_one_hot + \
                        (1 - lam_labels).unsqueeze(1) * labels_one_hot[indices]

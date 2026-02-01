@@ -57,6 +57,19 @@ def main(cfg: DictConfig):
             'n_time_masks': cfg.augmentation.specaugment_n_time_masks,
         }
 
+    # Get model-specific audio parameters (if using spectrograms)
+    audio_params = {}
+    if model_needs_spectrogram and hasattr(cfg.model, 'n_mels'):
+        audio_params = {
+            'n_mels': cfg.model.n_mels,
+            'n_fft': cfg.model.n_fft,
+            'hop_length': cfg.model.hop_length,
+            'max_length': cfg.model.max_length,
+        }
+
+    # Determine if using tiny dataset
+    use_tiny = (cfg.data.name == "tiny")
+
     datamodule = SOUSADataModule(
         dataset_path=str(dataset_path),
         batch_size=cfg.training.batch_size,
@@ -64,6 +77,8 @@ def main(cfg: DictConfig):
         use_spectrogram=model_needs_spectrogram,
         use_specaugment=use_specaugment,
         specaugment_params=specaugment_params,
+        use_tiny=use_tiny,
+        **audio_params,
     )
 
     # Create Lightning module

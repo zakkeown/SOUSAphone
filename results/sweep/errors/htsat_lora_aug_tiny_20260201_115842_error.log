@@ -1,0 +1,15 @@
+Error in experiment htsat_lora_aug_tiny_20260201_115842
+Config: {
+  "model": "htsat",
+  "strategy": "lora",
+  "augmentation": true,
+  "data": "tiny",
+  "max_epochs": 5
+}
+
+Error: Training failed with return code 1
+
+Traceback (most recent call last):
+  File "/Users/zakkeown/Code/SOUSAphone/.worktrees/training-pipeline-implementation/scripts/run_sweep.py", line 235, in run_experiment
+    raise RuntimeError(f"Training failed with return code {process.returncode}")
+RuntimeError: Training failed with return code 1
