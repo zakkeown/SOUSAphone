@@ -10,6 +10,28 @@ from sousa.utils.audio import load_audio
 from sousa.utils.rudiments import get_rudiment_mapping
 
 
+def normalize_rudiment_slug(slug: str) -> str:
+    """
+    Normalize rudiment slug from dataset to canonical form.
+
+    Handles special cases where dataset naming differs from canonical PAS naming.
+
+    Args:
+        slug: Rudiment slug from dataset (with underscores)
+
+    Returns:
+        Canonical rudiment slug (with hyphens)
+    """
+    # Convert underscores to hyphens
+    canonical = slug.replace("_", "-")
+
+    # Handle special cases
+    if canonical == "paradiddle-diddle":
+        canonical = "single-paradiddle-diddle"
+
+    return canonical
+
+
 class SOUSADataset(Dataset):
     """PyTorch Dataset for SOUSA drum rudiment audio classification.
 
@@ -43,11 +65,20 @@ class SOUSADataset(Dataset):
         self.rudiment_to_id = get_rudiment_mapping()
 
         # Load and filter metadata
+        # Try tiny metadata first, fall back to full metadata
+        tiny_metadata_path = self.dataset_path / "metadata_tiny.csv"
         metadata_path = self.dataset_path / "metadata.csv"
-        if not metadata_path.exists():
-            raise FileNotFoundError(f"Metadata file not found: {metadata_path}")
 
-        df = pd.read_csv(metadata_path)
+        if tiny_metadata_path.exists():
+            df = pd.read_csv(tiny_metadata_path)
+        elif metadata_path.exists():
+            df = pd.read_csv(metadata_path)
+        else:
+            raise FileNotFoundError(
+                f"Metadata file not found. Tried:\n"
+                f"  - {tiny_metadata_path}\n"
+                f"  - {metadata_path}"
+            )
 
         # Filter by split
         self.metadata = df[df["split"] == split].reset_index(drop=True)
@@ -76,7 +107,18 @@ class SOUSADataset(Dataset):
 
         sample_id = row["sample_id"]
         rudiment_slug = row["rudiment_slug"]
-        label = self.rudiment_to_id[rudiment_slug]
+
+        # Normalize rudiment slug to canonical form
+        rudiment_slug_canonical = normalize_rudiment_slug(rudiment_slug)
+
+        # Get label from mapping
+        if rudiment_slug_canonical not in self.rudiment_to_id:
+            raise KeyError(
+                f"Rudiment '{rudiment_slug}' (canonical: '{rudiment_slug_canonical}') "
+                f"not found in rudiment mapping. Available rudiments: {sorted(self.rudiment_to_id.keys())}"
+            )
+
+        label = self.rudiment_to_id[rudiment_slug_canonical]
 
         # Load audio
         audio_path = self.dataset_path / row["audio_path"]
