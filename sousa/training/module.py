@@ -8,7 +8,7 @@ import pytorch_lightning as pl
 from omegaconf import DictConfig
 from torch.optim import Optimizer
 from torchmetrics import Accuracy
-from peft import LoraConfig, get_peft_model
+from peft import LoraConfig, AdaLoraConfig, IA3Config, get_peft_model
 
 from sousa.models.base import AudioClassificationModel
 
@@ -34,26 +34,53 @@ class SOUSAClassifier(pl.LightningModule):
         self.config = config
 
         # Apply PEFT if configured
-        if hasattr(config, 'strategy') and config.strategy.type == "lora":
+        if hasattr(config, 'strategy') and config.strategy.type in ["lora", "adalora", "ia3"]:
             # Log original trainable params
             original_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
 
-            # Create LoRA config
-            peft_config = LoraConfig(
-                r=config.strategy.rank,
-                lora_alpha=config.strategy.alpha,
-                lora_dropout=config.strategy.dropout,
-                target_modules=list(config.strategy.target_modules),
-                bias="none",
-                task_type="FEATURE_EXTRACTION",  # Using FEATURE_EXTRACTION for audio models
-            )
+            # Create PEFT config based on strategy type
+            if config.strategy.type == "lora":
+                peft_config = LoraConfig(
+                    r=config.strategy.rank,
+                    lora_alpha=config.strategy.alpha,
+                    lora_dropout=config.strategy.dropout,
+                    target_modules=list(config.strategy.target_modules),
+                    bias="none",
+                    task_type="FEATURE_EXTRACTION",
+                )
+            elif config.strategy.type == "adalora":
+                peft_config = AdaLoraConfig(
+                    r=config.strategy.rank,
+                    lora_alpha=config.strategy.alpha,
+                    lora_dropout=config.strategy.dropout,
+                    target_modules=list(config.strategy.target_modules),
+                    init_r=config.strategy.init_r,
+                    target_r=config.strategy.target_r,
+                    tinit=config.strategy.tinit,
+                    tfinal=config.strategy.tfinal,
+                    deltaT=config.strategy.deltaT,
+                    total_step=config.strategy.total_step,
+                    bias="none",
+                    task_type="FEATURE_EXTRACTION",
+                )
+            elif config.strategy.type == "ia3":
+                # For IA3, feedforward_modules must be a subset of target_modules
+                # We identify which target modules are feedforward layers
+                target_modules_list = list(config.strategy.target_modules)
+                feedforward_modules = [m for m in target_modules_list if "feed_forward" in m or "dense" in m]
 
-            # Apply LoRA
+                peft_config = IA3Config(
+                    target_modules=target_modules_list,
+                    feedforward_modules=feedforward_modules if feedforward_modules else None,
+                    task_type="FEATURE_EXTRACTION",
+                )
+
+            # Apply PEFT
             self.model = get_peft_model(self.model, peft_config)
 
             # Log reduced trainable params
             peft_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
-            print(f"LoRA applied: {original_params:,} -> {peft_params:,} trainable params")
+            print(f"{config.strategy.type.upper()} applied: {original_params:,} -> {peft_params:,} trainable params")
             print(f"Trainable params reduced to {100 * peft_params / original_params:.2f}%")
 
         # Save hyperparameters
