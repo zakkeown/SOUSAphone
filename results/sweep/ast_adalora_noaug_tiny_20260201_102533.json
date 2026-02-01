@@ -1,0 +1,19 @@
+{
+  "config": {
+    "model": "ast",
+    "strategy": "adalora",
+    "augmentation": false,
+    "data": "tiny",
+    "max_epochs": 5
+  },
+  "metrics": {},
+  "efficiency": {
+    "training_time_seconds": 10.482120037078857
+  },
+  "status": "failed",
+  "error": "Training failed with return code 1",
+  "timestamp": "2026-02-01T10:25:33.605786",
+  "git_commit": "32aa28bf2d0014485efc934670bee12f48957f5d",
+  "experiment_id": "ast_adalora_noaug_tiny_20260201_102533",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/zakkeown/Code/SOUSAphone/.worktrees/training-pipeline-implementation/scripts/run_sweep.py\", line 235, in run_experiment\n    raise RuntimeError(f\"Training failed with return code {process.returncode}\")\nRuntimeError: Training failed with return code 1\n"
+}

@@ -134,8 +134,19 @@ class SOUSAClassifier(pl.LightningModule):
         )
 
     def forward(self, audio: torch.Tensor) -> torch.Tensor:
-        """Forward pass through model."""
-        return self.model(audio)
+        """
+        Forward pass through model.
+
+        When using PEFT, we need to access the base model directly because
+        PeftModel.forward() expects language model arguments (input_ids, attention_mask)
+        that our audio models don't accept.
+        """
+        # Check if model is wrapped with PEFT
+        if hasattr(self.model, 'base_model'):
+            # Access the base model directly to bypass PEFT's forward signature
+            return self.model.base_model.model(audio)
+        else:
+            return self.model(audio)
 
     def training_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) -> torch.Tensor:
         """Training step."""
