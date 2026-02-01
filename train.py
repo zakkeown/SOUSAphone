@@ -1,6 +1,7 @@
 # train.py
 """Training script for SOUSA rudiment classification."""
 
+import importlib
 import hydra
 from omegaconf import DictConfig
 import pytorch_lightning as pl
@@ -9,7 +10,6 @@ from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
 from pathlib import Path
 
 from sousa.data.datamodule import SOUSADataModule
-from sousa.models.ast import ASTModel
 from sousa.training.module import SOUSAClassifier
 
 
@@ -31,16 +31,25 @@ def main(cfg: DictConfig):
     # Expand ~ in dataset path
     dataset_path = Path(cfg.dataset_path).expanduser()
 
-    # Create data module
+    # Dynamically load model class from config
+    module_path, class_name = cfg.model.class_path.rsplit('.', 1)
+    module = importlib.import_module(module_path)
+    model_class = getattr(module, class_name)
+
+    # Instantiate model with config parameters
+    model = model_class(
+        num_classes=cfg.model.num_classes,
+        pretrained=cfg.model.pretrained,
+    )
+
+    # Create data module with appropriate input type
+    model_needs_spectrogram = (cfg.model.input_type == "spectrogram")
     datamodule = SOUSADataModule(
         dataset_path=str(dataset_path),
         batch_size=cfg.training.batch_size,
         num_workers=cfg.num_workers,
+        use_spectrogram=model_needs_spectrogram,
     )
-
-    # Create model (for now, hardcode AST)
-    # TODO: Dynamic model loading based on cfg.model
-    model = ASTModel(num_classes=40, pretrained=True)
 
     # Create Lightning module
     classifier = SOUSAClassifier(model, cfg)

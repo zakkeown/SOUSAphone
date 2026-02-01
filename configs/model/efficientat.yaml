@@ -1,0 +1,25 @@
+# configs/model/efficientat.yaml
+# EfficientAT: Efficient Audio Transformer using MobileNetV2 backbone
+# Lightweight and efficient for resource-constrained environments
+
+name: efficientat
+class_path: sousa.models.efficientat.EfficientATModel
+
+# Model configuration
+num_classes: 40
+pretrained: true  # Use ImageNet pretrained MobileNetV2 backbone
+
+# Input requirements
+input_type: spectrogram
+sample_rate: 16000
+n_mels: 128
+n_fft: 400
+hop_length: 160
+max_length: 1024  # Time frames for spectrograms
+
+# Model characteristics:
+# - Size: Small (~3.5M params for MobileNetV2 + classifier)
+# - Input: Mel-spectrograms (time x mels)
+# - Architecture: MobileNetV2 backbone + attention pooling
+# - Pretrained: ImageNet (provides useful low-level features)
+# - Use case: Resource-constrained environments, edge deployment
