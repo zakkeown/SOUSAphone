@@ -274,3 +274,86 @@ def test_ia3_reduces_trainable_params(ia3_config):
     assert ia3_params < full_params
     # IA3 is even more efficient than LoRA, should be less than 5% of original
     assert ia3_params < 0.05 * full_params
+
+
+def test_f1_metrics_initialized(minimal_config):
+    """F1 metrics should be initialized"""
+    model = ASTModel(num_classes=40, pretrained=False)
+    classifier = SOUSAClassifier(model, minimal_config)
+
+    # Check validation metrics exist
+    assert hasattr(classifier, 'val_f1')
+    assert hasattr(classifier, 'val_f1_per_class')
+
+    # Check test metrics exist
+    assert hasattr(classifier, 'test_f1')
+    assert hasattr(classifier, 'test_f1_per_class')
+
+
+def test_confusion_matrix_initialized(minimal_config):
+    """Confusion matrix metrics should be initialized"""
+    model = ASTModel(num_classes=40, pretrained=False)
+    classifier = SOUSAClassifier(model, minimal_config)
+
+    # Check validation metrics exist
+    assert hasattr(classifier, 'val_confusion')
+
+    # Check test metrics exist
+    assert hasattr(classifier, 'test_confusion')
+
+
+def test_metrics_update_on_validation_step(minimal_config):
+    """Advanced metrics should update during validation step"""
+    model = ASTModel(num_classes=40, pretrained=False)
+    classifier = SOUSAClassifier(model, minimal_config)
+
+    # Create batch
+    batch = {
+        'audio': torch.randn(4, 1024, 128),
+        'label': torch.tensor([0, 5, 10, 15]),
+    }
+
+    # Run validation step
+    classifier.validation_step(batch, batch_idx=0)
+
+    # Metrics should have been updated (not computed yet, but internal state changed)
+    # We can't directly check internal state, but we can compute to verify they work
+    f1 = classifier.val_f1.compute()
+    f1_per_class = classifier.val_f1_per_class.compute()
+    cm = classifier.val_confusion.compute()
+
+    # Check shapes and types
+    assert isinstance(f1, torch.Tensor)
+    assert f1.ndim == 0  # Scalar
+    assert isinstance(f1_per_class, torch.Tensor)
+    assert f1_per_class.shape == (40,)  # Per-class F1
+    assert isinstance(cm, torch.Tensor)
+    assert cm.shape == (40, 40)  # Confusion matrix
+
+
+def test_metrics_update_on_test_step(minimal_config):
+    """Advanced metrics should update during test step"""
+    model = ASTModel(num_classes=40, pretrained=False)
+    classifier = SOUSAClassifier(model, minimal_config)
+
+    # Create batch
+    batch = {
+        'audio': torch.randn(4, 1024, 128),
+        'label': torch.tensor([0, 5, 10, 15]),
+    }
+
+    # Run test step
+    classifier.test_step(batch, batch_idx=0)
+
+    # Compute metrics to verify they work
+    f1 = classifier.test_f1.compute()
+    f1_per_class = classifier.test_f1_per_class.compute()
+    cm = classifier.test_confusion.compute()
+
+    # Check shapes and types
+    assert isinstance(f1, torch.Tensor)
+    assert f1.ndim == 0  # Scalar
+    assert isinstance(f1_per_class, torch.Tensor)
+    assert f1_per_class.shape == (40,)  # Per-class F1
+    assert isinstance(cm, torch.Tensor)
+    assert cm.shape == (40, 40)  # Confusion matrix
