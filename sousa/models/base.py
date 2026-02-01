@@ -24,7 +24,7 @@ class AudioClassificationModel(nn.Module, ABC):
         Args:
             audio: Input audio tensor. Shape depends on expected_input_type:
                 - "waveform": (batch_size, num_samples)
-                - "spectrogram": (batch_size, n_mels, time_steps)
+                - "spectrogram": (batch_size, time_steps, n_mels)
 
         Returns:
             Logits tensor of shape (batch_size, num_classes)
