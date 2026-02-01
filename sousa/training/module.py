@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 from sousa.models.base import AudioClassificationModel
+from sousa.data.augmentations import Mixup
 
 
 class SOUSAClassifier(pl.LightningModule):
@@ -85,6 +86,12 @@ class SOUSAClassifier(pl.LightningModule):
             print(f"{config.strategy.type.upper()} applied: {original_params:,} -> {peft_params:,} trainable params")
             print(f"Trainable params reduced to {100 * peft_params / original_params:.2f}%")
 
+        # Initialize Mixup if configured
+        if hasattr(config, 'augmentation') and config.augmentation.mixup:
+            self.mixup = Mixup(alpha=config.augmentation.mixup_alpha)
+        else:
+            self.mixup = None
+
         # Save hyperparameters
         self.save_hyperparameters(ignore=['model'])
 
@@ -132,19 +139,30 @@ class SOUSAClassifier(pl.LightningModule):
 
     def training_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) -> torch.Tensor:
         """Training step."""
-        audio, labels = batch['audio'], batch['label']
+        # Apply Mixup
+        if self.mixup and self.training:
+            batch = self.mixup(batch)
+
+        audio = batch['audio']
+        labels = batch['label']
         logits = self(audio)
 
-        # Loss with label smoothing
-        loss = F.cross_entropy(
-            logits,
-            labels,
-            label_smoothing=self.config.training.label_smoothing,
-        )
+        # Handle soft labels from Mixup
+        if labels.dim() > 1:  # Soft labels
+            loss = -(labels * torch.log_softmax(logits, dim=1)).sum(dim=1).mean()
+            # For accuracy, use original labels if available
+            if 'original_label' in batch:
+                self.train_acc(logits, batch['original_label'])
+        else:  # Hard labels
+            loss = F.cross_entropy(
+                logits,
+                labels,
+                label_smoothing=self.config.training.label_smoothing,
+            )
+            self.train_acc(logits, labels)
 
         # Metrics
         self.log('train/loss', loss, prog_bar=True)
-        self.train_acc(logits, labels)
         self.log('train/acc', self.train_acc, on_step=False, on_epoch=True)
 
         return loss
