@@ -8,6 +8,7 @@ import pytorch_lightning as pl
 from omegaconf import DictConfig
 from torch.optim import Optimizer
 from torchmetrics import Accuracy
+from peft import LoraConfig, get_peft_model
 
 from sousa.models.base import AudioClassificationModel
 
@@ -31,6 +32,29 @@ class SOUSAClassifier(pl.LightningModule):
         super().__init__()
         self.model = model
         self.config = config
+
+        # Apply PEFT if configured
+        if hasattr(config, 'strategy') and config.strategy.type == "lora":
+            # Log original trainable params
+            original_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
+
+            # Create LoRA config
+            peft_config = LoraConfig(
+                r=config.strategy.rank,
+                lora_alpha=config.strategy.alpha,
+                lora_dropout=config.strategy.dropout,
+                target_modules=list(config.strategy.target_modules),
+                bias="none",
+                task_type="FEATURE_EXTRACTION",  # Using FEATURE_EXTRACTION for audio models
+            )
+
+            # Apply LoRA
+            self.model = get_peft_model(self.model, peft_config)
+
+            # Log reduced trainable params
+            peft_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
+            print(f"LoRA applied: {original_params:,} -> {peft_params:,} trainable params")
+            print(f"Trainable params reduced to {100 * peft_params / original_params:.2f}%")
 
         # Save hyperparameters
         self.save_hyperparameters(ignore=['model'])
