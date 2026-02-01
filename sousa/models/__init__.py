@@ -1,1 +1,1 @@
-"""Model implementations and configurations."""
+"""Audio classification models."""
