@@ -6,6 +6,7 @@ from omegaconf import DictConfig
 import pytorch_lightning as pl
 from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
+from pathlib import Path
 
 from sousa.data.datamodule import SOUSADataModule
 from sousa.models.ast import ASTModel
@@ -27,9 +28,12 @@ def main(cfg: DictConfig):
         tags=cfg.wandb.tags,
     )
 
+    # Expand ~ in dataset path
+    dataset_path = Path(cfg.dataset_path).expanduser()
+
     # Create data module
     datamodule = SOUSADataModule(
-        dataset_path=cfg.dataset_path,
+        dataset_path=str(dataset_path),
         batch_size=cfg.training.batch_size,
         num_workers=cfg.num_workers,
     )

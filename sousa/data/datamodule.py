@@ -4,6 +4,7 @@ import torch
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 from sousa.data.dataset import SOUSADataset
+from sousa.data.transforms import MelSpectrogramTransform
 
 
 class SOUSADataModule(pl.LightningDataModule):
@@ -20,6 +21,7 @@ class SOUSADataModule(pl.LightningDataModule):
         num_workers: int = 4,
         sample_rate: int = 16000,
         max_duration: float = 5.0,
+        use_spectrogram: bool = True,
     ):
         """
         Initialize DataModule.
@@ -30,6 +32,7 @@ class SOUSADataModule(pl.LightningDataModule):
             num_workers: Number of dataloader workers
             sample_rate: Audio sample rate
             max_duration: Max audio duration (seconds)
+            use_spectrogram: Whether to convert audio to mel-spectrogram
         """
         super().__init__()
         self.dataset_path = dataset_path
@@ -37,7 +40,19 @@ class SOUSADataModule(pl.LightningDataModule):
         self.num_workers = num_workers
         self.sample_rate = sample_rate
         self.max_duration = max_duration
+        self.use_spectrogram = use_spectrogram
         self.pin_memory = torch.cuda.is_available()
+
+        # Create transform if needed
+        self.transform = None
+        if self.use_spectrogram:
+            self.transform = MelSpectrogramTransform(
+                sample_rate=sample_rate,
+                n_mels=128,
+                n_fft=400,
+                hop_length=160,
+                target_length=1024,  # AST expects 1024 time frames
+            )
 
     def setup(self, stage: str) -> None:
         """Create datasets for each split."""
@@ -47,12 +62,14 @@ class SOUSADataModule(pl.LightningDataModule):
                 split="train",
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
+                transform=self.transform,
             )
             self.val_dataset = SOUSADataset(
                 dataset_path=self.dataset_path,
                 split="val",
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
+                transform=self.transform,
             )
 
         if stage == "test":
@@ -61,6 +78,7 @@ class SOUSADataModule(pl.LightningDataModule):
                 split="test",
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
+                transform=self.transform,
             )
 
     def train_dataloader(self) -> DataLoader:

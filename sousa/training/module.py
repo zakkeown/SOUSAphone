@@ -39,6 +39,7 @@ class SOUSAClassifier(pl.LightningModule):
         num_classes = model.num_classes
         self.train_acc = Accuracy(task="multiclass", num_classes=num_classes)
         self.val_acc = Accuracy(task="multiclass", num_classes=num_classes)
+        self.test_acc = Accuracy(task="multiclass", num_classes=num_classes)
 
     def forward(self, audio: torch.Tensor) -> torch.Tensor:
         """Forward pass through model."""
@@ -73,6 +74,19 @@ class SOUSAClassifier(pl.LightningModule):
         self.log('val/loss', loss, prog_bar=True)
         self.val_acc(logits, labels)
         self.log('val/acc', self.val_acc, on_step=False, on_epoch=True)
+
+        return loss
+
+    def test_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) -> torch.Tensor:
+        """Test step."""
+        audio, labels = batch['audio'], batch['label']
+        logits = self(audio)
+
+        loss = F.cross_entropy(logits, labels)
+
+        self.log('test/loss', loss, prog_bar=True)
+        self.test_acc(logits, labels)
+        self.log('test/acc', self.test_acc, on_step=False, on_epoch=True)
 
         return loss
 
