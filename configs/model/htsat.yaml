@@ -1,0 +1,14 @@
+# configs/model/htsat.yaml
+name: htsat
+class_path: sousa.models.htsat.HTSATModel
+num_classes: 40
+pretrained: true
+
+# Input requirements
+# Note: Pretrained CLAP model uses 64 mel bins, but can be configured for 128
+input_type: spectrogram
+sample_rate: 16000
+n_mels: 64  # CLAP default (pretrained model expects 64)
+n_fft: 400
+hop_length: 160
+max_length: 256  # CLAP spec_size
