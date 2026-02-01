@@ -18,8 +18,13 @@ training:
 # Augmentation
 augmentation:
   specaugment: true
+  specaugment_freq_mask: 30
+  specaugment_time_mask: 40
+  specaugment_n_freq_masks: 2
+  specaugment_n_time_masks: 2
+
+  mixup: true
   mixup_alpha: 0.2
-  time_stretch_range: [0.9, 1.1]
 
 # System
 seed: 42

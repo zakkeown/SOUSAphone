@@ -1,5 +1,7 @@
 """Audio transforms for preprocessing."""
 
+from typing import Callable, List, Optional
+
 import torch
 import torchaudio
 
@@ -68,3 +70,31 @@ class MelSpectrogramTransform:
             mel_spec = mel_spec[: self.target_length, :]
 
         return mel_spec
+
+
+class ComposeTransforms:
+    """Compose multiple transforms together."""
+
+    def __init__(self, transforms: List[Callable]):
+        """
+        Initialize composed transforms.
+
+        Args:
+            transforms: List of transforms to apply sequentially
+        """
+        self.transforms = transforms
+
+    def __call__(self, x: torch.Tensor) -> torch.Tensor:
+        """
+        Apply all transforms sequentially.
+
+        Args:
+            x: Input tensor
+
+        Returns:
+            Transformed tensor
+        """
+        for transform in self.transforms:
+            if transform is not None:
+                x = transform(x)
+        return x

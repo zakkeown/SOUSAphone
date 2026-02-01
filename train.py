@@ -44,11 +44,26 @@ def main(cfg: DictConfig):
 
     # Create data module with appropriate input type
     model_needs_spectrogram = (cfg.model.input_type == "spectrogram")
+
+    # Prepare SpecAugment parameters if enabled
+    specaugment_params = None
+    use_specaugment = False
+    if hasattr(cfg, 'augmentation') and cfg.augmentation.specaugment and model_needs_spectrogram:
+        use_specaugment = True
+        specaugment_params = {
+            'freq_mask_param': cfg.augmentation.specaugment_freq_mask,
+            'time_mask_param': cfg.augmentation.specaugment_time_mask,
+            'n_freq_masks': cfg.augmentation.specaugment_n_freq_masks,
+            'n_time_masks': cfg.augmentation.specaugment_n_time_masks,
+        }
+
     datamodule = SOUSADataModule(
         dataset_path=str(dataset_path),
         batch_size=cfg.training.batch_size,
         num_workers=cfg.num_workers,
         use_spectrogram=model_needs_spectrogram,
+        use_specaugment=use_specaugment,
+        specaugment_params=specaugment_params,
     )
 
     # Create Lightning module

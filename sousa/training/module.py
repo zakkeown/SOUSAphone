@@ -7,10 +7,13 @@ import torch.nn.functional as F
 import pytorch_lightning as pl
 from omegaconf import DictConfig
 from torch.optim import Optimizer
-from torchmetrics import Accuracy
-from peft import LoraConfig, get_peft_model
+from torchmetrics import Accuracy, ConfusionMatrix, F1Score
+from peft import LoraConfig, AdaLoraConfig, IA3Config, get_peft_model
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 from sousa.models.base import AudioClassificationModel
+from sousa.data.augmentations import Mixup
 
 
 class SOUSAClassifier(pl.LightningModule):
@@ -34,27 +37,60 @@ class SOUSAClassifier(pl.LightningModule):
         self.config = config
 
         # Apply PEFT if configured
-        if hasattr(config, 'strategy') and config.strategy.type == "lora":
+        if hasattr(config, 'strategy') and config.strategy.type in ["lora", "adalora", "ia3"]:
             # Log original trainable params
             original_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
 
-            # Create LoRA config
-            peft_config = LoraConfig(
-                r=config.strategy.rank,
-                lora_alpha=config.strategy.alpha,
-                lora_dropout=config.strategy.dropout,
-                target_modules=list(config.strategy.target_modules),
-                bias="none",
-                task_type="FEATURE_EXTRACTION",  # Using FEATURE_EXTRACTION for audio models
-            )
+            # Create PEFT config based on strategy type
+            if config.strategy.type == "lora":
+                peft_config = LoraConfig(
+                    r=config.strategy.rank,
+                    lora_alpha=config.strategy.alpha,
+                    lora_dropout=config.strategy.dropout,
+                    target_modules=list(config.strategy.target_modules),
+                    bias="none",
+                    task_type="FEATURE_EXTRACTION",
+                )
+            elif config.strategy.type == "adalora":
+                peft_config = AdaLoraConfig(
+                    r=config.strategy.rank,
+                    lora_alpha=config.strategy.alpha,
+                    lora_dropout=config.strategy.dropout,
+                    target_modules=list(config.strategy.target_modules),
+                    init_r=config.strategy.init_r,
+                    target_r=config.strategy.target_r,
+                    tinit=config.strategy.tinit,
+                    tfinal=config.strategy.tfinal,
+                    deltaT=config.strategy.deltaT,
+                    total_step=config.strategy.total_step,
+                    bias="none",
+                    task_type="FEATURE_EXTRACTION",
+                )
+            elif config.strategy.type == "ia3":
+                # For IA3, feedforward_modules must be a subset of target_modules
+                # We identify which target modules are feedforward layers
+                target_modules_list = list(config.strategy.target_modules)
+                feedforward_modules = [m for m in target_modules_list if "feed_forward" in m or "dense" in m]
 
-            # Apply LoRA
+                peft_config = IA3Config(
+                    target_modules=target_modules_list,
+                    feedforward_modules=feedforward_modules if feedforward_modules else None,
+                    task_type="FEATURE_EXTRACTION",
+                )
+
+            # Apply PEFT
             self.model = get_peft_model(self.model, peft_config)
 
             # Log reduced trainable params
             peft_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
-            print(f"LoRA applied: {original_params:,} -> {peft_params:,} trainable params")
+            print(f"{config.strategy.type.upper()} applied: {original_params:,} -> {peft_params:,} trainable params")
             print(f"Trainable params reduced to {100 * peft_params / original_params:.2f}%")
+
+        # Initialize Mixup if configured
+        if hasattr(config, 'augmentation') and config.augmentation.mixup:
+            self.mixup = Mixup(alpha=config.augmentation.mixup_alpha)
+        else:
+            self.mixup = None
 
         # Save hyperparameters
         self.save_hyperparameters(ignore=['model'])
@@ -65,25 +101,68 @@ class SOUSAClassifier(pl.LightningModule):
         self.val_acc = Accuracy(task="multiclass", num_classes=num_classes)
         self.test_acc = Accuracy(task="multiclass", num_classes=num_classes)
 
+        # Advanced validation metrics
+        self.val_f1 = F1Score(
+            task="multiclass",
+            num_classes=num_classes,
+            average="macro",  # Macro-averaged F1
+        )
+        self.val_f1_per_class = F1Score(
+            task="multiclass",
+            num_classes=num_classes,
+            average="none",  # Per-class F1
+        )
+        self.val_confusion = ConfusionMatrix(
+            task="multiclass",
+            num_classes=num_classes,
+        )
+
+        # Advanced test metrics
+        self.test_f1 = F1Score(
+            task="multiclass",
+            num_classes=num_classes,
+            average="macro",
+        )
+        self.test_f1_per_class = F1Score(
+            task="multiclass",
+            num_classes=num_classes,
+            average="none",
+        )
+        self.test_confusion = ConfusionMatrix(
+            task="multiclass",
+            num_classes=num_classes,
+        )
+
     def forward(self, audio: torch.Tensor) -> torch.Tensor:
         """Forward pass through model."""
         return self.model(audio)
 
     def training_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) -> torch.Tensor:
         """Training step."""
-        audio, labels = batch['audio'], batch['label']
+        # Apply Mixup
+        if self.mixup and self.training:
+            batch = self.mixup(batch)
+
+        audio = batch['audio']
+        labels = batch['label']
         logits = self(audio)
 
-        # Loss with label smoothing
-        loss = F.cross_entropy(
-            logits,
-            labels,
-            label_smoothing=self.config.training.label_smoothing,
-        )
+        # Handle soft labels from Mixup
+        if labels.dim() > 1:  # Soft labels
+            loss = -(labels * torch.log_softmax(logits, dim=1)).sum(dim=1).mean()
+            # For accuracy, use original labels if available
+            if 'original_label' in batch:
+                self.train_acc(logits, batch['original_label'])
+        else:  # Hard labels
+            loss = F.cross_entropy(
+                logits,
+                labels,
+                label_smoothing=self.config.training.label_smoothing,
+            )
+            self.train_acc(logits, labels)
 
         # Metrics
         self.log('train/loss', loss, prog_bar=True)
-        self.train_acc(logits, labels)
         self.log('train/acc', self.train_acc, on_step=False, on_epoch=True)
 
         return loss
@@ -99,6 +178,11 @@ class SOUSAClassifier(pl.LightningModule):
         self.val_acc(logits, labels)
         self.log('val/acc', self.val_acc, on_step=False, on_epoch=True)
 
+        # Update advanced metrics
+        self.val_f1(logits, labels)
+        self.val_f1_per_class(logits, labels)
+        self.val_confusion(logits, labels)
+
         return loss
 
     def test_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) -> torch.Tensor:
@@ -112,7 +196,120 @@ class SOUSAClassifier(pl.LightningModule):
         self.test_acc(logits, labels)
         self.log('test/acc', self.test_acc, on_step=False, on_epoch=True)
 
+        # Update advanced metrics
+        self.test_f1(logits, labels)
+        self.test_f1_per_class(logits, labels)
+        self.test_confusion(logits, labels)
+
         return loss
+
+    def on_validation_epoch_end(self):
+        """Log advanced metrics at end of validation epoch."""
+        # Log macro F1
+        f1 = self.val_f1.compute()
+        self.log('val/f1_macro', f1, sync_dist=True)
+
+        # Log per-class F1 (get top-5 worst and best)
+        f1_per_class = self.val_f1_per_class.compute()
+
+        # Get rudiment names
+        from sousa.utils.rudiments import RUDIMENT_NAMES
+
+        # Log worst 5 classes
+        worst_indices = f1_per_class.argsort()[:5]
+        for idx in worst_indices:
+            self.log(f'val/f1_worst/{RUDIMENT_NAMES[idx]}', f1_per_class[idx])
+
+        # Log best 5 classes
+        best_indices = f1_per_class.argsort()[-5:]
+        for idx in best_indices:
+            self.log(f'val/f1_best/{RUDIMENT_NAMES[idx]}', f1_per_class[idx])
+
+        # Create confusion matrix figure
+        cm = self.val_confusion.compute()
+        fig, ax = plt.subplots(figsize=(20, 20))
+        sns.heatmap(
+            cm.cpu().numpy(),
+            annot=False,
+            fmt='d',
+            cmap='Blues',
+            xticklabels=RUDIMENT_NAMES,
+            yticklabels=RUDIMENT_NAMES,
+            ax=ax
+        )
+        ax.set_xlabel('Predicted')
+        ax.set_ylabel('True')
+        ax.set_title('Confusion Matrix')
+        plt.xticks(rotation=90)
+        plt.yticks(rotation=0)
+        plt.tight_layout()
+
+        # Log to W&B
+        import wandb
+        self.logger.experiment.log({
+            "val/confusion_matrix": wandb.Image(fig),
+            "epoch": self.current_epoch
+        })
+        plt.close(fig)
+
+        # Reset metrics
+        self.val_f1.reset()
+        self.val_f1_per_class.reset()
+        self.val_confusion.reset()
+
+    def on_test_epoch_end(self):
+        """Log advanced metrics at end of test epoch."""
+        # Log macro F1
+        f1 = self.test_f1.compute()
+        self.log('test/f1_macro', f1)
+
+        # Log per-class F1 (get top-5 worst and best)
+        f1_per_class = self.test_f1_per_class.compute()
+
+        # Get rudiment names
+        from sousa.utils.rudiments import RUDIMENT_NAMES
+
+        # Log worst 5 classes
+        worst_indices = f1_per_class.argsort()[:5]
+        for idx in worst_indices:
+            self.log(f'test/f1_worst/{RUDIMENT_NAMES[idx]}', f1_per_class[idx])
+
+        # Log best 5 classes
+        best_indices = f1_per_class.argsort()[-5:]
+        for idx in best_indices:
+            self.log(f'test/f1_best/{RUDIMENT_NAMES[idx]}', f1_per_class[idx])
+
+        # Create confusion matrix figure
+        cm = self.test_confusion.compute()
+        fig, ax = plt.subplots(figsize=(20, 20))
+        sns.heatmap(
+            cm.cpu().numpy(),
+            annot=False,
+            fmt='d',
+            cmap='Blues',
+            xticklabels=RUDIMENT_NAMES,
+            yticklabels=RUDIMENT_NAMES,
+            ax=ax
+        )
+        ax.set_xlabel('Predicted')
+        ax.set_ylabel('True')
+        ax.set_title('Confusion Matrix')
+        plt.xticks(rotation=90)
+        plt.yticks(rotation=0)
+        plt.tight_layout()
+
+        # Log to W&B
+        import wandb
+        self.logger.experiment.log({
+            "test/confusion_matrix": wandb.Image(fig),
+            "epoch": self.current_epoch
+        })
+        plt.close(fig)
+
+        # Reset metrics
+        self.test_f1.reset()
+        self.test_f1_per_class.reset()
+        self.test_confusion.reset()
 
     def configure_optimizers(self) -> Optimizer:
         """Configure optimizer and scheduler."""

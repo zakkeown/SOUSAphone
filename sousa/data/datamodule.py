@@ -4,7 +4,8 @@ import torch
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 from sousa.data.dataset import SOUSADataset
-from sousa.data.transforms import MelSpectrogramTransform
+from sousa.data.transforms import MelSpectrogramTransform, ComposeTransforms
+from sousa.data.augmentations import SpecAugment
 
 
 class SOUSADataModule(pl.LightningDataModule):
@@ -22,6 +23,8 @@ class SOUSADataModule(pl.LightningDataModule):
         sample_rate: int = 16000,
         max_duration: float = 5.0,
         use_spectrogram: bool = True,
+        use_specaugment: bool = False,
+        specaugment_params: dict = None,
     ):
         """
         Initialize DataModule.
@@ -33,6 +36,8 @@ class SOUSADataModule(pl.LightningDataModule):
             sample_rate: Audio sample rate
             max_duration: Max audio duration (seconds)
             use_spectrogram: Whether to convert audio to mel-spectrogram
+            use_specaugment: Whether to use SpecAugment on training data
+            specaugment_params: Parameters for SpecAugment
         """
         super().__init__()
         self.dataset_path = dataset_path
@@ -41,18 +46,34 @@ class SOUSADataModule(pl.LightningDataModule):
         self.sample_rate = sample_rate
         self.max_duration = max_duration
         self.use_spectrogram = use_spectrogram
+        self.use_specaugment = use_specaugment
         self.pin_memory = torch.cuda.is_available()
 
-        # Create transform if needed
-        self.transform = None
+        # Create base transform if needed
+        self.base_transform = None
         if self.use_spectrogram:
-            self.transform = MelSpectrogramTransform(
+            self.base_transform = MelSpectrogramTransform(
                 sample_rate=sample_rate,
                 n_mels=128,
                 n_fft=400,
                 hop_length=160,
                 target_length=1024,  # AST expects 1024 time frames
             )
+
+        # Create SpecAugment transform if requested
+        if use_specaugment and specaugment_params:
+            self.specaugment = SpecAugment(**specaugment_params)
+        else:
+            self.specaugment = None
+
+        # Create train transform (base + augmentation)
+        if self.base_transform and self.specaugment:
+            self.train_transform = ComposeTransforms([self.base_transform, self.specaugment])
+        else:
+            self.train_transform = self.base_transform
+
+        # Validation/test uses only base transform (no augmentation)
+        self.val_transform = self.base_transform
 
     def setup(self, stage: str) -> None:
         """Create datasets for each split."""
@@ -62,14 +83,14 @@ class SOUSADataModule(pl.LightningDataModule):
                 split="train",
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
-                transform=self.transform,
+                transform=self.train_transform,
             )
             self.val_dataset = SOUSADataset(
                 dataset_path=self.dataset_path,
                 split="val",
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
-                transform=self.transform,
+                transform=self.val_transform,
             )
 
         if stage == "test":
@@ -78,7 +99,7 @@ class SOUSADataModule(pl.LightningDataModule):
                 split="test",
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
-                transform=self.transform,
+                transform=self.val_transform,
             )
 
     def train_dataloader(self) -> DataLoader:
