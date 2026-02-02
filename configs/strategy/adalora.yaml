@@ -1,0 +1,22 @@
+type: adalora
+load_pretrained: true
+
+# AdaLoRA hyperparameters
+rank: 8
+alpha: 16
+dropout: 0.1
+target_modules:
+  - "attention.query"
+  - "attention.key"
+  - "attention.value"
+
+# AdaLoRA-specific parameters
+init_r: 12     # Initial rank (will be pruned down to rank)
+target_r: 8    # Target rank
+tinit: 0       # Steps before pruning starts
+tfinal: 1000   # Steps when pruning ends
+deltaT: 10     # Pruning frequency
+total_step: 10000  # Total training steps (required by AdaLoRA)
+
+# Adjusted learning rate for PEFT
+learning_rate: 1e-4

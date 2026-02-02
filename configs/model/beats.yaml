@@ -1,0 +1,11 @@
+# configs/model/beats.yaml
+name: beats
+class_path: sousa.models.beats.BEATsModel
+num_classes: 40
+pretrained: true
+
+# Input requirements
+# Note: BEATs uses raw waveform input, not spectrograms!
+input_type: waveform
+sample_rate: 16000
+max_duration: 5.0  # seconds

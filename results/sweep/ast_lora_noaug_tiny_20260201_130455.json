@@ -1,0 +1,24 @@
+{
+  "config": {
+    "model": "ast",
+    "strategy": "lora",
+    "augmentation": false,
+    "data": "tiny",
+    "max_epochs": 5
+  },
+  "metrics": {
+    "trainable_params": 958464,
+    "total_params": 86219560,
+    "test_acc": 0.4000000059604645,
+    "test_f1_macro": 0.2857142984867096
+  },
+  "efficiency": {
+    "training_time_seconds": 1137.0238642692566,
+    "avg_epoch_time": 227.40432844161987
+  },
+  "status": "completed",
+  "error": null,
+  "timestamp": "2026-02-01T13:04:55.724521",
+  "git_commit": "ce38d15ee120e048138800f80fa590c439213bfd",
+  "experiment_id": "ast_lora_noaug_tiny_20260201_130455"
+}

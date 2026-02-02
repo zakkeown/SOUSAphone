@@ -1,0 +1,14 @@
+type: lora
+load_pretrained: true
+
+# LoRA hyperparameters
+rank: 8
+alpha: 16
+dropout: 0.1
+target_modules:
+  - "attention.query"
+  - "attention.key"
+  - "attention.value"
+
+# Adjusted learning rate for PEFT
+learning_rate: 1e-4

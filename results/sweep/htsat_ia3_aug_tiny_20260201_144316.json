@@ -1,0 +1,24 @@
+{
+  "config": {
+    "model": "htsat",
+    "strategy": "ia3",
+    "augmentation": true,
+    "data": "tiny",
+    "max_epochs": 5
+  },
+  "metrics": {
+    "trainable_params": 35328,
+    "total_params": 27565248,
+    "test_acc": 0.0,
+    "test_f1_macro": 0.0
+  },
+  "efficiency": {
+    "training_time_seconds": 49.823121786117554,
+    "avg_epoch_time": 9.964602184295654
+  },
+  "status": "completed",
+  "error": null,
+  "timestamp": "2026-02-01T14:43:16.508463",
+  "git_commit": "ce38d15ee120e048138800f80fa590c439213bfd",
+  "experiment_id": "htsat_ia3_aug_tiny_20260201_144316"
+}
