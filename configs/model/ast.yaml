@@ -1,4 +1,4 @@
-# configs/model/ast.yaml
+# configs/model/ast_fixed.yaml
 name: ast
 class_path: sousa.models.ast.ASTModel
 num_classes: 40
@@ -11,3 +11,12 @@ n_mels: 128
 n_fft: 400
 hop_length: 160
 max_length: 1024
+
+# PEFT target modules for AST (Transformer architecture)
+# PEFT will match these patterns across all encoder layers
+# Full paths look like: audio_spectrogram_transformer.encoder.layer.{N}.attention.attention.query
+peft_target_modules:
+  - query
+  - key
+  - value
+  - output.dense
