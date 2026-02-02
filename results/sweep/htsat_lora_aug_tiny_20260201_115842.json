@@ -1,0 +1,19 @@
+{
+  "config": {
+    "model": "htsat",
+    "strategy": "lora",
+    "augmentation": true,
+    "data": "tiny",
+    "max_epochs": 5
+  },
+  "metrics": {},
+  "efficiency": {
+    "training_time_seconds": 4.43713903427124
+  },
+  "status": "failed",
+  "error": "Training failed with return code 1",
+  "timestamp": "2026-02-01T11:58:42.831299",
+  "git_commit": "ce38d15ee120e048138800f80fa590c439213bfd",
+  "experiment_id": "htsat_lora_aug_tiny_20260201_115842",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/zakkeown/Code/SOUSAphone/.worktrees/training-pipeline-implementation/scripts/run_sweep.py\", line 235, in run_experiment\n    raise RuntimeError(f\"Training failed with return code {process.returncode}\")\nRuntimeError: Training failed with return code 1\n"
+}

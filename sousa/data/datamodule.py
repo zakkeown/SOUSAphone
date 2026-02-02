@@ -25,6 +25,11 @@ class SOUSADataModule(pl.LightningDataModule):
         use_spectrogram: bool = True,
         use_specaugment: bool = False,
         specaugment_params: dict = None,
+        n_mels: int = 128,
+        n_fft: int = 400,
+        hop_length: int = 160,
+        max_length: int = 1024,
+        use_tiny: bool = False,
     ):
         """
         Initialize DataModule.
@@ -38,6 +43,10 @@ class SOUSADataModule(pl.LightningDataModule):
             use_spectrogram: Whether to convert audio to mel-spectrogram
             use_specaugment: Whether to use SpecAugment on training data
             specaugment_params: Parameters for SpecAugment
+            n_mels: Number of mel filterbanks (model-specific)
+            n_fft: FFT window size
+            hop_length: Hop length for STFT
+            max_length: Target time frames for spectrograms
         """
         super().__init__()
         self.dataset_path = dataset_path
@@ -47,6 +56,7 @@ class SOUSADataModule(pl.LightningDataModule):
         self.max_duration = max_duration
         self.use_spectrogram = use_spectrogram
         self.use_specaugment = use_specaugment
+        self.use_tiny = use_tiny
         self.pin_memory = torch.cuda.is_available()
 
         # Create base transform if needed
@@ -54,10 +64,10 @@ class SOUSADataModule(pl.LightningDataModule):
         if self.use_spectrogram:
             self.base_transform = MelSpectrogramTransform(
                 sample_rate=sample_rate,
-                n_mels=128,
-                n_fft=400,
-                hop_length=160,
-                target_length=1024,  # AST expects 1024 time frames
+                n_mels=n_mels,
+                n_fft=n_fft,
+                hop_length=hop_length,
+                target_length=max_length,
             )
 
         # Create SpecAugment transform if requested
@@ -84,6 +94,7 @@ class SOUSADataModule(pl.LightningDataModule):
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
                 transform=self.train_transform,
+                use_tiny=self.use_tiny,
             )
             self.val_dataset = SOUSADataset(
                 dataset_path=self.dataset_path,
@@ -91,6 +102,7 @@ class SOUSADataModule(pl.LightningDataModule):
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
                 transform=self.val_transform,
+                use_tiny=self.use_tiny,
             )
 
         if stage == "test":
@@ -99,6 +111,7 @@ class SOUSADataModule(pl.LightningDataModule):
                 split="test",
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
+                use_tiny=self.use_tiny,
                 transform=self.val_transform,
             )
 

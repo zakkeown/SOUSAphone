@@ -53,6 +53,7 @@ class SOUSADataset(Dataset):
         sample_rate: int = 16000,
         max_duration: float = 5.0,
         transform: Optional[Callable] = None,
+        use_tiny: bool = False,
     ):
         self.dataset_path = Path(dataset_path)
         self.split = split
@@ -64,21 +65,18 @@ class SOUSADataset(Dataset):
         # Load rudiment mapping
         self.rudiment_to_id = get_rudiment_mapping()
 
-        # Load and filter metadata
-        # Try tiny metadata first, fall back to full metadata
-        tiny_metadata_path = self.dataset_path / "metadata_tiny.csv"
-        metadata_path = self.dataset_path / "metadata.csv"
-
-        if tiny_metadata_path.exists():
-            df = pd.read_csv(tiny_metadata_path)
-        elif metadata_path.exists():
-            df = pd.read_csv(metadata_path)
+        # Load metadata based on use_tiny parameter
+        if use_tiny:
+            metadata_file = "metadata_tiny.csv"
         else:
-            raise FileNotFoundError(
-                f"Metadata file not found. Tried:\n"
-                f"  - {tiny_metadata_path}\n"
-                f"  - {metadata_path}"
-            )
+            metadata_file = "metadata.csv"
+
+        metadata_path = self.dataset_path / metadata_file
+
+        if not metadata_path.exists():
+            raise FileNotFoundError(f"Metadata file not found: {metadata_path}")
+
+        df = pd.read_csv(metadata_path)
 
         # Filter by split
         self.metadata = df[df["split"] == split].reset_index(drop=True)

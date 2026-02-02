@@ -1,0 +1,602 @@
+Seed set to 42
+[2026-02-01 13:41:34,948][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/MIT/ast-finetuned-audioset-10-10-0.4593/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-02-01 13:41:34,982][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/MIT/ast-finetuned-audioset-10-10-0.4593/f826b80d28226b62986cc218e5cec390b1096902/config.json "HTTP/1.1 200 OK"
+[2026-02-01 13:41:35,064][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/MIT/ast-finetuned-audioset-10-10-0.4593/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-02-01 13:41:35,098][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/MIT/ast-finetuned-audioset-10-10-0.4593/f826b80d28226b62986cc218e5cec390b1096902/config.json "HTTP/1.1 200 OK"
+[2026-02-01 13:41:35,178][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/MIT/ast-finetuned-audioset-10-10-0.4593/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/203 [00:00<00:00, 5370.43it/s, Materializing param=audio_spectrogram_transformer.embeddings.cls_token]
+Loading weights:   0%|          | 1/203 [00:00<00:00, 4346.43it/s, Materializing param=audio_spectrogram_transformer.embeddings.cls_token]
+Loading weights:   1%|          | 2/203 [00:00<00:00, 3860.38it/s, Materializing param=audio_spectrogram_transformer.embeddings.distillation_token]
+Loading weights:   1%|          | 2/203 [00:00<00:00, 3551.49it/s, Materializing param=audio_spectrogram_transformer.embeddings.distillation_token]
+Loading weights:   1%|▏         | 3/203 [00:00<00:00, 4272.64it/s, Materializing param=audio_spectrogram_transformer.embeddings.patch_embeddings.projection.bias]
+Loading weights:   1%|▏         | 3/203 [00:00<00:00, 4059.00it/s, Materializing param=audio_spectrogram_transformer.embeddings.patch_embeddings.projection.bias]
+Loading weights:   2%|▏         | 4/203 [00:00<00:00, 4888.47it/s, Materializing param=audio_spectrogram_transformer.embeddings.patch_embeddings.projection.weight]
+Loading weights:   2%|▏         | 4/203 [00:00<00:00, 4634.59it/s, Materializing param=audio_spectrogram_transformer.embeddings.patch_embeddings.projection.weight]
+Loading weights:   2%|▏         | 5/203 [00:00<00:00, 5410.61it/s, Materializing param=audio_spectrogram_transformer.embeddings.position_embeddings]               
+Loading weights:   2%|▏         | 5/203 [00:00<00:00, 5252.07it/s, Materializing param=audio_spectrogram_transformer.embeddings.position_embeddings]
+Loading weights:   3%|▎         | 6/203 [00:00<00:00, 5928.34it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.attention.key.bias]
+Loading weights:   3%|▎         | 6/203 [00:00<00:00, 5797.24it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.attention.key.bias]
+Loading weights:   3%|▎         | 7/203 [00:00<00:00, 6270.85it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.attention.key.weight]
+Loading weights:   3%|▎         | 7/203 [00:00<00:00, 6150.01it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.attention.key.weight]
+Loading weights:   4%|▍         | 8/203 [00:00<00:00, 6709.54it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.attention.query.bias]
+Loading weights:   4%|▍         | 8/203 [00:00<00:00, 6588.34it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.attention.query.bias]
+Loading weights:   4%|▍         | 9/203 [00:00<00:00, 6927.64it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.attention.query.weight]
+Loading weights:   4%|▍         | 9/203 [00:00<00:00, 6811.39it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.attention.query.weight]
+Loading weights:   5%|▍         | 10/203 [00:00<00:00, 7209.19it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.attention.value.bias] 
+Loading weights:   5%|▍         | 10/203 [00:00<00:00, 7096.96it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.attention.value.bias]
+Loading weights:   5%|▌         | 11/203 [00:00<00:00, 6325.38it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.attention.value.weight]
+Loading weights:   5%|▌         | 11/203 [00:00<00:00, 6242.37it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.attention.value.weight]
+Loading weights:   6%|▌         | 12/203 [00:00<00:00, 6575.00it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.output.dense.bias]     
+Loading weights:   6%|▌         | 12/203 [00:00<00:00, 6500.28it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.output.dense.bias]
+Loading weights:   6%|▋         | 13/203 [00:00<00:00, 6834.54it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.output.dense.weight]
+Loading weights:   6%|▋         | 13/203 [00:00<00:00, 6759.97it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.attention.output.dense.weight]
+Loading weights:   7%|▋         | 14/203 [00:00<00:00, 7116.74it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.intermediate.dense.bias]      
+Loading weights:   7%|▋         | 14/203 [00:00<00:00, 7041.64it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.intermediate.dense.bias]
+Loading weights:   7%|▋         | 15/203 [00:00<00:00, 7341.26it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.intermediate.dense.weight]
+Loading weights:   7%|▋         | 15/203 [00:00<00:00, 7266.64it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.intermediate.dense.weight]
+Loading weights:   8%|▊         | 16/203 [00:00<00:00, 7600.10it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.layernorm_after.bias]     
+Loading weights:   8%|▊         | 16/203 [00:00<00:00, 7529.32it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.layernorm_after.bias]
+Loading weights:   8%|▊         | 17/203 [00:00<00:00, 7779.94it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.layernorm_after.weight]
+Loading weights:   8%|▊         | 17/203 [00:00<00:00, 7699.29it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.layernorm_after.weight]
+Loading weights:   9%|▉         | 18/203 [00:00<00:00, 7946.27it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.layernorm_before.bias] 
+Loading weights:   9%|▉         | 18/203 [00:00<00:00, 7798.52it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.layernorm_before.bias]
+Loading weights:   9%|▉         | 19/203 [00:00<00:00, 7989.95it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.layernorm_before.weight]
+Loading weights:   9%|▉         | 19/203 [00:00<00:00, 7899.66it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.layernorm_before.weight]
+Loading weights:  10%|▉         | 20/203 [00:00<00:00, 8109.64it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.output.dense.bias]      
+Loading weights:  10%|▉         | 20/203 [00:00<00:00, 8022.00it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.output.dense.bias]
+Loading weights:  10%|█         | 21/203 [00:00<00:00, 8241.83it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.output.dense.weight]
+Loading weights:  10%|█         | 21/203 [00:00<00:00, 8167.69it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.0.output.dense.weight]
+Loading weights:  11%|█         | 22/203 [00:00<00:00, 6754.61it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.attention.key.bias]
+Loading weights:  11%|█         | 22/203 [00:00<00:00, 6658.11it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.attention.key.bias]
+Loading weights:  11%|█▏        | 23/203 [00:00<00:00, 6774.51it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.attention.key.weight]
+Loading weights:  11%|█▏        | 23/203 [00:00<00:00, 6705.29it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.attention.key.weight]
+Loading weights:  12%|█▏        | 24/203 [00:00<00:00, 6859.04it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.attention.query.bias]
+Loading weights:  12%|█▏        | 24/203 [00:00<00:00, 6812.16it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.attention.query.bias]
+Loading weights:  12%|█▏        | 25/203 [00:00<00:00, 6973.31it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.attention.query.weight]
+Loading weights:  12%|█▏        | 25/203 [00:00<00:00, 6929.07it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.attention.query.weight]
+Loading weights:  13%|█▎        | 26/203 [00:00<00:00, 7105.75it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.attention.value.bias]  
+Loading weights:  13%|█▎        | 26/203 [00:00<00:00, 7062.95it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.attention.value.bias]
+Loading weights:  13%|█▎        | 27/203 [00:00<00:00, 6160.04it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.attention.value.weight]
+Loading weights:  13%|█▎        | 27/203 [00:00<00:00, 6120.75it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.attention.value.weight]
+Loading weights:  14%|█▍        | 28/203 [00:00<00:00, 6244.18it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.output.dense.bias]     
+Loading weights:  14%|█▍        | 28/203 [00:00<00:00, 6208.20it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.output.dense.bias]
+Loading weights:  14%|█▍        | 29/203 [00:00<00:00, 6351.36it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.output.dense.weight]
+Loading weights:  14%|█▍        | 29/203 [00:00<00:00, 6319.35it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.attention.output.dense.weight]
+Loading weights:  15%|█▍        | 30/203 [00:00<00:00, 6258.91it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.intermediate.dense.bias]      
+Loading weights:  15%|█▍        | 30/203 [00:00<00:00, 6218.70it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.intermediate.dense.bias]
+Loading weights:  15%|█▌        | 31/203 [00:00<00:00, 6337.97it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.intermediate.dense.weight]
+Loading weights:  15%|█▌        | 31/203 [00:00<00:00, 6306.92it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.intermediate.dense.weight]
+Loading weights:  16%|█▌        | 32/203 [00:00<00:00, 6448.74it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.layernorm_after.bias]     
+Loading weights:  16%|█▌        | 32/203 [00:00<00:00, 6417.91it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.layernorm_after.bias]
+Loading weights:  16%|█▋        | 33/203 [00:00<00:00, 6187.95it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.layernorm_after.weight]
+Loading weights:  16%|█▋        | 33/203 [00:00<00:00, 6155.48it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.layernorm_after.weight]
+Loading weights:  17%|█▋        | 34/203 [00:00<00:00, 6285.82it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.layernorm_before.bias] 
+Loading weights:  17%|█▋        | 34/203 [00:00<00:00, 6261.53it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.layernorm_before.bias]
+Loading weights:  17%|█▋        | 35/203 [00:00<00:00, 6382.08it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.layernorm_before.weight]
+Loading weights:  17%|█▋        | 35/203 [00:00<00:00, 6356.66it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.layernorm_before.weight]
+Loading weights:  18%|█▊        | 36/203 [00:00<00:00, 5505.34it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.output.dense.bias]      
+Loading weights:  18%|█▊        | 36/203 [00:00<00:00, 5484.34it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.output.dense.bias]
+Loading weights:  18%|█▊        | 37/203 [00:00<00:00, 5596.44it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.output.dense.weight]
+Loading weights:  18%|█▊        | 37/203 [00:00<00:00, 5579.74it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.1.output.dense.weight]
+Loading weights:  19%|█▊        | 38/203 [00:00<00:00, 5693.49it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.attention.key.bias]
+Loading weights:  19%|█▊        | 38/203 [00:00<00:00, 5675.65it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.attention.key.bias]
+Loading weights:  19%|█▉        | 39/203 [00:00<00:00, 5781.16it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.attention.key.weight]
+Loading weights:  19%|█▉        | 39/203 [00:00<00:00, 5764.05it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.attention.key.weight]
+Loading weights:  20%|█▉        | 40/203 [00:00<00:00, 5156.51it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.attention.query.bias]
+Loading weights:  20%|█▉        | 40/203 [00:00<00:00, 5138.66it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.attention.query.bias]
+Loading weights:  20%|██        | 41/203 [00:00<00:00, 5010.97it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.attention.query.weight]
+Loading weights:  20%|██        | 41/203 [00:00<00:00, 4993.80it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.attention.query.weight]
+Loading weights:  21%|██        | 42/203 [00:00<00:00, 5079.17it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.attention.value.bias]  
+Loading weights:  21%|██        | 42/203 [00:00<00:00, 5065.00it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.attention.value.bias]
+Loading weights:  21%|██        | 43/203 [00:00<00:00, 5148.44it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.attention.value.weight]
+Loading weights:  21%|██        | 43/203 [00:00<00:00, 5134.96it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.attention.value.weight]
+Loading weights:  22%|██▏       | 44/203 [00:00<00:00, 5224.33it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.output.dense.bias]     
+Loading weights:  22%|██▏       | 44/203 [00:00<00:00, 5210.61it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.output.dense.bias]
+Loading weights:  22%|██▏       | 45/203 [00:00<00:00, 5299.70it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.output.dense.weight]
+Loading weights:  22%|██▏       | 45/203 [00:00<00:00, 5286.64it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.attention.output.dense.weight]
+Loading weights:  23%|██▎       | 46/203 [00:00<00:00, 5376.26it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.intermediate.dense.bias]      
+Loading weights:  23%|██▎       | 46/203 [00:00<00:00, 5362.52it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.intermediate.dense.bias]
+Loading weights:  23%|██▎       | 47/203 [00:00<00:00, 5451.06it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.intermediate.dense.weight]
+Loading weights:  23%|██▎       | 47/203 [00:00<00:00, 5437.83it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.intermediate.dense.weight]
+Loading weights:  24%|██▎       | 48/203 [00:00<00:00, 5526.09it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.layernorm_after.bias]     
+Loading weights:  24%|██▎       | 48/203 [00:00<00:00, 5512.78it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.layernorm_after.bias]
+Loading weights:  24%|██▍       | 49/203 [00:00<00:00, 5594.84it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.layernorm_after.weight]
+Loading weights:  24%|██▍       | 49/203 [00:00<00:00, 5581.47it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.layernorm_after.weight]
+Loading weights:  25%|██▍       | 50/203 [00:00<00:00, 5667.67it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.layernorm_before.bias] 
+Loading weights:  25%|██▍       | 50/203 [00:00<00:00, 5654.83it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.layernorm_before.bias]
+Loading weights:  25%|██▌       | 51/203 [00:00<00:00, 5740.69it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.layernorm_before.weight]
+Loading weights:  25%|██▌       | 51/203 [00:00<00:00, 5727.16it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.layernorm_before.weight]
+Loading weights:  26%|██▌       | 52/203 [00:00<00:00, 5813.78it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.output.dense.bias]      
+Loading weights:  26%|██▌       | 52/203 [00:00<00:00, 5800.94it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.output.dense.bias]
+Loading weights:  26%|██▌       | 53/203 [00:00<00:00, 5884.95it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.output.dense.weight]
+Loading weights:  26%|██▌       | 53/203 [00:00<00:00, 5872.51it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.2.output.dense.weight]
+Loading weights:  27%|██▋       | 54/203 [00:00<00:00, 5394.47it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.attention.key.bias]
+Loading weights:  27%|██▋       | 54/203 [00:00<00:00, 5378.46it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.attention.key.bias]
+Loading weights:  27%|██▋       | 55/203 [00:00<00:00, 5308.88it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.attention.key.weight]
+Loading weights:  27%|██▋       | 55/203 [00:00<00:00, 5295.47it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.attention.key.weight]
+Loading weights:  28%|██▊       | 56/203 [00:00<00:00, 5365.40it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.attention.query.bias]
+Loading weights:  28%|██▊       | 56/203 [00:00<00:00, 5352.56it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.attention.query.bias]
+Loading weights:  28%|██▊       | 57/203 [00:00<00:00, 5422.81it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.attention.query.weight]
+Loading weights:  28%|██▊       | 57/203 [00:00<00:00, 5411.52it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.attention.query.weight]
+Loading weights:  29%|██▊       | 58/203 [00:00<00:00, 5483.49it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.attention.value.bias]  
+Loading weights:  29%|██▊       | 58/203 [00:00<00:00, 5472.64it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.attention.value.bias]
+Loading weights:  29%|██▉       | 59/203 [00:00<00:00, 5542.43it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.attention.value.weight]
+Loading weights:  29%|██▉       | 59/203 [00:00<00:00, 5531.53it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.attention.value.weight]
+Loading weights:  30%|██▉       | 60/203 [00:00<00:00, 5602.24it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.output.dense.bias]     
+Loading weights:  30%|██▉       | 60/203 [00:00<00:00, 5591.29it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.output.dense.bias]
+Loading weights:  30%|███       | 61/203 [00:00<00:00, 5588.01it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.output.dense.weight]
+Loading weights:  30%|███       | 61/203 [00:00<00:00, 5574.74it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.attention.output.dense.weight]
+Loading weights:  31%|███       | 62/203 [00:00<00:00, 5635.79it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.intermediate.dense.bias]      
+Loading weights:  31%|███       | 62/203 [00:00<00:00, 5623.97it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.intermediate.dense.bias]
+Loading weights:  31%|███       | 63/203 [00:00<00:00, 5690.93it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.intermediate.dense.weight]
+Loading weights:  31%|███       | 63/203 [00:00<00:00, 5680.16it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.intermediate.dense.weight]
+Loading weights:  32%|███▏      | 64/203 [00:00<00:00, 5574.87it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.layernorm_after.bias]     
+Loading weights:  32%|███▏      | 64/203 [00:00<00:00, 5563.66it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.layernorm_after.bias]
+Loading weights:  32%|███▏      | 65/203 [00:00<00:00, 5628.08it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.layernorm_after.weight]
+Loading weights:  32%|███▏      | 65/203 [00:00<00:00, 5617.41it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.layernorm_after.weight]
+Loading weights:  33%|███▎      | 66/203 [00:00<00:00, 5407.56it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.layernorm_before.bias] 
+Loading weights:  33%|███▎      | 66/203 [00:00<00:00, 5396.50it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.layernorm_before.bias]
+Loading weights:  33%|███▎      | 67/203 [00:00<00:00, 5458.15it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.layernorm_before.weight]
+Loading weights:  33%|███▎      | 67/203 [00:00<00:00, 5447.99it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.layernorm_before.weight]
+Loading weights:  33%|███▎      | 68/203 [00:00<00:00, 5509.65it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.output.dense.bias]      
+Loading weights:  33%|███▎      | 68/203 [00:00<00:00, 5500.30it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.output.dense.bias]
+Loading weights:  34%|███▍      | 69/203 [00:00<00:00, 5562.31it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.output.dense.weight]
+Loading weights:  34%|███▍      | 69/203 [00:00<00:00, 5553.66it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.3.output.dense.weight]
+Loading weights:  34%|███▍      | 70/203 [00:00<00:00, 5610.25it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.attention.key.bias]
+Loading weights:  34%|███▍      | 70/203 [00:00<00:00, 5600.83it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.attention.key.bias]
+Loading weights:  35%|███▍      | 71/203 [00:00<00:00, 5660.01it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.attention.key.weight]
+Loading weights:  35%|███▍      | 71/203 [00:00<00:00, 5650.56it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.attention.key.weight]
+Loading weights:  35%|███▌      | 72/203 [00:00<00:00, 5710.64it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.attention.query.bias]
+Loading weights:  35%|███▌      | 72/203 [00:00<00:00, 5701.58it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.attention.query.bias]
+Loading weights:  36%|███▌      | 73/203 [00:00<00:00, 5617.03it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.attention.query.weight]
+Loading weights:  36%|███▌      | 73/203 [00:00<00:00, 5607.15it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.attention.query.weight]
+Loading weights:  36%|███▋      | 74/203 [00:00<00:00, 5412.85it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.attention.value.bias]  
+Loading weights:  36%|███▋      | 74/203 [00:00<00:00, 5403.43it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.attention.value.bias]
+Loading weights:  37%|███▋      | 75/203 [00:00<00:00, 5417.78it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.attention.value.weight]
+Loading weights:  37%|███▋      | 75/203 [00:00<00:00, 5408.10it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.attention.value.weight]
+Loading weights:  37%|███▋      | 76/203 [00:00<00:00, 5462.08it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.output.dense.bias]     
+Loading weights:  37%|███▋      | 76/203 [00:00<00:00, 5453.86it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.output.dense.bias]
+Loading weights:  38%|███▊      | 77/203 [00:00<00:00, 5503.02it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.output.dense.weight]
+Loading weights:  38%|███▊      | 77/203 [00:00<00:00, 5493.29it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.attention.output.dense.weight]
+Loading weights:  38%|███▊      | 78/203 [00:00<00:00, 5546.42it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.intermediate.dense.bias]      
+Loading weights:  38%|███▊      | 78/203 [00:00<00:00, 5538.16it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.intermediate.dense.bias]
+Loading weights:  39%|███▉      | 79/203 [00:00<00:00, 5590.90it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.intermediate.dense.weight]
+Loading weights:  39%|███▉      | 79/203 [00:00<00:00, 5582.61it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.intermediate.dense.weight]
+Loading weights:  39%|███▉      | 80/203 [00:00<00:00, 5397.73it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.layernorm_after.bias]     
+Loading weights:  39%|███▉      | 80/203 [00:00<00:00, 5389.32it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.layernorm_after.bias]
+Loading weights:  40%|███▉      | 81/203 [00:00<00:00, 5058.34it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.layernorm_after.weight]
+Loading weights:  40%|███▉      | 81/203 [00:00<00:00, 5050.75it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.layernorm_after.weight]
+Loading weights:  40%|████      | 82/203 [00:00<00:00, 5097.27it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.layernorm_before.bias] 
+Loading weights:  40%|████      | 82/203 [00:00<00:00, 5090.33it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.layernorm_before.bias]
+Loading weights:  41%|████      | 83/203 [00:00<00:00, 5138.94it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.layernorm_before.weight]
+Loading weights:  41%|████      | 83/203 [00:00<00:00, 5132.65it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.layernorm_before.weight]
+Loading weights:  41%|████▏     | 84/203 [00:00<00:00, 5181.88it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.output.dense.bias]      
+Loading weights:  41%|████▏     | 84/203 [00:00<00:00, 5175.19it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.output.dense.bias]
+Loading weights:  42%|████▏     | 85/203 [00:00<00:00, 5223.68it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.output.dense.weight]
+Loading weights:  42%|████▏     | 85/203 [00:00<00:00, 5217.25it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.4.output.dense.weight]
+Loading weights:  42%|████▏     | 86/203 [00:00<00:00, 5265.69it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.attention.key.bias]
+Loading weights:  42%|████▏     | 86/203 [00:00<00:00, 5259.32it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.attention.key.bias]
+Loading weights:  43%|████▎     | 87/203 [00:00<00:00, 5306.16it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.attention.key.weight]
+Loading weights:  43%|████▎     | 87/203 [00:00<00:00, 5299.38it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.attention.key.weight]
+Loading weights:  43%|████▎     | 88/203 [00:00<00:00, 5346.24it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.attention.query.bias]
+Loading weights:  43%|████▎     | 88/203 [00:00<00:00, 5339.43it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.attention.query.bias]
+Loading weights:  44%|████▍     | 89/203 [00:00<00:00, 5378.24it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.attention.query.weight]
+Loading weights:  44%|████▍     | 89/203 [00:00<00:00, 5370.12it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.attention.query.weight]
+Loading weights:  44%|████▍     | 90/203 [00:00<00:00, 5412.55it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.attention.value.bias]  
+Loading weights:  44%|████▍     | 90/203 [00:00<00:00, 5405.73it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.attention.value.bias]
+Loading weights:  45%|████▍     | 91/203 [00:00<00:00, 5451.04it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.attention.value.weight]
+Loading weights:  45%|████▍     | 91/203 [00:00<00:00, 5444.20it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.attention.value.weight]
+Loading weights:  45%|████▌     | 92/203 [00:00<00:00, 5490.24it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.output.dense.bias]     
+Loading weights:  45%|████▌     | 92/203 [00:00<00:00, 5483.69it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.output.dense.bias]
+Loading weights:  46%|████▌     | 93/203 [00:00<00:00, 5528.76it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.output.dense.weight]
+Loading weights:  46%|████▌     | 93/203 [00:00<00:00, 5522.26it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.attention.output.dense.weight]
+Loading weights:  46%|████▋     | 94/203 [00:00<00:00, 5541.08it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.intermediate.dense.bias]      
+Loading weights:  46%|████▋     | 94/203 [00:00<00:00, 5533.23it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.intermediate.dense.bias]
+Loading weights:  47%|████▋     | 95/203 [00:00<00:00, 5457.82it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.intermediate.dense.weight]
+Loading weights:  47%|████▋     | 95/203 [00:00<00:00, 5450.65it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.intermediate.dense.weight]
+Loading weights:  47%|████▋     | 96/203 [00:00<00:00, 5494.80it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.layernorm_after.bias]     
+Loading weights:  47%|████▋     | 96/203 [00:00<00:00, 5488.21it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.layernorm_after.bias]
+Loading weights:  48%|████▊     | 97/203 [00:00<00:00, 5531.80it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.layernorm_after.weight]
+Loading weights:  48%|████▊     | 97/203 [00:00<00:00, 5525.42it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.layernorm_after.weight]
+Loading weights:  48%|████▊     | 98/203 [00:00<00:00, 5569.67it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.layernorm_before.bias] 
+Loading weights:  48%|████▊     | 98/203 [00:00<00:00, 5563.42it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.layernorm_before.bias]
+Loading weights:  49%|████▉     | 99/203 [00:00<00:00, 5491.09it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.layernorm_before.weight]
+Loading weights:  49%|████▉     | 99/203 [00:00<00:00, 5484.71it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.layernorm_before.weight]
+Loading weights:  49%|████▉     | 100/203 [00:00<00:00, 5527.26it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.output.dense.bias]     
+Loading weights:  49%|████▉     | 100/203 [00:00<00:00, 5521.51it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.output.dense.bias]
+Loading weights:  50%|████▉     | 101/203 [00:00<00:00, 5391.82it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.output.dense.weight]
+Loading weights:  50%|████▉     | 101/203 [00:00<00:00, 5384.63it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.5.output.dense.weight]
+Loading weights:  50%|█████     | 102/203 [00:00<00:00, 5421.40it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.attention.key.bias]
+Loading weights:  50%|█████     | 102/203 [00:00<00:00, 5414.54it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.attention.key.bias]
+Loading weights:  51%|█████     | 103/203 [00:00<00:00, 5369.56it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.attention.key.weight]
+Loading weights:  51%|█████     | 103/203 [00:00<00:00, 5362.56it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.attention.key.weight]
+Loading weights:  51%|█████     | 104/203 [00:00<00:00, 5321.29it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.attention.query.bias]
+Loading weights:  51%|█████     | 104/203 [00:00<00:00, 5315.00it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.attention.query.bias]
+Loading weights:  52%|█████▏    | 105/203 [00:00<00:00, 5348.06it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.attention.query.weight]
+Loading weights:  52%|█████▏    | 105/203 [00:00<00:00, 5341.64it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.attention.query.weight]
+Loading weights:  52%|█████▏    | 106/203 [00:00<00:00, 5371.99it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.attention.value.bias]  
+Loading weights:  52%|█████▏    | 106/203 [00:00<00:00, 5365.70it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.attention.value.bias]
+Loading weights:  53%|█████▎    | 107/203 [00:00<00:00, 5389.58it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.attention.value.weight]
+Loading weights:  53%|█████▎    | 107/203 [00:00<00:00, 5383.63it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.attention.value.weight]
+Loading weights:  53%|█████▎    | 108/203 [00:00<00:00, 5417.57it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.output.dense.bias]     
+Loading weights:  53%|█████▎    | 108/203 [00:00<00:00, 5411.62it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.output.dense.bias]
+Loading weights:  54%|█████▎    | 109/203 [00:00<00:00, 5444.55it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.output.dense.weight]
+Loading weights:  54%|█████▎    | 109/203 [00:00<00:00, 5438.85it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.attention.output.dense.weight]
+Loading weights:  54%|█████▍    | 110/203 [00:00<00:00, 5477.02it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.intermediate.dense.bias]      
+Loading weights:  54%|█████▍    | 110/203 [00:00<00:00, 5471.31it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.intermediate.dense.bias]
+Loading weights:  55%|█████▍    | 111/203 [00:00<00:00, 5433.42it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.intermediate.dense.weight]
+Loading weights:  55%|█████▍    | 111/203 [00:00<00:00, 5425.75it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.intermediate.dense.weight]
+Loading weights:  55%|█████▌    | 112/203 [00:00<00:00, 5462.03it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.layernorm_after.bias]     
+Loading weights:  55%|█████▌    | 112/203 [00:00<00:00, 5455.94it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.layernorm_after.bias]
+Loading weights:  56%|█████▌    | 113/203 [00:00<00:00, 5414.42it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.layernorm_after.weight]
+Loading weights:  56%|█████▌    | 113/203 [00:00<00:00, 5408.98it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.layernorm_after.weight]
+Loading weights:  56%|█████▌    | 114/203 [00:00<00:00, 5446.47it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.layernorm_before.bias] 
+Loading weights:  56%|█████▌    | 114/203 [00:00<00:00, 5441.26it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.layernorm_before.bias]
+Loading weights:  57%|█████▋    | 115/203 [00:00<00:00, 5478.27it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.layernorm_before.weight]
+Loading weights:  57%|█████▋    | 115/203 [00:00<00:00, 5472.80it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.layernorm_before.weight]
+Loading weights:  57%|█████▋    | 116/203 [00:00<00:00, 5506.20it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.output.dense.bias]      
+Loading weights:  57%|█████▋    | 116/203 [00:00<00:00, 5501.04it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.output.dense.bias]
+Loading weights:  58%|█████▊    | 117/203 [00:00<00:00, 5537.44it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.output.dense.weight]
+Loading weights:  58%|█████▊    | 117/203 [00:00<00:00, 5532.14it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.6.output.dense.weight]
+Loading weights:  58%|█████▊    | 118/203 [00:00<00:00, 5568.87it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.attention.key.bias]
+Loading weights:  58%|█████▊    | 118/203 [00:00<00:00, 5563.61it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.attention.key.bias]
+Loading weights:  59%|█████▊    | 119/203 [00:00<00:00, 5428.84it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.attention.key.weight]
+Loading weights:  59%|█████▊    | 119/203 [00:00<00:00, 5422.59it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.attention.key.weight]
+Loading weights:  59%|█████▉    | 120/203 [00:00<00:00, 5367.85it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.attention.query.bias]
+Loading weights:  59%|█████▉    | 120/203 [00:00<00:00, 5361.45it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.attention.query.bias]
+Loading weights:  60%|█████▉    | 121/203 [00:00<00:00, 5394.98it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.attention.query.weight]
+Loading weights:  60%|█████▉    | 121/203 [00:00<00:00, 5389.93it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.attention.query.weight]
+Loading weights:  60%|██████    | 122/203 [00:00<00:00, 5342.23it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.attention.value.bias]  
+Loading weights:  60%|██████    | 122/203 [00:00<00:00, 5336.82it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.attention.value.bias]
+Loading weights:  61%|██████    | 123/203 [00:00<00:00, 5369.98it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.attention.value.weight]
+Loading weights:  61%|██████    | 123/203 [00:00<00:00, 5365.07it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.attention.value.weight]
+Loading weights:  61%|██████    | 124/203 [00:00<00:00, 5398.07it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.output.dense.bias]     
+Loading weights:  61%|██████    | 124/203 [00:00<00:00, 5393.15it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.output.dense.bias]
+Loading weights:  62%|██████▏   | 125/203 [00:00<00:00, 5426.46it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.output.dense.weight]
+Loading weights:  62%|██████▏   | 125/203 [00:00<00:00, 5422.02it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.attention.output.dense.weight]
+Loading weights:  62%|██████▏   | 126/203 [00:00<00:00, 5452.88it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.intermediate.dense.bias]      
+Loading weights:  62%|██████▏   | 126/203 [00:00<00:00, 5447.93it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.intermediate.dense.bias]
+Loading weights:  63%|██████▎   | 127/203 [00:00<00:00, 5463.01it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.intermediate.dense.weight]
+Loading weights:  63%|██████▎   | 127/203 [00:00<00:00, 5456.91it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.intermediate.dense.weight]
+Loading weights:  63%|██████▎   | 128/203 [00:00<00:00, 5488.80it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.layernorm_after.bias]     
+Loading weights:  63%|██████▎   | 128/203 [00:00<00:00, 5483.65it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.layernorm_after.bias]
+Loading weights:  64%|██████▎   | 129/203 [00:00<00:00, 5314.51it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.layernorm_after.weight]
+Loading weights:  64%|██████▎   | 129/203 [00:00<00:00, 5309.45it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.layernorm_after.weight]
+Loading weights:  64%|██████▍   | 130/203 [00:00<00:00, 5331.72it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.layernorm_before.bias] 
+Loading weights:  64%|██████▍   | 130/203 [00:00<00:00, 5326.31it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.layernorm_before.bias]
+Loading weights:  65%|██████▍   | 131/203 [00:00<00:00, 5299.11it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.layernorm_before.weight]
+Loading weights:  65%|██████▍   | 131/203 [00:00<00:00, 5294.15it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.layernorm_before.weight]
+Loading weights:  65%|██████▌   | 132/203 [00:00<00:00, 5325.54it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.output.dense.bias]      
+Loading weights:  65%|██████▌   | 132/203 [00:00<00:00, 5321.03it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.output.dense.bias]
+Loading weights:  66%|██████▌   | 133/203 [00:00<00:00, 5352.50it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.output.dense.weight]
+Loading weights:  66%|██████▌   | 133/203 [00:00<00:00, 5348.18it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.7.output.dense.weight]
+Loading weights:  66%|██████▌   | 134/203 [00:00<00:00, 5379.78it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.attention.key.bias]
+Loading weights:  66%|██████▌   | 134/203 [00:00<00:00, 5375.46it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.attention.key.bias]
+Loading weights:  67%|██████▋   | 135/203 [00:00<00:00, 5406.27it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.attention.key.weight]
+Loading weights:  67%|██████▋   | 135/203 [00:00<00:00, 5401.73it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.attention.key.weight]
+Loading weights:  67%|██████▋   | 136/203 [00:00<00:00, 5431.95it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.attention.query.bias]
+Loading weights:  67%|██████▋   | 136/203 [00:00<00:00, 5427.61it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.attention.query.bias]
+Loading weights:  67%|██████▋   | 137/203 [00:00<00:00, 5450.56it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.attention.query.weight]
+Loading weights:  67%|██████▋   | 137/203 [00:00<00:00, 5445.55it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.attention.query.weight]
+Loading weights:  68%|██████▊   | 138/203 [00:00<00:00, 5348.00it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.attention.value.bias]  
+Loading weights:  68%|██████▊   | 138/203 [00:00<00:00, 5343.46it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.attention.value.bias]
+Loading weights:  68%|██████▊   | 139/203 [00:00<00:00, 5352.73it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.attention.value.weight]
+Loading weights:  68%|██████▊   | 139/203 [00:00<00:00, 5348.16it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.attention.value.weight]
+Loading weights:  69%|██████▉   | 140/203 [00:00<00:00, 5377.95it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.output.dense.bias]     
+Loading weights:  69%|██████▉   | 140/203 [00:00<00:00, 5373.82it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.output.dense.bias]
+Loading weights:  69%|██████▉   | 141/203 [00:00<00:00, 5403.11it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.output.dense.weight]
+Loading weights:  69%|██████▉   | 141/203 [00:00<00:00, 5398.96it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.attention.output.dense.weight]
+Loading weights:  70%|██████▉   | 142/203 [00:00<00:00, 5284.70it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.intermediate.dense.bias]      
+Loading weights:  70%|██████▉   | 142/203 [00:00<00:00, 5279.97it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.intermediate.dense.bias]
+Loading weights:  70%|███████   | 143/203 [00:00<00:00, 5308.45it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.intermediate.dense.weight]
+Loading weights:  70%|███████   | 143/203 [00:00<00:00, 5303.94it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.intermediate.dense.weight]
+Loading weights:  71%|███████   | 144/203 [00:00<00:00, 5332.68it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.layernorm_after.bias]     
+Loading weights:  71%|███████   | 144/203 [00:00<00:00, 5328.78it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.layernorm_after.bias]
+Loading weights:  71%|███████▏  | 145/203 [00:00<00:00, 5357.84it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.layernorm_after.weight]
+Loading weights:  71%|███████▏  | 145/203 [00:00<00:00, 5353.69it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.layernorm_after.weight]
+Loading weights:  72%|███████▏  | 146/203 [00:00<00:00, 5383.03it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.layernorm_before.bias] 
+Loading weights:  72%|███████▏  | 146/203 [00:00<00:00, 5379.06it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.layernorm_before.bias]
+Loading weights:  72%|███████▏  | 147/203 [00:00<00:00, 5233.13it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.layernorm_before.weight]
+Loading weights:  72%|███████▏  | 147/203 [00:00<00:00, 5229.23it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.layernorm_before.weight]
+Loading weights:  73%|███████▎  | 148/203 [00:00<00:00, 5257.71it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.output.dense.bias]      
+Loading weights:  73%|███████▎  | 148/203 [00:00<00:00, 5254.02it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.output.dense.bias]
+Loading weights:  73%|███████▎  | 149/203 [00:00<00:00, 5282.14it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.output.dense.weight]
+Loading weights:  73%|███████▎  | 149/203 [00:00<00:00, 5278.44it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.8.output.dense.weight]
+Loading weights:  74%|███████▍  | 150/203 [00:00<00:00, 5305.98it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.attention.key.bias]
+Loading weights:  74%|███████▍  | 150/203 [00:00<00:00, 5302.22it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.attention.key.bias]
+Loading weights:  74%|███████▍  | 151/203 [00:00<00:00, 5329.84it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.attention.key.weight]
+Loading weights:  74%|███████▍  | 151/203 [00:00<00:00, 5326.08it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.attention.key.weight]
+Loading weights:  75%|███████▍  | 152/203 [00:00<00:00, 5353.79it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.attention.query.bias]
+Loading weights:  75%|███████▍  | 152/203 [00:00<00:00, 5350.01it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.attention.query.bias]
+Loading weights:  75%|███████▌  | 153/203 [00:00<00:00, 5377.27it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.attention.query.weight]
+Loading weights:  75%|███████▌  | 153/203 [00:00<00:00, 5373.49it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.attention.query.weight]
+Loading weights:  76%|███████▌  | 154/203 [00:00<00:00, 5401.05it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.attention.value.bias]  
+Loading weights:  76%|███████▌  | 154/203 [00:00<00:00, 5397.26it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.attention.value.bias]
+Loading weights:  76%|███████▋  | 155/203 [00:00<00:00, 5221.49it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.attention.value.weight]
+Loading weights:  76%|███████▋  | 155/203 [00:00<00:00, 5217.09it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.attention.value.weight]
+Loading weights:  77%|███████▋  | 156/203 [00:00<00:00, 5242.59it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.output.dense.bias]     
+Loading weights:  77%|███████▋  | 156/203 [00:00<00:00, 5238.72it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.output.dense.bias]
+Loading weights:  77%|███████▋  | 157/203 [00:00<00:00, 5264.72it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.output.dense.weight]
+Loading weights:  77%|███████▋  | 157/203 [00:00<00:00, 5261.02it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.attention.output.dense.weight]
+Loading weights:  78%|███████▊  | 158/203 [00:00<00:00, 5287.09it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.intermediate.dense.bias]      
+Loading weights:  78%|███████▊  | 158/203 [00:00<00:00, 5283.55it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.intermediate.dense.bias]
+Loading weights:  78%|███████▊  | 159/203 [00:00<00:00, 5308.10it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.intermediate.dense.weight]
+Loading weights:  78%|███████▊  | 159/203 [00:00<00:00, 5304.60it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.intermediate.dense.weight]
+Loading weights:  79%|███████▉  | 160/203 [00:00<00:00, 5330.80it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.layernorm_after.bias]     
+Loading weights:  79%|███████▉  | 160/203 [00:00<00:00, 5327.45it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.layernorm_after.bias]
+Loading weights:  79%|███████▉  | 161/203 [00:00<00:00, 5353.78it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.layernorm_after.weight]
+Loading weights:  79%|███████▉  | 161/203 [00:00<00:00, 5350.26it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.layernorm_after.weight]
+Loading weights:  80%|███████▉  | 162/203 [00:00<00:00, 5376.67it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.layernorm_before.bias] 
+Loading weights:  80%|███████▉  | 162/203 [00:00<00:00, 5373.10it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.layernorm_before.bias]
+Loading weights:  80%|████████  | 163/203 [00:00<00:00, 5399.31it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.layernorm_before.weight]
+Loading weights:  80%|████████  | 163/203 [00:00<00:00, 5395.90it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.layernorm_before.weight]
+Loading weights:  81%|████████  | 164/203 [00:00<00:00, 5421.99it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.output.dense.bias]      
+Loading weights:  81%|████████  | 164/203 [00:00<00:00, 5418.40it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.output.dense.bias]
+Loading weights:  81%|████████▏ | 165/203 [00:00<00:00, 5444.45it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.output.dense.weight]
+Loading weights:  81%|████████▏ | 165/203 [00:00<00:00, 5440.85it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.9.output.dense.weight]
+Loading weights:  82%|████████▏ | 166/203 [00:00<00:00, 5400.25it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.attention.key.bias]
+Loading weights:  82%|████████▏ | 166/203 [00:00<00:00, 5392.89it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.attention.key.bias]
+Loading weights:  82%|████████▏ | 167/203 [00:00<00:00, 5363.03it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.attention.key.weight]
+Loading weights:  82%|████████▏ | 167/203 [00:00<00:00, 5358.35it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.attention.key.weight]
+Loading weights:  83%|████████▎ | 168/203 [00:00<00:00, 5340.79it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.attention.query.bias]
+Loading weights:  83%|████████▎ | 168/203 [00:00<00:00, 5336.02it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.attention.query.bias]
+Loading weights:  83%|████████▎ | 169/203 [00:00<00:00, 5355.17it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.attention.query.weight]
+Loading weights:  83%|████████▎ | 169/203 [00:00<00:00, 5351.29it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.attention.query.weight]
+Loading weights:  84%|████████▎ | 170/203 [00:00<00:00, 5374.96it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.attention.value.bias]  
+Loading weights:  84%|████████▎ | 170/203 [00:00<00:00, 5371.40it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.attention.value.bias]
+Loading weights:  84%|████████▍ | 171/203 [00:00<00:00, 5395.52it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.attention.value.weight]
+Loading weights:  84%|████████▍ | 171/203 [00:00<00:00, 5392.11it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.attention.value.weight]
+Loading weights:  85%|████████▍ | 172/203 [00:00<00:00, 5289.35it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.output.dense.bias]     
+Loading weights:  85%|████████▍ | 172/203 [00:00<00:00, 5284.67it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.output.dense.bias]
+Loading weights:  85%|████████▌ | 173/203 [00:00<00:00, 5307.07it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.output.dense.weight]
+Loading weights:  85%|████████▌ | 173/203 [00:00<00:00, 5303.31it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.attention.output.dense.weight]
+Loading weights:  86%|████████▌ | 174/203 [00:00<00:00, 5279.14it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.intermediate.dense.bias]      
+Loading weights:  86%|████████▌ | 174/203 [00:00<00:00, 5275.09it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.intermediate.dense.bias]
+Loading weights:  86%|████████▌ | 175/203 [00:00<00:00, 5255.08it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.intermediate.dense.weight]
+Loading weights:  86%|████████▌ | 175/203 [00:00<00:00, 5251.47it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.intermediate.dense.weight]
+Loading weights:  87%|████████▋ | 176/203 [00:00<00:00, 5273.71it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.layernorm_after.bias]     
+Loading weights:  87%|████████▋ | 176/203 [00:00<00:00, 5270.09it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.layernorm_after.bias]
+Loading weights:  87%|████████▋ | 177/203 [00:00<00:00, 5293.23it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.layernorm_after.weight]
+Loading weights:  87%|████████▋ | 177/203 [00:00<00:00, 5289.91it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.layernorm_after.weight]
+Loading weights:  88%|████████▊ | 178/203 [00:00<00:00, 5313.40it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.layernorm_before.bias] 
+Loading weights:  88%|████████▊ | 178/203 [00:00<00:00, 5310.23it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.layernorm_before.bias]
+Loading weights:  88%|████████▊ | 179/203 [00:00<00:00, 5333.72it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.layernorm_before.weight]
+Loading weights:  88%|████████▊ | 179/203 [00:00<00:00, 5330.54it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.layernorm_before.weight]
+Loading weights:  89%|████████▊ | 180/203 [00:00<00:00, 5353.94it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.output.dense.bias]      
+Loading weights:  89%|████████▊ | 180/203 [00:00<00:00, 5350.75it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.output.dense.bias]
+Loading weights:  89%|████████▉ | 181/203 [00:00<00:00, 5372.18it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.output.dense.weight]
+Loading weights:  89%|████████▉ | 181/203 [00:00<00:00, 5368.98it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.10.output.dense.weight]
+Loading weights:  90%|████████▉ | 182/203 [00:00<00:00, 5392.24it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.attention.key.bias]
+Loading weights:  90%|████████▉ | 182/203 [00:00<00:00, 5389.08it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.attention.key.bias]
+Loading weights:  90%|█████████ | 183/203 [00:00<00:00, 5411.97it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.attention.key.weight]
+Loading weights:  90%|█████████ | 183/203 [00:00<00:00, 5408.76it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.attention.key.weight]
+Loading weights:  91%|█████████ | 184/203 [00:00<00:00, 5378.70it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.attention.query.bias]
+Loading weights:  91%|█████████ | 184/203 [00:00<00:00, 5374.77it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.attention.query.bias]
+Loading weights:  91%|█████████ | 185/203 [00:00<00:00, 5397.02it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.attention.query.weight]
+Loading weights:  91%|█████████ | 185/203 [00:00<00:00, 5393.57it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.attention.query.weight]
+Loading weights:  92%|█████████▏| 186/203 [00:00<00:00, 5416.06it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.attention.value.bias]  
+Loading weights:  92%|█████████▏| 186/203 [00:00<00:00, 5412.76it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.attention.value.bias]
+Loading weights:  92%|█████████▏| 187/203 [00:00<00:00, 5329.12it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.attention.value.weight]
+Loading weights:  92%|█████████▏| 187/203 [00:00<00:00, 5325.03it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.attention.value.weight]
+Loading weights:  93%|█████████▎| 188/203 [00:00<00:00, 5345.92it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.output.dense.bias]     
+Loading weights:  93%|█████████▎| 188/203 [00:00<00:00, 5342.74it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.output.dense.bias]
+Loading weights:  93%|█████████▎| 189/203 [00:00<00:00, 5364.58it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.output.dense.weight]
+Loading weights:  93%|█████████▎| 189/203 [00:00<00:00, 5361.24it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.attention.output.dense.weight]
+Loading weights:  94%|█████████▎| 190/203 [00:00<00:00, 5383.05it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.intermediate.dense.bias]      
+Loading weights:  94%|█████████▎| 190/203 [00:00<00:00, 5380.00it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.intermediate.dense.bias]
+Loading weights:  94%|█████████▍| 191/203 [00:00<00:00, 5402.15it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.intermediate.dense.weight]
+Loading weights:  94%|█████████▍| 191/203 [00:00<00:00, 5398.95it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.intermediate.dense.weight]
+Loading weights:  95%|█████████▍| 192/203 [00:00<00:00, 5360.42it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.layernorm_after.bias]     
+Loading weights:  95%|█████████▍| 192/203 [00:00<00:00, 5356.82it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.layernorm_after.bias]
+Loading weights:  95%|█████████▌| 193/203 [00:00<00:00, 5378.13it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.layernorm_after.weight]
+Loading weights:  95%|█████████▌| 193/203 [00:00<00:00, 5374.81it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.layernorm_after.weight]
+Loading weights:  96%|█████████▌| 194/203 [00:00<00:00, 5396.68it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.layernorm_before.bias] 
+Loading weights:  96%|█████████▌| 194/203 [00:00<00:00, 5393.67it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.layernorm_before.bias]
+Loading weights:  96%|█████████▌| 195/203 [00:00<00:00, 5415.73it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.layernorm_before.weight]
+Loading weights:  96%|█████████▌| 195/203 [00:00<00:00, 5412.90it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.layernorm_before.weight]
+Loading weights:  97%|█████████▋| 196/203 [00:00<00:00, 5424.68it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.output.dense.bias]      
+Loading weights:  97%|█████████▋| 196/203 [00:00<00:00, 5421.07it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.output.dense.bias]
+Loading weights:  97%|█████████▋| 197/203 [00:00<00:00, 5408.21it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.output.dense.weight]
+Loading weights:  97%|█████████▋| 197/203 [00:00<00:00, 5404.96it/s, Materializing param=audio_spectrogram_transformer.encoder.layer.11.output.dense.weight]
+Loading weights:  98%|█████████▊| 198/203 [00:00<00:00, 5420.94it/s, Materializing param=audio_spectrogram_transformer.layernorm.bias]                      
+Loading weights:  98%|█████████▊| 198/203 [00:00<00:00, 5416.91it/s, Materializing param=audio_spectrogram_transformer.layernorm.bias]
+Loading weights:  98%|█████████▊| 199/203 [00:00<00:00, 5438.17it/s, Materializing param=audio_spectrogram_transformer.layernorm.weight]
+Loading weights:  98%|█████████▊| 199/203 [00:00<00:00, 5435.05it/s, Materializing param=audio_spectrogram_transformer.layernorm.weight]
+Loading weights:  99%|█████████▊| 200/203 [00:00<00:00, 5456.86it/s, Materializing param=classifier.dense.bias]                         
+Loading weights:  99%|█████████▊| 200/203 [00:00<00:00, 5453.91it/s, Materializing param=classifier.dense.bias]
+Loading weights:  99%|█████████▉| 201/203 [00:00<00:00, 5467.89it/s, Materializing param=classifier.dense.weight]
+Loading weights:  99%|█████████▉| 201/203 [00:00<00:00, 5464.91it/s, Materializing param=classifier.dense.weight]
+Loading weights: 100%|█████████▉| 202/203 [00:00<00:00, 5487.65it/s, Materializing param=classifier.layernorm.bias]
+Loading weights: 100%|█████████▉| 202/203 [00:00<00:00, 5484.92it/s, Materializing param=classifier.layernorm.bias]
+Loading weights: 100%|██████████| 203/203 [00:00<00:00, 5507.15it/s, Materializing param=classifier.layernorm.weight]
+Loading weights: 100%|██████████| 203/203 [00:00<00:00, 5504.48it/s, Materializing param=classifier.layernorm.weight]
+Loading weights: 100%|██████████| 203/203 [00:00<00:00, 5497.44it/s, Materializing param=classifier.layernorm.weight]
+ASTForAudioClassification LOAD REPORT from: MIT/ast-finetuned-audioset-10-10-0.4593
+Key                     | Status   |                                                                                        
+------------------------+----------+----------------------------------------------------------------------------------------
+classifier.dense.bias   | MISMATCH | Reinit due to size mismatch ckpt: torch.Size([527]) vs model:torch.Size([40])          
+classifier.dense.weight | MISMATCH | Reinit due to size mismatch ckpt: torch.Size([527, 768]) vs model:torch.Size([40, 768])
+
+Notes:
+- MISMATCH	:ckpt weights were loaded, but they did not match the original empty weight shapes.
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/torchaudio/functional/functional.py:581: UserWarning: At least one mel filterbank has all zero values. The value for `n_mels` (128) may be set too high. Or, the value for `n_freqs` (201) may be set too low.
+  warnings.warn(
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (mps), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+wandb: WARNING The anonymous setting has no effect and will be removed in a future version.
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id ltok6hz5.
+wandb: Tracking run with wandb version 0.24.1
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in wandb/offline-run-20260201_134135-ltok6hz5
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/utilities/model_summary/model_summary.py:242: Precision 16-mixed is not supported by the model summary.  Estimated model size in MB will not be accurate. Using 32 bits instead.
+
+  | Name              | Type                          | Params | Mode  | FLOPs
+------------------------------------------------------------------------------------
+0 | model             | PeftModelForFeatureExtraction | 87.7 M | train | 0    
+1 | train_acc         | MulticlassAccuracy            | 0      | train | 0    
+2 | val_acc           | MulticlassAccuracy            | 0      | train | 0    
+3 | test_acc          | MulticlassAccuracy            | 0      | train | 0    
+4 | val_f1            | MulticlassF1Score             | 0      | train | 0    
+5 | val_f1_per_class  | MulticlassF1Score             | 0      | train | 0    
+6 | val_confusion     | MulticlassConfusionMatrix     | 0      | train | 0    
+7 | test_f1           | MulticlassF1Score             | 0      | train | 0    
+8 | test_f1_per_class | MulticlassF1Score             | 0      | train | 0    
+9 | test_confusion    | MulticlassConfusionMatrix     | 0      | train | 0    
+------------------------------------------------------------------------------------
+1.4 M     Trainable params
+86.2 M    Non-trainable params
+87.7 M    Total params
+350.632   Total estimated model params size (MB)
+612       Modules in train mode
+216       Modules in eval mode
+0         Total Flops
+ADALORA applied: 86,219,560 -> 1,438,416 trainable params
+Trainable params reduced to 1.67%
+
+Sanity Checking: |          | 0/? [00:00<?, ?it/s]/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/utilities/_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:429: Consider setting `persistent_workers=True` in 'val_dataloader' to speed up the dataloader worker initialization.
+
+Sanity Checking: |          | 0/? [00:00<?, ?it/s]
+Sanity Checking DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s]
+Sanity Checking DataLoader 0: 100%|██████████| 1/1 [00:00<00:00,  1.24it/s]
+                                                                           /Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/utilities/_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:429: Consider setting `persistent_workers=True` in 'train_dataloader' to speed up the dataloader worker initialization.
+
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/loops/fit_loop.py:317: The number of training batches (3) is smaller than the logging interval Trainer(log_every_n_steps=50). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/loops/fit_loop.py:534: Found 216 module(s) in eval mode at the start of training. This may lead to unexpected behavior during training. If this is intentional, you can ignore this warning.
+
+Training: |          | 0/? [00:00<?, ?it/s]
+Training: |          | 0/? [00:00<?, ?it/s]
+Epoch 0:   0%|          | 0/3 [00:00<?, ?it/s]
+Epoch 0:  33%|███▎      | 1/3 [01:09<02:18,  0.01it/s]
+Epoch 0:  33%|███▎      | 1/3 [01:09<02:18,  0.01it/s, v_num=6hz5, train/loss=3.330]
+Epoch 0:  67%|██████▋   | 2/3 [02:23<01:11,  0.01it/s, v_num=6hz5, train/loss=3.330]
+Epoch 0:  67%|██████▋   | 2/3 [02:23<01:11,  0.01it/s, v_num=6hz5, train/loss=3.330]
+Epoch 0: 100%|██████████| 3/3 [02:37<00:00,  0.02it/s, v_num=6hz5, train/loss=3.330]
+Epoch 0: 100%|██████████| 3/3 [02:37<00:00,  0.02it/s, v_num=6hz5, train/loss=3.270]
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Validation DataLoader 0: 100%|██████████| 1/1 [00:01<00:00,  0.61it/s][A
+
+                                                                      [A
+Epoch 0: 100%|██████████| 3/3 [02:45<00:00,  0.02it/s, v_num=6hz5, train/loss=3.270, val/loss=3.260]
+Epoch 0: 100%|██████████| 3/3 [02:45<00:00,  0.02it/s, v_num=6hz5, train/loss=3.270, val/loss=3.260]
+Epoch 0:   0%|          | 0/3 [00:00<?, ?it/s, v_num=6hz5, train/loss=3.270, val/loss=3.260]        
+Epoch 1:   0%|          | 0/3 [00:00<?, ?it/s, v_num=6hz5, train/loss=3.270, val/loss=3.260]
+Epoch 1:  33%|███▎      | 1/3 [01:39<03:19,  0.01it/s, v_num=6hz5, train/loss=3.270, val/loss=3.260]
+Epoch 1:  33%|███▎      | 1/3 [01:39<03:19,  0.01it/s, v_num=6hz5, train/loss=3.310, val/loss=3.260]
+Epoch 1:  67%|██████▋   | 2/3 [03:02<01:31,  0.01it/s, v_num=6hz5, train/loss=3.310, val/loss=3.260]
+Epoch 1:  67%|██████▋   | 2/3 [03:02<01:31,  0.01it/s, v_num=6hz5, train/loss=3.300, val/loss=3.260]
+Epoch 1: 100%|██████████| 3/3 [03:42<00:00,  0.01it/s, v_num=6hz5, train/loss=3.300, val/loss=3.260]
+Epoch 1: 100%|██████████| 3/3 [03:42<00:00,  0.01it/s, v_num=6hz5, train/loss=3.360, val/loss=3.260]
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Validation DataLoader 0: 100%|██████████| 1/1 [00:03<00:00,  0.26it/s][A
+
+                                                                      [A
+Epoch 1: 100%|██████████| 3/3 [03:55<00:00,  0.01it/s, v_num=6hz5, train/loss=3.360, val/loss=3.260]
+Epoch 1: 100%|██████████| 3/3 [03:55<00:00,  0.01it/s, v_num=6hz5, train/loss=3.360, val/loss=3.260]
+Epoch 1:   0%|          | 0/3 [00:00<?, ?it/s, v_num=6hz5, train/loss=3.360, val/loss=3.260]        
+Epoch 2:   0%|          | 0/3 [00:00<?, ?it/s, v_num=6hz5, train/loss=3.360, val/loss=3.260]
+Epoch 2:  33%|███▎      | 1/3 [01:53<03:46,  0.01it/s, v_num=6hz5, train/loss=3.360, val/loss=3.260]
+Epoch 2:  33%|███▎      | 1/3 [01:53<03:46,  0.01it/s, v_num=6hz5, train/loss=3.310, val/loss=3.260]
+Epoch 2:  67%|██████▋   | 2/3 [03:15<01:37,  0.01it/s, v_num=6hz5, train/loss=3.310, val/loss=3.260]
+Epoch 2:  67%|██████▋   | 2/3 [03:15<01:37,  0.01it/s, v_num=6hz5, train/loss=3.340, val/loss=3.260]
+Epoch 2: 100%|██████████| 3/3 [03:45<00:00,  0.01it/s, v_num=6hz5, train/loss=3.340, val/loss=3.260]
+Epoch 2: 100%|██████████| 3/3 [03:45<00:00,  0.01it/s, v_num=6hz5, train/loss=3.280, val/loss=3.260]
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Validation DataLoader 0: 100%|██████████| 1/1 [00:02<00:00,  0.39it/s][A
+
+                                                                      [A
+Epoch 2: 100%|██████████| 3/3 [03:53<00:00,  0.01it/s, v_num=6hz5, train/loss=3.280, val/loss=3.260]
+Epoch 2: 100%|██████████| 3/3 [03:53<00:00,  0.01it/s, v_num=6hz5, train/loss=3.280, val/loss=3.260]
+Epoch 2:   0%|          | 0/3 [00:00<?, ?it/s, v_num=6hz5, train/loss=3.280, val/loss=3.260]        
+Epoch 3:   0%|          | 0/3 [00:00<?, ?it/s, v_num=6hz5, train/loss=3.280, val/loss=3.260]
+Epoch 3:  33%|███▎      | 1/3 [02:00<04:00,  0.01it/s, v_num=6hz5, train/loss=3.280, val/loss=3.260]
+Epoch 3:  33%|███▎      | 1/3 [02:00<04:00,  0.01it/s, v_num=6hz5, train/loss=3.340, val/loss=3.260]
+Epoch 3:  67%|██████▋   | 2/3 [03:24<01:42,  0.01it/s, v_num=6hz5, train/loss=3.340, val/loss=3.260]
+Epoch 3:  67%|██████▋   | 2/3 [03:24<01:42,  0.01it/s, v_num=6hz5, train/loss=3.290, val/loss=3.260]
+Epoch 3: 100%|██████████| 3/3 [03:46<00:00,  0.01it/s, v_num=6hz5, train/loss=3.290, val/loss=3.260]
+Epoch 3: 100%|██████████| 3/3 [03:46<00:00,  0.01it/s, v_num=6hz5, train/loss=3.320, val/loss=3.260]
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Validation DataLoader 0: 100%|██████████| 1/1 [00:02<00:00,  0.50it/s][A
+
+                                                                      [A
+Epoch 3: 100%|██████████| 3/3 [03:54<00:00,  0.01it/s, v_num=6hz5, train/loss=3.320, val/loss=3.260]
+Epoch 3: 100%|██████████| 3/3 [03:54<00:00,  0.01it/s, v_num=6hz5, train/loss=3.320, val/loss=3.260]
+Epoch 3:   0%|          | 0/3 [00:00<?, ?it/s, v_num=6hz5, train/loss=3.320, val/loss=3.260]        
+Epoch 4:   0%|          | 0/3 [00:00<?, ?it/s, v_num=6hz5, train/loss=3.320, val/loss=3.260]
+Epoch 4:  33%|███▎      | 1/3 [01:55<03:50,  0.01it/s, v_num=6hz5, train/loss=3.320, val/loss=3.260]
+Epoch 4:  33%|███▎      | 1/3 [01:55<03:50,  0.01it/s, v_num=6hz5, train/loss=3.330, val/loss=3.260]
+Epoch 4:  67%|██████▋   | 2/3 [03:54<01:57,  0.01it/s, v_num=6hz5, train/loss=3.330, val/loss=3.260]
+Epoch 4:  67%|██████▋   | 2/3 [03:54<01:57,  0.01it/s, v_num=6hz5, train/loss=3.310, val/loss=3.260]
+Epoch 4: 100%|██████████| 3/3 [04:23<00:00,  0.01it/s, v_num=6hz5, train/loss=3.310, val/loss=3.260]
+Epoch 4: 100%|██████████| 3/3 [04:23<00:00,  0.01it/s, v_num=6hz5, train/loss=3.290, val/loss=3.260]
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Validation DataLoader 0: 100%|██████████| 1/1 [00:02<00:00,  0.36it/s][A
+
+                                                                      [A
+Epoch 4: 100%|██████████| 3/3 [04:32<00:00,  0.01it/s, v_num=6hz5, train/loss=3.290, val/loss=3.260]
+Epoch 4: 100%|██████████| 3/3 [04:32<00:00,  0.01it/s, v_num=6hz5, train/loss=3.290, val/loss=3.260]`Trainer.fit` stopped: `max_epochs=5` reached.
+
+Epoch 4: 100%|██████████| 3/3 [04:32<00:00,  0.01it/s, v_num=6hz5, train/loss=3.290, val/loss=3.260]/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/utilities/_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:429: Consider setting `persistent_workers=True` in 'test_dataloader' to speed up the dataloader worker initialization.
+
+
+Testing: |          | 0/? [00:00<?, ?it/s]
+Testing: |          | 0/? [00:00<?, ?it/s]
+Testing DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s]
+Testing DataLoader 0: 100%|██████████| 1/1 [00:01<00:00,  0.63it/s]
+Testing DataLoader 0: 100%|██████████| 1/1 [00:01<00:00,  0.54it/s]
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+             Test metric                         DataLoader 0
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+              test/acc                                0.0
+    test/f1_best/ten-stroke-roll                      0.0
+  test/f1_best/thirteen-stroke-roll                   0.0
+   test/f1_best/triple-paradiddle                     0.0
+    test/f1_best/triple-ratamacue                     0.0
+   test/f1_best/triple-stroke-roll                    0.0
+            test/f1_macro                             0.0
+    test/f1_worst/double-drag-tap                     0.0
+   test/f1_worst/double-paradiddle                    0.0
+   test/f1_worst/double-ratamacue                     0.0
+test/f1_worst/double-stroke-open-roll                 0.0
+         test/f1_worst/drag                           0.0
+              test/loss                           3.228515625
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[1;34mwandb[0m: 
+[1;34mwandb[0m: You can sync this run to the cloud by running:
+[1;34mwandb[0m: [1mwandb sync wandb/offline-run-20260201_134135-ltok6hz5[0m

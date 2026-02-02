@@ -1,0 +1,630 @@
+Seed set to 42
+[2026-02-01 14:47:13,151][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/microsoft/wavlm-base-plus/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-02-01 14:47:13,184][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/microsoft/wavlm-base-plus/4c66d4806a428f2e922ccfa1a962776e232d487b/config.json "HTTP/1.1 200 OK"
+[2026-02-01 14:47:13,262][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/microsoft/wavlm-base-plus/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-02-01 14:47:13,298][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/microsoft/wavlm-base-plus/4c66d4806a428f2e922ccfa1a962776e232d487b/config.json "HTTP/1.1 200 OK"
+You are using a model of type wavlm to instantiate a model of type wav2vec2. This is not supported for all configurations of models and can yield errors.
+[2026-02-01 14:47:13,381][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/microsoft/wavlm-base-plus/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+[2026-02-01 14:47:13,461][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/microsoft/wavlm-base-plus/resolve/main/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+[2026-02-01 14:47:13,548][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/microsoft/wavlm-base-plus/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+[2026-02-01 14:47:13,625][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/microsoft/wavlm-base-plus/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-02-01 14:47:13,625][huggingface_hub.utils._http][WARNING] - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/211 [00:00<00:00, 5526.09it/s, Materializing param=encoder.layer_norm.bias]
+Loading weights:   0%|          | 1/211 [00:00<00:00, 4466.78it/s, Materializing param=encoder.layer_norm.bias]
+Loading weights:   1%|          | 2/211 [00:00<00:00, 3907.13it/s, Materializing param=encoder.layer_norm.weight]
+Loading weights:   1%|          | 2/211 [00:00<00:00, 3733.25it/s, Materializing param=encoder.layer_norm.weight]
+Loading weights:   1%|▏         | 3/211 [00:00<00:00, 5035.18it/s, Materializing param=encoder.layers.0.attention.k_proj.bias]
+Loading weights:   1%|▏         | 3/211 [00:00<00:00, 4762.65it/s, Materializing param=encoder.layers.0.attention.k_proj.bias]
+Loading weights:   2%|▏         | 4/211 [00:00<00:00, 5724.06it/s, Materializing param=encoder.layers.0.attention.k_proj.weight]
+Loading weights:   2%|▏         | 4/211 [00:00<00:00, 5434.80it/s, Materializing param=encoder.layers.0.attention.k_proj.weight]
+Loading weights:   2%|▏         | 5/211 [00:00<00:00, 6362.72it/s, Materializing param=encoder.layers.0.attention.out_proj.bias]
+Loading weights:   2%|▏         | 5/211 [00:00<00:00, 6189.94it/s, Materializing param=encoder.layers.0.attention.out_proj.bias]
+Loading weights:   3%|▎         | 6/211 [00:00<00:00, 7011.93it/s, Materializing param=encoder.layers.0.attention.out_proj.weight]
+Loading weights:   3%|▎         | 6/211 [00:00<00:00, 6844.12it/s, Materializing param=encoder.layers.0.attention.out_proj.weight]
+Loading weights:   3%|▎         | 7/211 [00:00<00:00, 7633.94it/s, Materializing param=encoder.layers.0.attention.q_proj.bias]    
+Loading weights:   3%|▎         | 7/211 [00:00<00:00, 7480.29it/s, Materializing param=encoder.layers.0.attention.q_proj.bias]
+Loading weights:   4%|▍         | 8/211 [00:00<00:00, 8224.13it/s, Materializing param=encoder.layers.0.attention.q_proj.weight]
+Loading weights:   4%|▍         | 8/211 [00:00<00:00, 8073.73it/s, Materializing param=encoder.layers.0.attention.q_proj.weight]
+Loading weights:   4%|▍         | 9/211 [00:00<00:00, 8638.15it/s, Materializing param=encoder.layers.0.attention.v_proj.bias]  
+Loading weights:   4%|▍         | 9/211 [00:00<00:00, 8467.64it/s, Materializing param=encoder.layers.0.attention.v_proj.bias]
+Loading weights:   5%|▍         | 10/211 [00:00<00:00, 9035.55it/s, Materializing param=encoder.layers.0.attention.v_proj.weight]
+Loading weights:   5%|▍         | 10/211 [00:00<00:00, 8850.61it/s, Materializing param=encoder.layers.0.attention.v_proj.weight]
+Loading weights:   5%|▌         | 11/211 [00:00<00:00, 9394.69it/s, Materializing param=encoder.layers.0.feed_forward.intermediate_dense.bias]
+Loading weights:   5%|▌         | 11/211 [00:00<00:00, 9205.38it/s, Materializing param=encoder.layers.0.feed_forward.intermediate_dense.bias]
+Loading weights:   6%|▌         | 12/211 [00:00<00:00, 9664.29it/s, Materializing param=encoder.layers.0.feed_forward.intermediate_dense.weight]
+Loading weights:   6%|▌         | 12/211 [00:00<00:00, 9518.09it/s, Materializing param=encoder.layers.0.feed_forward.intermediate_dense.weight]
+Loading weights:   6%|▌         | 13/211 [00:00<00:00, 10008.43it/s, Materializing param=encoder.layers.0.feed_forward.output_dense.bias]       
+Loading weights:   6%|▌         | 13/211 [00:00<00:00, 9826.27it/s, Materializing param=encoder.layers.0.feed_forward.output_dense.bias] 
+Loading weights:   7%|▋         | 14/211 [00:00<00:00, 10287.36it/s, Materializing param=encoder.layers.0.feed_forward.output_dense.weight]
+Loading weights:   7%|▋         | 14/211 [00:00<00:00, 10146.93it/s, Materializing param=encoder.layers.0.feed_forward.output_dense.weight]
+Loading weights:   7%|▋         | 15/211 [00:00<00:00, 10505.02it/s, Materializing param=encoder.layers.0.final_layer_norm.bias]           
+Loading weights:   7%|▋         | 15/211 [00:00<00:00, 10352.90it/s, Materializing param=encoder.layers.0.final_layer_norm.bias]
+Loading weights:   8%|▊         | 16/211 [00:00<00:00, 10761.52it/s, Materializing param=encoder.layers.0.final_layer_norm.weight]
+Loading weights:   8%|▊         | 16/211 [00:00<00:00, 10618.49it/s, Materializing param=encoder.layers.0.final_layer_norm.weight]
+Loading weights:   8%|▊         | 17/211 [00:00<00:00, 11047.90it/s, Materializing param=encoder.layers.0.layer_norm.bias]        
+Loading weights:   8%|▊         | 17/211 [00:00<00:00, 10919.32it/s, Materializing param=encoder.layers.0.layer_norm.bias]
+Loading weights:   9%|▊         | 18/211 [00:00<00:00, 11302.02it/s, Materializing param=encoder.layers.0.layer_norm.weight]
+Loading weights:   9%|▊         | 18/211 [00:00<00:00, 11166.61it/s, Materializing param=encoder.layers.0.layer_norm.weight]
+Loading weights:   9%|▉         | 19/211 [00:00<00:00, 11564.62it/s, Materializing param=encoder.layers.1.attention.k_proj.bias]
+Loading weights:   9%|▉         | 19/211 [00:00<00:00, 11440.11it/s, Materializing param=encoder.layers.1.attention.k_proj.bias]
+Loading weights:   9%|▉         | 20/211 [00:00<00:00, 11806.63it/s, Materializing param=encoder.layers.1.attention.k_proj.weight]
+Loading weights:   9%|▉         | 20/211 [00:00<00:00, 11683.30it/s, Materializing param=encoder.layers.1.attention.k_proj.weight]
+Loading weights:  10%|▉         | 21/211 [00:00<00:00, 12021.34it/s, Materializing param=encoder.layers.1.attention.out_proj.bias]
+Loading weights:  10%|▉         | 21/211 [00:00<00:00, 11899.54it/s, Materializing param=encoder.layers.1.attention.out_proj.bias]
+Loading weights:  10%|█         | 22/211 [00:00<00:00, 12195.97it/s, Materializing param=encoder.layers.1.attention.out_proj.weight]
+Loading weights:  10%|█         | 22/211 [00:00<00:00, 12076.26it/s, Materializing param=encoder.layers.1.attention.out_proj.weight]
+Loading weights:  11%|█         | 23/211 [00:00<00:00, 12385.29it/s, Materializing param=encoder.layers.1.attention.q_proj.bias]    
+Loading weights:  11%|█         | 23/211 [00:00<00:00, 12267.17it/s, Materializing param=encoder.layers.1.attention.q_proj.bias]
+Loading weights:  11%|█▏        | 24/211 [00:00<00:00, 12571.91it/s, Materializing param=encoder.layers.1.attention.q_proj.weight]
+Loading weights:  11%|█▏        | 24/211 [00:00<00:00, 12455.25it/s, Materializing param=encoder.layers.1.attention.q_proj.weight]
+Loading weights:  12%|█▏        | 25/211 [00:00<00:00, 12742.45it/s, Materializing param=encoder.layers.1.attention.v_proj.bias]  
+Loading weights:  12%|█▏        | 25/211 [00:00<00:00, 12627.36it/s, Materializing param=encoder.layers.1.attention.v_proj.bias]
+Loading weights:  12%|█▏        | 26/211 [00:00<00:00, 12796.52it/s, Materializing param=encoder.layers.1.attention.v_proj.weight]
+Loading weights:  12%|█▏        | 26/211 [00:00<00:00, 12684.88it/s, Materializing param=encoder.layers.1.attention.v_proj.weight]
+Loading weights:  13%|█▎        | 27/211 [00:00<00:00, 12951.30it/s, Materializing param=encoder.layers.1.feed_forward.intermediate_dense.bias]
+Loading weights:  13%|█▎        | 27/211 [00:00<00:00, 12841.16it/s, Materializing param=encoder.layers.1.feed_forward.intermediate_dense.bias]
+Loading weights:  13%|█▎        | 28/211 [00:00<00:00, 12933.98it/s, Materializing param=encoder.layers.1.feed_forward.intermediate_dense.weight]
+Loading weights:  13%|█▎        | 28/211 [00:00<00:00, 12815.42it/s, Materializing param=encoder.layers.1.feed_forward.intermediate_dense.weight]
+Loading weights:  14%|█▎        | 29/211 [00:00<00:00, 13069.18it/s, Materializing param=encoder.layers.1.feed_forward.output_dense.bias]        
+Loading weights:  14%|█▎        | 29/211 [00:00<00:00, 12959.17it/s, Materializing param=encoder.layers.1.feed_forward.output_dense.bias]
+Loading weights:  14%|█▍        | 30/211 [00:00<00:00, 13217.34it/s, Materializing param=encoder.layers.1.feed_forward.output_dense.weight]
+Loading weights:  14%|█▍        | 30/211 [00:00<00:00, 13112.66it/s, Materializing param=encoder.layers.1.feed_forward.output_dense.weight]
+Loading weights:  15%|█▍        | 31/211 [00:00<00:00, 13363.15it/s, Materializing param=encoder.layers.1.final_layer_norm.bias]           
+Loading weights:  15%|█▍        | 31/211 [00:00<00:00, 13260.93it/s, Materializing param=encoder.layers.1.final_layer_norm.bias]
+Loading weights:  15%|█▌        | 32/211 [00:00<00:00, 13451.37it/s, Materializing param=encoder.layers.1.final_layer_norm.weight]
+Loading weights:  15%|█▌        | 32/211 [00:00<00:00, 13339.07it/s, Materializing param=encoder.layers.1.final_layer_norm.weight]
+Loading weights:  16%|█▌        | 33/211 [00:00<00:00, 13575.13it/s, Materializing param=encoder.layers.1.layer_norm.bias]        
+Loading weights:  16%|█▌        | 33/211 [00:00<00:00, 13470.76it/s, Materializing param=encoder.layers.1.layer_norm.bias]
+Loading weights:  16%|█▌        | 34/211 [00:00<00:00, 13650.46it/s, Materializing param=encoder.layers.1.layer_norm.weight]
+Loading weights:  16%|█▌        | 34/211 [00:00<00:00, 13557.02it/s, Materializing param=encoder.layers.1.layer_norm.weight]
+Loading weights:  17%|█▋        | 35/211 [00:00<00:00, 13775.04it/s, Materializing param=encoder.layers.2.attention.k_proj.bias]
+Loading weights:  17%|█▋        | 35/211 [00:00<00:00, 13677.50it/s, Materializing param=encoder.layers.2.attention.k_proj.bias]
+Loading weights:  17%|█▋        | 36/211 [00:00<00:00, 13841.32it/s, Materializing param=encoder.layers.2.attention.k_proj.weight]
+Loading weights:  17%|█▋        | 36/211 [00:00<00:00, 13741.80it/s, Materializing param=encoder.layers.2.attention.k_proj.weight]
+Loading weights:  18%|█▊        | 37/211 [00:00<00:00, 13894.64it/s, Materializing param=encoder.layers.2.attention.out_proj.bias]
+Loading weights:  18%|█▊        | 37/211 [00:00<00:00, 13806.87it/s, Materializing param=encoder.layers.2.attention.out_proj.bias]
+Loading weights:  18%|█▊        | 38/211 [00:00<00:00, 14016.67it/s, Materializing param=encoder.layers.2.attention.out_proj.weight]
+Loading weights:  18%|█▊        | 38/211 [00:00<00:00, 13924.83it/s, Materializing param=encoder.layers.2.attention.out_proj.weight]
+Loading weights:  18%|█▊        | 39/211 [00:00<00:00, 14101.54it/s, Materializing param=encoder.layers.2.attention.q_proj.bias]    
+Loading weights:  18%|█▊        | 39/211 [00:00<00:00, 14008.55it/s, Materializing param=encoder.layers.2.attention.q_proj.bias]
+Loading weights:  19%|█▉        | 40/211 [00:00<00:00, 14160.38it/s, Materializing param=encoder.layers.2.attention.q_proj.weight]
+Loading weights:  19%|█▉        | 40/211 [00:00<00:00, 14070.12it/s, Materializing param=encoder.layers.2.attention.q_proj.weight]
+Loading weights:  19%|█▉        | 41/211 [00:00<00:00, 14202.71it/s, Materializing param=encoder.layers.2.attention.v_proj.bias]  
+Loading weights:  19%|█▉        | 41/211 [00:00<00:00, 14115.28it/s, Materializing param=encoder.layers.2.attention.v_proj.bias]
+Loading weights:  20%|█▉        | 42/211 [00:00<00:00, 14301.09it/s, Materializing param=encoder.layers.2.attention.v_proj.weight]
+Loading weights:  20%|█▉        | 42/211 [00:00<00:00, 14213.39it/s, Materializing param=encoder.layers.2.attention.v_proj.weight]
+Loading weights:  20%|██        | 43/211 [00:00<00:00, 14400.76it/s, Materializing param=encoder.layers.2.feed_forward.intermediate_dense.bias]
+Loading weights:  20%|██        | 43/211 [00:00<00:00, 14315.03it/s, Materializing param=encoder.layers.2.feed_forward.intermediate_dense.bias]
+Loading weights:  21%|██        | 44/211 [00:00<00:00, 14408.91it/s, Materializing param=encoder.layers.2.feed_forward.intermediate_dense.weight]
+Loading weights:  21%|██        | 44/211 [00:00<00:00, 14318.36it/s, Materializing param=encoder.layers.2.feed_forward.intermediate_dense.weight]
+Loading weights:  21%|██▏       | 45/211 [00:00<00:00, 14489.77it/s, Materializing param=encoder.layers.2.feed_forward.output_dense.bias]        
+Loading weights:  21%|██▏       | 45/211 [00:00<00:00, 14405.72it/s, Materializing param=encoder.layers.2.feed_forward.output_dense.bias]
+Loading weights:  22%|██▏       | 46/211 [00:00<00:00, 14529.56it/s, Materializing param=encoder.layers.2.feed_forward.output_dense.weight]
+Loading weights:  22%|██▏       | 46/211 [00:00<00:00, 14447.95it/s, Materializing param=encoder.layers.2.feed_forward.output_dense.weight]
+Loading weights:  22%|██▏       | 47/211 [00:00<00:00, 14542.07it/s, Materializing param=encoder.layers.2.final_layer_norm.bias]           
+Loading weights:  22%|██▏       | 47/211 [00:00<00:00, 14462.06it/s, Materializing param=encoder.layers.2.final_layer_norm.bias]
+Loading weights:  23%|██▎       | 48/211 [00:00<00:00, 14630.23it/s, Materializing param=encoder.layers.2.final_layer_norm.weight]
+Loading weights:  23%|██▎       | 48/211 [00:00<00:00, 14550.92it/s, Materializing param=encoder.layers.2.final_layer_norm.weight]
+Loading weights:  23%|██▎       | 49/211 [00:00<00:00, 14584.22it/s, Materializing param=encoder.layers.2.layer_norm.bias]        
+Loading weights:  23%|██▎       | 49/211 [00:00<00:00, 14416.45it/s, Materializing param=encoder.layers.2.layer_norm.bias]
+Loading weights:  24%|██▎       | 50/211 [00:00<00:00, 14498.11it/s, Materializing param=encoder.layers.2.layer_norm.weight]
+Loading weights:  24%|██▎       | 50/211 [00:00<00:00, 14401.54it/s, Materializing param=encoder.layers.2.layer_norm.weight]
+Loading weights:  24%|██▍       | 51/211 [00:00<00:00, 14529.92it/s, Materializing param=encoder.layers.3.attention.k_proj.bias]
+Loading weights:  24%|██▍       | 51/211 [00:00<00:00, 14448.46it/s, Materializing param=encoder.layers.3.attention.k_proj.bias]
+Loading weights:  25%|██▍       | 52/211 [00:00<00:00, 14570.37it/s, Materializing param=encoder.layers.3.attention.k_proj.weight]
+Loading weights:  25%|██▍       | 52/211 [00:00<00:00, 14490.02it/s, Materializing param=encoder.layers.3.attention.k_proj.weight]
+Loading weights:  25%|██▌       | 53/211 [00:00<00:00, 14617.18it/s, Materializing param=encoder.layers.3.attention.out_proj.bias]
+Loading weights:  25%|██▌       | 53/211 [00:00<00:00, 14540.69it/s, Materializing param=encoder.layers.3.attention.out_proj.bias]
+Loading weights:  26%|██▌       | 54/211 [00:00<00:00, 14670.15it/s, Materializing param=encoder.layers.3.attention.out_proj.weight]
+Loading weights:  26%|██▌       | 54/211 [00:00<00:00, 14595.46it/s, Materializing param=encoder.layers.3.attention.out_proj.weight]
+Loading weights:  26%|██▌       | 55/211 [00:00<00:00, 14730.01it/s, Materializing param=encoder.layers.3.attention.q_proj.bias]    
+Loading weights:  26%|██▌       | 55/211 [00:00<00:00, 14659.81it/s, Materializing param=encoder.layers.3.attention.q_proj.bias]
+Loading weights:  27%|██▋       | 56/211 [00:00<00:00, 14772.39it/s, Materializing param=encoder.layers.3.attention.q_proj.weight]
+Loading weights:  27%|██▋       | 56/211 [00:00<00:00, 14702.12it/s, Materializing param=encoder.layers.3.attention.q_proj.weight]
+Loading weights:  27%|██▋       | 57/211 [00:00<00:00, 14837.42it/s, Materializing param=encoder.layers.3.attention.v_proj.bias]  
+Loading weights:  27%|██▋       | 57/211 [00:00<00:00, 14771.41it/s, Materializing param=encoder.layers.3.attention.v_proj.bias]
+Loading weights:  27%|██▋       | 58/211 [00:00<00:00, 14884.34it/s, Materializing param=encoder.layers.3.attention.v_proj.weight]
+Loading weights:  27%|██▋       | 58/211 [00:00<00:00, 14815.45it/s, Materializing param=encoder.layers.3.attention.v_proj.weight]
+Loading weights:  28%|██▊       | 59/211 [00:00<00:00, 14952.50it/s, Materializing param=encoder.layers.3.feed_forward.intermediate_dense.bias]
+Loading weights:  28%|██▊       | 59/211 [00:00<00:00, 14885.05it/s, Materializing param=encoder.layers.3.feed_forward.intermediate_dense.bias]
+Loading weights:  28%|██▊       | 60/211 [00:00<00:00, 14993.94it/s, Materializing param=encoder.layers.3.feed_forward.intermediate_dense.weight]
+Loading weights:  28%|██▊       | 60/211 [00:00<00:00, 14921.92it/s, Materializing param=encoder.layers.3.feed_forward.intermediate_dense.weight]
+Loading weights:  29%|██▉       | 61/211 [00:00<00:00, 15043.07it/s, Materializing param=encoder.layers.3.feed_forward.output_dense.bias]        
+Loading weights:  29%|██▉       | 61/211 [00:00<00:00, 14973.52it/s, Materializing param=encoder.layers.3.feed_forward.output_dense.bias]
+Loading weights:  29%|██▉       | 62/211 [00:00<00:00, 15096.18it/s, Materializing param=encoder.layers.3.feed_forward.output_dense.weight]
+Loading weights:  29%|██▉       | 62/211 [00:00<00:00, 15030.74it/s, Materializing param=encoder.layers.3.feed_forward.output_dense.weight]
+Loading weights:  30%|██▉       | 63/211 [00:00<00:00, 15119.37it/s, Materializing param=encoder.layers.3.final_layer_norm.bias]           
+Loading weights:  30%|██▉       | 63/211 [00:00<00:00, 15054.76it/s, Materializing param=encoder.layers.3.final_layer_norm.bias]
+Loading weights:  30%|███       | 64/211 [00:00<00:00, 15181.28it/s, Materializing param=encoder.layers.3.final_layer_norm.weight]
+Loading weights:  30%|███       | 64/211 [00:00<00:00, 15106.10it/s, Materializing param=encoder.layers.3.final_layer_norm.weight]
+Loading weights:  31%|███       | 65/211 [00:00<00:00, 15229.86it/s, Materializing param=encoder.layers.3.layer_norm.bias]        
+Loading weights:  31%|███       | 65/211 [00:00<00:00, 15166.32it/s, Materializing param=encoder.layers.3.layer_norm.bias]
+Loading weights:  31%|███▏      | 66/211 [00:00<00:00, 15289.08it/s, Materializing param=encoder.layers.3.layer_norm.weight]
+Loading weights:  31%|███▏      | 66/211 [00:00<00:00, 15229.36it/s, Materializing param=encoder.layers.3.layer_norm.weight]
+Loading weights:  32%|███▏      | 67/211 [00:00<00:00, 15336.08it/s, Materializing param=encoder.layers.4.attention.k_proj.bias]
+Loading weights:  32%|███▏      | 67/211 [00:00<00:00, 15276.89it/s, Materializing param=encoder.layers.4.attention.k_proj.bias]
+Loading weights:  32%|███▏      | 68/211 [00:00<00:00, 15381.98it/s, Materializing param=encoder.layers.4.attention.k_proj.weight]
+Loading weights:  32%|███▏      | 68/211 [00:00<00:00, 15322.48it/s, Materializing param=encoder.layers.4.attention.k_proj.weight]
+Loading weights:  33%|███▎      | 69/211 [00:00<00:00, 15436.69it/s, Materializing param=encoder.layers.4.attention.out_proj.bias]
+Loading weights:  33%|███▎      | 69/211 [00:00<00:00, 15378.45it/s, Materializing param=encoder.layers.4.attention.out_proj.bias]
+Loading weights:  33%|███▎      | 70/211 [00:00<00:00, 15486.93it/s, Materializing param=encoder.layers.4.attention.out_proj.weight]
+Loading weights:  33%|███▎      | 70/211 [00:00<00:00, 15429.96it/s, Materializing param=encoder.layers.4.attention.out_proj.weight]
+Loading weights:  34%|███▎      | 71/211 [00:00<00:00, 15536.89it/s, Materializing param=encoder.layers.4.attention.q_proj.bias]    
+Loading weights:  34%|███▎      | 71/211 [00:00<00:00, 15478.75it/s, Materializing param=encoder.layers.4.attention.q_proj.bias]
+Loading weights:  34%|███▍      | 72/211 [00:00<00:00, 15588.18it/s, Materializing param=encoder.layers.4.attention.q_proj.weight]
+Loading weights:  34%|███▍      | 72/211 [00:00<00:00, 15531.26it/s, Materializing param=encoder.layers.4.attention.q_proj.weight]
+Loading weights:  35%|███▍      | 73/211 [00:00<00:00, 15625.63it/s, Materializing param=encoder.layers.4.attention.v_proj.bias]  
+Loading weights:  35%|███▍      | 73/211 [00:00<00:00, 15569.22it/s, Materializing param=encoder.layers.4.attention.v_proj.bias]
+Loading weights:  35%|███▌      | 74/211 [00:00<00:00, 15642.50it/s, Materializing param=encoder.layers.4.attention.v_proj.weight]
+Loading weights:  35%|███▌      | 74/211 [00:00<00:00, 15582.81it/s, Materializing param=encoder.layers.4.attention.v_proj.weight]
+Loading weights:  36%|███▌      | 75/211 [00:00<00:00, 15661.30it/s, Materializing param=encoder.layers.4.feed_forward.intermediate_dense.bias]
+Loading weights:  36%|███▌      | 75/211 [00:00<00:00, 15603.04it/s, Materializing param=encoder.layers.4.feed_forward.intermediate_dense.bias]
+Loading weights:  36%|███▌      | 76/211 [00:00<00:00, 15699.72it/s, Materializing param=encoder.layers.4.feed_forward.intermediate_dense.weight]
+Loading weights:  36%|███▌      | 76/211 [00:00<00:00, 15641.94it/s, Materializing param=encoder.layers.4.feed_forward.intermediate_dense.weight]
+Loading weights:  36%|███▋      | 77/211 [00:00<00:00, 15747.30it/s, Materializing param=encoder.layers.4.feed_forward.output_dense.bias]        
+Loading weights:  36%|███▋      | 77/211 [00:00<00:00, 15692.21it/s, Materializing param=encoder.layers.4.feed_forward.output_dense.bias]
+Loading weights:  37%|███▋      | 78/211 [00:00<00:00, 15793.18it/s, Materializing param=encoder.layers.4.feed_forward.output_dense.weight]
+Loading weights:  37%|███▋      | 78/211 [00:00<00:00, 15739.23it/s, Materializing param=encoder.layers.4.feed_forward.output_dense.weight]
+Loading weights:  37%|███▋      | 79/211 [00:00<00:00, 15835.13it/s, Materializing param=encoder.layers.4.final_layer_norm.bias]           
+Loading weights:  37%|███▋      | 79/211 [00:00<00:00, 15781.58it/s, Materializing param=encoder.layers.4.final_layer_norm.bias]
+Loading weights:  38%|███▊      | 80/211 [00:00<00:00, 15889.02it/s, Materializing param=encoder.layers.4.final_layer_norm.weight]
+Loading weights:  38%|███▊      | 80/211 [00:00<00:00, 15835.78it/s, Materializing param=encoder.layers.4.final_layer_norm.weight]
+Loading weights:  38%|███▊      | 81/211 [00:00<00:00, 15908.35it/s, Materializing param=encoder.layers.4.layer_norm.bias]        
+Loading weights:  38%|███▊      | 81/211 [00:00<00:00, 15854.89it/s, Materializing param=encoder.layers.4.layer_norm.bias]
+Loading weights:  39%|███▉      | 82/211 [00:00<00:00, 15922.82it/s, Materializing param=encoder.layers.4.layer_norm.weight]
+Loading weights:  39%|███▉      | 82/211 [00:00<00:00, 15870.65it/s, Materializing param=encoder.layers.4.layer_norm.weight]
+Loading weights:  39%|███▉      | 83/211 [00:00<00:00, 15971.34it/s, Materializing param=encoder.layers.5.attention.k_proj.bias]
+Loading weights:  39%|███▉      | 83/211 [00:00<00:00, 15922.39it/s, Materializing param=encoder.layers.5.attention.k_proj.bias]
+Loading weights:  40%|███▉      | 84/211 [00:00<00:00, 15979.03it/s, Materializing param=encoder.layers.5.attention.k_proj.weight]
+Loading weights:  40%|███▉      | 84/211 [00:00<00:00, 15927.74it/s, Materializing param=encoder.layers.5.attention.k_proj.weight]
+Loading weights:  40%|████      | 85/211 [00:00<00:00, 16023.18it/s, Materializing param=encoder.layers.5.attention.out_proj.bias]
+Loading weights:  40%|████      | 85/211 [00:00<00:00, 15968.64it/s, Materializing param=encoder.layers.5.attention.out_proj.bias]
+Loading weights:  41%|████      | 86/211 [00:00<00:00, 16060.11it/s, Materializing param=encoder.layers.5.attention.out_proj.weight]
+Loading weights:  41%|████      | 86/211 [00:00<00:00, 16006.66it/s, Materializing param=encoder.layers.5.attention.out_proj.weight]
+Loading weights:  41%|████      | 87/211 [00:00<00:00, 16070.13it/s, Materializing param=encoder.layers.5.attention.q_proj.bias]    
+Loading weights:  41%|████      | 87/211 [00:00<00:00, 16020.04it/s, Materializing param=encoder.layers.5.attention.q_proj.bias]
+Loading weights:  42%|████▏     | 88/211 [00:00<00:00, 16114.33it/s, Materializing param=encoder.layers.5.attention.q_proj.weight]
+Loading weights:  42%|████▏     | 88/211 [00:00<00:00, 16064.53it/s, Materializing param=encoder.layers.5.attention.q_proj.weight]
+Loading weights:  42%|████▏     | 89/211 [00:00<00:00, 16159.17it/s, Materializing param=encoder.layers.5.attention.v_proj.bias]  
+Loading weights:  42%|████▏     | 89/211 [00:00<00:00, 16108.97it/s, Materializing param=encoder.layers.5.attention.v_proj.bias]
+Loading weights:  43%|████▎     | 90/211 [00:00<00:00, 16176.18it/s, Materializing param=encoder.layers.5.attention.v_proj.weight]
+Loading weights:  43%|████▎     | 90/211 [00:00<00:00, 16127.11it/s, Materializing param=encoder.layers.5.attention.v_proj.weight]
+Loading weights:  43%|████▎     | 91/211 [00:00<00:00, 16218.31it/s, Materializing param=encoder.layers.5.feed_forward.intermediate_dense.bias]
+Loading weights:  43%|████▎     | 91/211 [00:00<00:00, 16166.79it/s, Materializing param=encoder.layers.5.feed_forward.intermediate_dense.bias]
+Loading weights:  44%|████▎     | 92/211 [00:00<00:00, 16220.77it/s, Materializing param=encoder.layers.5.feed_forward.intermediate_dense.weight]
+Loading weights:  44%|████▎     | 92/211 [00:00<00:00, 16169.12it/s, Materializing param=encoder.layers.5.feed_forward.intermediate_dense.weight]
+Loading weights:  44%|████▍     | 93/211 [00:00<00:00, 16256.31it/s, Materializing param=encoder.layers.5.feed_forward.output_dense.bias]        
+Loading weights:  44%|████▍     | 93/211 [00:00<00:00, 16204.99it/s, Materializing param=encoder.layers.5.feed_forward.output_dense.bias]
+Loading weights:  45%|████▍     | 94/211 [00:00<00:00, 16285.87it/s, Materializing param=encoder.layers.5.feed_forward.output_dense.weight]
+Loading weights:  45%|████▍     | 94/211 [00:00<00:00, 16238.24it/s, Materializing param=encoder.layers.5.feed_forward.output_dense.weight]
+Loading weights:  45%|████▌     | 95/211 [00:00<00:00, 16320.92it/s, Materializing param=encoder.layers.5.final_layer_norm.bias]           
+Loading weights:  45%|████▌     | 95/211 [00:00<00:00, 16276.25it/s, Materializing param=encoder.layers.5.final_layer_norm.bias]
+Loading weights:  45%|████▌     | 96/211 [00:00<00:00, 16360.04it/s, Materializing param=encoder.layers.5.final_layer_norm.weight]
+Loading weights:  45%|████▌     | 96/211 [00:00<00:00, 16312.98it/s, Materializing param=encoder.layers.5.final_layer_norm.weight]
+Loading weights:  46%|████▌     | 97/211 [00:00<00:00, 16402.50it/s, Materializing param=encoder.layers.5.layer_norm.bias]        
+Loading weights:  46%|████▌     | 97/211 [00:00<00:00, 16357.65it/s, Materializing param=encoder.layers.5.layer_norm.bias]
+Loading weights:  46%|████▋     | 98/211 [00:00<00:00, 16446.28it/s, Materializing param=encoder.layers.5.layer_norm.weight]
+Loading weights:  46%|████▋     | 98/211 [00:00<00:00, 16401.65it/s, Materializing param=encoder.layers.5.layer_norm.weight]
+Loading weights:  47%|████▋     | 99/211 [00:00<00:00, 16481.55it/s, Materializing param=encoder.layers.6.attention.k_proj.bias]
+Loading weights:  47%|████▋     | 99/211 [00:00<00:00, 16437.18it/s, Materializing param=encoder.layers.6.attention.k_proj.bias]
+Loading weights:  47%|████▋     | 100/211 [00:00<00:00, 16513.01it/s, Materializing param=encoder.layers.6.attention.k_proj.weight]
+Loading weights:  47%|████▋     | 100/211 [00:00<00:00, 16466.98it/s, Materializing param=encoder.layers.6.attention.k_proj.weight]
+Loading weights:  48%|████▊     | 101/211 [00:00<00:00, 16509.15it/s, Materializing param=encoder.layers.6.attention.out_proj.bias]
+Loading weights:  48%|████▊     | 101/211 [00:00<00:00, 16465.51it/s, Materializing param=encoder.layers.6.attention.out_proj.bias]
+Loading weights:  48%|████▊     | 102/211 [00:00<00:00, 16545.58it/s, Materializing param=encoder.layers.6.attention.out_proj.weight]
+Loading weights:  48%|████▊     | 102/211 [00:00<00:00, 16500.27it/s, Materializing param=encoder.layers.6.attention.out_proj.weight]
+Loading weights:  49%|████▉     | 103/211 [00:00<00:00, 16575.73it/s, Materializing param=encoder.layers.6.attention.q_proj.bias]    
+Loading weights:  49%|████▉     | 103/211 [00:00<00:00, 16528.17it/s, Materializing param=encoder.layers.6.attention.q_proj.bias]
+Loading weights:  49%|████▉     | 104/211 [00:00<00:00, 16595.31it/s, Materializing param=encoder.layers.6.attention.q_proj.weight]
+Loading weights:  49%|████▉     | 104/211 [00:00<00:00, 16545.58it/s, Materializing param=encoder.layers.6.attention.q_proj.weight]
+Loading weights:  50%|████▉     | 105/211 [00:00<00:00, 16608.91it/s, Materializing param=encoder.layers.6.attention.v_proj.bias]  
+Loading weights:  50%|████▉     | 105/211 [00:00<00:00, 16553.97it/s, Materializing param=encoder.layers.6.attention.v_proj.bias]
+Loading weights:  50%|█████     | 106/211 [00:00<00:00, 16601.80it/s, Materializing param=encoder.layers.6.attention.v_proj.weight]
+Loading weights:  50%|█████     | 106/211 [00:00<00:00, 16557.90it/s, Materializing param=encoder.layers.6.attention.v_proj.weight]
+Loading weights:  51%|█████     | 107/211 [00:00<00:00, 16607.11it/s, Materializing param=encoder.layers.6.feed_forward.intermediate_dense.bias]
+Loading weights:  51%|█████     | 107/211 [00:00<00:00, 16561.15it/s, Materializing param=encoder.layers.6.feed_forward.intermediate_dense.bias]
+Loading weights:  51%|█████     | 108/211 [00:00<00:00, 16623.30it/s, Materializing param=encoder.layers.6.feed_forward.intermediate_dense.weight]
+Loading weights:  51%|█████     | 108/211 [00:00<00:00, 16577.67it/s, Materializing param=encoder.layers.6.feed_forward.intermediate_dense.weight]
+Loading weights:  52%|█████▏    | 109/211 [00:00<00:00, 16646.49it/s, Materializing param=encoder.layers.6.feed_forward.output_dense.bias]        
+Loading weights:  52%|█████▏    | 109/211 [00:00<00:00, 16603.56it/s, Materializing param=encoder.layers.6.feed_forward.output_dense.bias]
+Loading weights:  52%|█████▏    | 110/211 [00:00<00:00, 16677.15it/s, Materializing param=encoder.layers.6.feed_forward.output_dense.weight]
+Loading weights:  52%|█████▏    | 110/211 [00:00<00:00, 16631.46it/s, Materializing param=encoder.layers.6.feed_forward.output_dense.weight]
+Loading weights:  53%|█████▎    | 111/211 [00:00<00:00, 16690.01it/s, Materializing param=encoder.layers.6.final_layer_norm.bias]           
+Loading weights:  53%|█████▎    | 111/211 [00:00<00:00, 16634.55it/s, Materializing param=encoder.layers.6.final_layer_norm.bias]
+Loading weights:  53%|█████▎    | 112/211 [00:00<00:00, 16667.09it/s, Materializing param=encoder.layers.6.final_layer_norm.weight]
+Loading weights:  53%|█████▎    | 112/211 [00:00<00:00, 16625.21it/s, Materializing param=encoder.layers.6.final_layer_norm.weight]
+Loading weights:  54%|█████▎    | 113/211 [00:00<00:00, 16696.83it/s, Materializing param=encoder.layers.6.layer_norm.bias]        
+Loading weights:  54%|█████▎    | 113/211 [00:00<00:00, 16654.59it/s, Materializing param=encoder.layers.6.layer_norm.bias]
+Loading weights:  54%|█████▍    | 114/211 [00:00<00:00, 16723.23it/s, Materializing param=encoder.layers.6.layer_norm.weight]
+Loading weights:  54%|█████▍    | 114/211 [00:00<00:00, 16684.14it/s, Materializing param=encoder.layers.6.layer_norm.weight]
+Loading weights:  55%|█████▍    | 115/211 [00:00<00:00, 16757.40it/s, Materializing param=encoder.layers.7.attention.k_proj.bias]
+Loading weights:  55%|█████▍    | 115/211 [00:00<00:00, 16715.59it/s, Materializing param=encoder.layers.7.attention.k_proj.bias]
+Loading weights:  55%|█████▍    | 116/211 [00:00<00:00, 16785.32it/s, Materializing param=encoder.layers.7.attention.k_proj.weight]
+Loading weights:  55%|█████▍    | 116/211 [00:00<00:00, 16741.42it/s, Materializing param=encoder.layers.7.attention.k_proj.weight]
+Loading weights:  55%|█████▌    | 117/211 [00:00<00:00, 16808.25it/s, Materializing param=encoder.layers.7.attention.out_proj.bias]
+Loading weights:  55%|█████▌    | 117/211 [00:00<00:00, 16767.47it/s, Materializing param=encoder.layers.7.attention.out_proj.bias]
+Loading weights:  56%|█████▌    | 118/211 [00:00<00:00, 16823.98it/s, Materializing param=encoder.layers.7.attention.out_proj.weight]
+Loading weights:  56%|█████▌    | 118/211 [00:00<00:00, 16781.20it/s, Materializing param=encoder.layers.7.attention.out_proj.weight]
+Loading weights:  56%|█████▋    | 119/211 [00:00<00:00, 16844.03it/s, Materializing param=encoder.layers.7.attention.q_proj.bias]    
+Loading weights:  56%|█████▋    | 119/211 [00:00<00:00, 16803.20it/s, Materializing param=encoder.layers.7.attention.q_proj.bias]
+Loading weights:  57%|█████▋    | 120/211 [00:00<00:00, 16854.18it/s, Materializing param=encoder.layers.7.attention.q_proj.weight]
+Loading weights:  57%|█████▋    | 120/211 [00:00<00:00, 16814.21it/s, Materializing param=encoder.layers.7.attention.q_proj.weight]
+Loading weights:  57%|█████▋    | 121/211 [00:00<00:00, 16861.94it/s, Materializing param=encoder.layers.7.attention.v_proj.bias]  
+Loading weights:  57%|█████▋    | 121/211 [00:00<00:00, 16817.80it/s, Materializing param=encoder.layers.7.attention.v_proj.bias]
+Loading weights:  58%|█████▊    | 122/211 [00:00<00:00, 16869.58it/s, Materializing param=encoder.layers.7.attention.v_proj.weight]
+Loading weights:  58%|█████▊    | 122/211 [00:00<00:00, 16823.00it/s, Materializing param=encoder.layers.7.attention.v_proj.weight]
+Loading weights:  58%|█████▊    | 123/211 [00:00<00:00, 16870.48it/s, Materializing param=encoder.layers.7.feed_forward.intermediate_dense.bias]
+Loading weights:  58%|█████▊    | 123/211 [00:00<00:00, 16819.88it/s, Materializing param=encoder.layers.7.feed_forward.intermediate_dense.bias]
+Loading weights:  59%|█████▉    | 124/211 [00:00<00:00, 16866.99it/s, Materializing param=encoder.layers.7.feed_forward.intermediate_dense.weight]
+Loading weights:  59%|█████▉    | 124/211 [00:00<00:00, 16822.80it/s, Materializing param=encoder.layers.7.feed_forward.intermediate_dense.weight]
+Loading weights:  59%|█████▉    | 125/211 [00:00<00:00, 16871.70it/s, Materializing param=encoder.layers.7.feed_forward.output_dense.bias]        
+Loading weights:  59%|█████▉    | 125/211 [00:00<00:00, 16826.21it/s, Materializing param=encoder.layers.7.feed_forward.output_dense.bias]
+Loading weights:  60%|█████▉    | 126/211 [00:00<00:00, 16868.25it/s, Materializing param=encoder.layers.7.feed_forward.output_dense.weight]
+Loading weights:  60%|█████▉    | 126/211 [00:00<00:00, 16826.90it/s, Materializing param=encoder.layers.7.feed_forward.output_dense.weight]
+Loading weights:  60%|██████    | 127/211 [00:00<00:00, 16879.82it/s, Materializing param=encoder.layers.7.final_layer_norm.bias]           
+Loading weights:  60%|██████    | 127/211 [00:00<00:00, 16839.27it/s, Materializing param=encoder.layers.7.final_layer_norm.bias]
+Loading weights:  61%|██████    | 128/211 [00:00<00:00, 16877.96it/s, Materializing param=encoder.layers.7.final_layer_norm.weight]
+Loading weights:  61%|██████    | 128/211 [00:00<00:00, 16838.25it/s, Materializing param=encoder.layers.7.final_layer_norm.weight]
+Loading weights:  61%|██████    | 129/211 [00:00<00:00, 16898.25it/s, Materializing param=encoder.layers.7.layer_norm.bias]        
+Loading weights:  61%|██████    | 129/211 [00:00<00:00, 16861.39it/s, Materializing param=encoder.layers.7.layer_norm.bias]
+Loading weights:  62%|██████▏   | 130/211 [00:00<00:00, 16923.54it/s, Materializing param=encoder.layers.7.layer_norm.weight]
+Loading weights:  62%|██████▏   | 130/211 [00:00<00:00, 16885.80it/s, Materializing param=encoder.layers.7.layer_norm.weight]
+Loading weights:  62%|██████▏   | 131/211 [00:00<00:00, 16923.46it/s, Materializing param=encoder.layers.8.attention.k_proj.bias]
+Loading weights:  62%|██████▏   | 131/211 [00:00<00:00, 16883.93it/s, Materializing param=encoder.layers.8.attention.k_proj.bias]
+Loading weights:  63%|██████▎   | 132/211 [00:00<00:00, 16945.13it/s, Materializing param=encoder.layers.8.attention.k_proj.weight]
+Loading weights:  63%|██████▎   | 132/211 [00:00<00:00, 16908.38it/s, Materializing param=encoder.layers.8.attention.k_proj.weight]
+Loading weights:  63%|██████▎   | 133/211 [00:00<00:00, 16956.21it/s, Materializing param=encoder.layers.8.attention.out_proj.bias]
+Loading weights:  63%|██████▎   | 133/211 [00:00<00:00, 16913.03it/s, Materializing param=encoder.layers.8.attention.out_proj.bias]
+Loading weights:  64%|██████▎   | 134/211 [00:00<00:00, 16957.93it/s, Materializing param=encoder.layers.8.attention.out_proj.weight]
+Loading weights:  64%|██████▎   | 134/211 [00:00<00:00, 16913.03it/s, Materializing param=encoder.layers.8.attention.out_proj.weight]
+Loading weights:  64%|██████▍   | 135/211 [00:00<00:00, 16964.20it/s, Materializing param=encoder.layers.8.attention.q_proj.bias]    
+Loading weights:  64%|██████▍   | 135/211 [00:00<00:00, 16917.57it/s, Materializing param=encoder.layers.8.attention.q_proj.bias]
+Loading weights:  64%|██████▍   | 136/211 [00:00<00:00, 16976.94it/s, Materializing param=encoder.layers.8.attention.q_proj.weight]
+Loading weights:  64%|██████▍   | 136/211 [00:00<00:00, 16941.15it/s, Materializing param=encoder.layers.8.attention.q_proj.weight]
+Loading weights:  65%|██████▍   | 137/211 [00:00<00:00, 16993.54it/s, Materializing param=encoder.layers.8.attention.v_proj.bias]  
+Loading weights:  65%|██████▍   | 137/211 [00:00<00:00, 16957.94it/s, Materializing param=encoder.layers.8.attention.v_proj.bias]
+Loading weights:  65%|██████▌   | 138/211 [00:00<00:00, 16999.44it/s, Materializing param=encoder.layers.8.attention.v_proj.weight]
+Loading weights:  65%|██████▌   | 138/211 [00:00<00:00, 16957.61it/s, Materializing param=encoder.layers.8.attention.v_proj.weight]
+Loading weights:  66%|██████▌   | 139/211 [00:00<00:00, 17007.74it/s, Materializing param=encoder.layers.8.feed_forward.intermediate_dense.bias]
+Loading weights:  66%|██████▌   | 139/211 [00:00<00:00, 16964.19it/s, Materializing param=encoder.layers.8.feed_forward.intermediate_dense.bias]
+Loading weights:  66%|██████▋   | 140/211 [00:00<00:00, 17007.05it/s, Materializing param=encoder.layers.8.feed_forward.intermediate_dense.weight]
+Loading weights:  66%|██████▋   | 140/211 [00:00<00:00, 16965.78it/s, Materializing param=encoder.layers.8.feed_forward.intermediate_dense.weight]
+Loading weights:  67%|██████▋   | 141/211 [00:00<00:00, 17010.78it/s, Materializing param=encoder.layers.8.feed_forward.output_dense.bias]        
+Loading weights:  67%|██████▋   | 141/211 [00:00<00:00, 16974.16it/s, Materializing param=encoder.layers.8.feed_forward.output_dense.bias]
+Loading weights:  67%|██████▋   | 142/211 [00:00<00:00, 17016.89it/s, Materializing param=encoder.layers.8.feed_forward.output_dense.weight]
+Loading weights:  67%|██████▋   | 142/211 [00:00<00:00, 16976.15it/s, Materializing param=encoder.layers.8.feed_forward.output_dense.weight]
+Loading weights:  68%|██████▊   | 143/211 [00:00<00:00, 17021.95it/s, Materializing param=encoder.layers.8.final_layer_norm.bias]           
+Loading weights:  68%|██████▊   | 143/211 [00:00<00:00, 16983.87it/s, Materializing param=encoder.layers.8.final_layer_norm.bias]
+Loading weights:  68%|██████▊   | 144/211 [00:00<00:00, 17031.75it/s, Materializing param=encoder.layers.8.final_layer_norm.weight]
+Loading weights:  68%|██████▊   | 144/211 [00:00<00:00, 16993.41it/s, Materializing param=encoder.layers.8.final_layer_norm.weight]
+Loading weights:  69%|██████▊   | 145/211 [00:00<00:00, 17040.94it/s, Materializing param=encoder.layers.8.layer_norm.bias]        
+Loading weights:  69%|██████▊   | 145/211 [00:00<00:00, 17003.30it/s, Materializing param=encoder.layers.8.layer_norm.bias]
+Loading weights:  69%|██████▉   | 146/211 [00:00<00:00, 17021.11it/s, Materializing param=encoder.layers.8.layer_norm.weight]
+Loading weights:  69%|██████▉   | 146/211 [00:00<00:00, 16987.11it/s, Materializing param=encoder.layers.8.layer_norm.weight]
+Loading weights:  70%|██████▉   | 147/211 [00:00<00:00, 17035.88it/s, Materializing param=encoder.layers.9.attention.k_proj.bias]
+Loading weights:  70%|██████▉   | 147/211 [00:00<00:00, 16998.31it/s, Materializing param=encoder.layers.9.attention.k_proj.bias]
+Loading weights:  70%|███████   | 148/211 [00:00<00:00, 17041.59it/s, Materializing param=encoder.layers.9.attention.k_proj.weight]
+Loading weights:  70%|███████   | 148/211 [00:00<00:00, 17003.78it/s, Materializing param=encoder.layers.9.attention.k_proj.weight]
+Loading weights:  71%|███████   | 149/211 [00:00<00:00, 17048.62it/s, Materializing param=encoder.layers.9.attention.out_proj.bias]
+Loading weights:  71%|███████   | 149/211 [00:00<00:00, 17011.50it/s, Materializing param=encoder.layers.9.attention.out_proj.bias]
+Loading weights:  71%|███████   | 150/211 [00:00<00:00, 17049.55it/s, Materializing param=encoder.layers.9.attention.out_proj.weight]
+Loading weights:  71%|███████   | 150/211 [00:00<00:00, 17013.13it/s, Materializing param=encoder.layers.9.attention.out_proj.weight]
+Loading weights:  72%|███████▏  | 151/211 [00:00<00:00, 17054.61it/s, Materializing param=encoder.layers.9.attention.q_proj.bias]    
+Loading weights:  72%|███████▏  | 151/211 [00:00<00:00, 17017.95it/s, Materializing param=encoder.layers.9.attention.q_proj.bias]
+Loading weights:  72%|███████▏  | 152/211 [00:00<00:00, 17063.25it/s, Materializing param=encoder.layers.9.attention.q_proj.weight]
+Loading weights:  72%|███████▏  | 152/211 [00:00<00:00, 17025.43it/s, Materializing param=encoder.layers.9.attention.q_proj.weight]
+Loading weights:  73%|███████▎  | 153/211 [00:00<00:00, 17062.71it/s, Materializing param=encoder.layers.9.attention.v_proj.bias]  
+Loading weights:  73%|███████▎  | 153/211 [00:00<00:00, 17026.94it/s, Materializing param=encoder.layers.9.attention.v_proj.bias]
+Loading weights:  73%|███████▎  | 154/211 [00:00<00:00, 17069.84it/s, Materializing param=encoder.layers.9.attention.v_proj.weight]
+Loading weights:  73%|███████▎  | 154/211 [00:00<00:00, 17035.63it/s, Materializing param=encoder.layers.9.attention.v_proj.weight]
+Loading weights:  73%|███████▎  | 155/211 [00:00<00:00, 17055.83it/s, Materializing param=encoder.layers.9.feed_forward.intermediate_dense.bias]
+Loading weights:  73%|███████▎  | 155/211 [00:00<00:00, 17024.12it/s, Materializing param=encoder.layers.9.feed_forward.intermediate_dense.bias]
+Loading weights:  74%|███████▍  | 156/211 [00:00<00:00, 17060.69it/s, Materializing param=encoder.layers.9.feed_forward.intermediate_dense.weight]
+Loading weights:  74%|███████▍  | 156/211 [00:00<00:00, 17023.40it/s, Materializing param=encoder.layers.9.feed_forward.intermediate_dense.weight]
+Loading weights:  74%|███████▍  | 157/211 [00:00<00:00, 17061.94it/s, Materializing param=encoder.layers.9.feed_forward.output_dense.bias]        
+Loading weights:  74%|███████▍  | 157/211 [00:00<00:00, 17024.89it/s, Materializing param=encoder.layers.9.feed_forward.output_dense.bias]
+Loading weights:  75%|███████▍  | 158/211 [00:00<00:00, 17066.70it/s, Materializing param=encoder.layers.9.feed_forward.output_dense.weight]
+Loading weights:  75%|███████▍  | 158/211 [00:00<00:00, 17029.86it/s, Materializing param=encoder.layers.9.feed_forward.output_dense.weight]
+Loading weights:  75%|███████▌  | 159/211 [00:00<00:00, 17067.91it/s, Materializing param=encoder.layers.9.final_layer_norm.bias]           
+Loading weights:  75%|███████▌  | 159/211 [00:00<00:00, 17033.03it/s, Materializing param=encoder.layers.9.final_layer_norm.bias]
+Loading weights:  76%|███████▌  | 160/211 [00:00<00:00, 17078.22it/s, Materializing param=encoder.layers.9.final_layer_norm.weight]
+Loading weights:  76%|███████▌  | 160/211 [00:00<00:00, 17041.79it/s, Materializing param=encoder.layers.9.final_layer_norm.weight]
+Loading weights:  76%|███████▋  | 161/211 [00:00<00:00, 17084.53it/s, Materializing param=encoder.layers.9.layer_norm.bias]        
+Loading weights:  76%|███████▋  | 161/211 [00:00<00:00, 17050.02it/s, Materializing param=encoder.layers.9.layer_norm.bias]
+Loading weights:  77%|███████▋  | 162/211 [00:00<00:00, 17094.63it/s, Materializing param=encoder.layers.9.layer_norm.weight]
+Loading weights:  77%|███████▋  | 162/211 [00:00<00:00, 17058.58it/s, Materializing param=encoder.layers.9.layer_norm.weight]
+Loading weights:  77%|███████▋  | 163/211 [00:00<00:00, 17102.48it/s, Materializing param=encoder.layers.10.attention.k_proj.bias]
+Loading weights:  77%|███████▋  | 163/211 [00:00<00:00, 17068.75it/s, Materializing param=encoder.layers.10.attention.k_proj.bias]
+Loading weights:  78%|███████▊  | 164/211 [00:00<00:00, 17105.13it/s, Materializing param=encoder.layers.10.attention.k_proj.weight]
+Loading weights:  78%|███████▊  | 164/211 [00:00<00:00, 17069.48it/s, Materializing param=encoder.layers.10.attention.k_proj.weight]
+Loading weights:  78%|███████▊  | 165/211 [00:00<00:00, 17098.88it/s, Materializing param=encoder.layers.10.attention.out_proj.bias]
+Loading weights:  78%|███████▊  | 165/211 [00:00<00:00, 17065.15it/s, Materializing param=encoder.layers.10.attention.out_proj.bias]
+Loading weights:  79%|███████▊  | 166/211 [00:00<00:00, 17099.43it/s, Materializing param=encoder.layers.10.attention.out_proj.weight]
+Loading weights:  79%|███████▊  | 166/211 [00:00<00:00, 17064.22it/s, Materializing param=encoder.layers.10.attention.out_proj.weight]
+Loading weights:  79%|███████▉  | 167/211 [00:00<00:00, 17060.40it/s, Materializing param=encoder.layers.10.attention.q_proj.bias]    
+Loading weights:  79%|███████▉  | 167/211 [00:00<00:00, 17028.88it/s, Materializing param=encoder.layers.10.attention.q_proj.bias]
+Loading weights:  80%|███████▉  | 168/211 [00:00<00:00, 17073.56it/s, Materializing param=encoder.layers.10.attention.q_proj.weight]
+Loading weights:  80%|███████▉  | 168/211 [00:00<00:00, 17042.59it/s, Materializing param=encoder.layers.10.attention.q_proj.weight]
+Loading weights:  80%|████████  | 169/211 [00:00<00:00, 17062.33it/s, Materializing param=encoder.layers.10.attention.v_proj.bias]  
+Loading weights:  80%|████████  | 169/211 [00:00<00:00, 17031.58it/s, Materializing param=encoder.layers.10.attention.v_proj.bias]
+Loading weights:  81%|████████  | 170/211 [00:00<00:00, 17066.75it/s, Materializing param=encoder.layers.10.attention.v_proj.weight]
+Loading weights:  81%|████████  | 170/211 [00:00<00:00, 17032.50it/s, Materializing param=encoder.layers.10.attention.v_proj.weight]
+Loading weights:  81%|████████  | 171/211 [00:00<00:00, 17052.45it/s, Materializing param=encoder.layers.10.feed_forward.intermediate_dense.bias]
+Loading weights:  81%|████████  | 171/211 [00:00<00:00, 17022.10it/s, Materializing param=encoder.layers.10.feed_forward.intermediate_dense.bias]
+Loading weights:  82%|████████▏ | 172/211 [00:00<00:00, 17033.51it/s, Materializing param=encoder.layers.10.feed_forward.intermediate_dense.weight]
+Loading weights:  82%|████████▏ | 172/211 [00:00<00:00, 17001.40it/s, Materializing param=encoder.layers.10.feed_forward.intermediate_dense.weight]
+Loading weights:  82%|████████▏ | 173/211 [00:00<00:00, 17011.24it/s, Materializing param=encoder.layers.10.feed_forward.output_dense.bias]        
+Loading weights:  82%|████████▏ | 173/211 [00:00<00:00, 16980.99it/s, Materializing param=encoder.layers.10.feed_forward.output_dense.bias]
+Loading weights:  82%|████████▏ | 174/211 [00:00<00:00, 17015.83it/s, Materializing param=encoder.layers.10.feed_forward.output_dense.weight]
+Loading weights:  82%|████████▏ | 174/211 [00:00<00:00, 16982.57it/s, Materializing param=encoder.layers.10.feed_forward.output_dense.weight]
+Loading weights:  83%|████████▎ | 175/211 [00:00<00:00, 17020.36it/s, Materializing param=encoder.layers.10.final_layer_norm.bias]           
+Loading weights:  83%|████████▎ | 175/211 [00:00<00:00, 16987.28it/s, Materializing param=encoder.layers.10.final_layer_norm.bias]
+Loading weights:  83%|████████▎ | 176/211 [00:00<00:00, 17008.38it/s, Materializing param=encoder.layers.10.final_layer_norm.weight]
+Loading weights:  83%|████████▎ | 176/211 [00:00<00:00, 16980.60it/s, Materializing param=encoder.layers.10.final_layer_norm.weight]
+Loading weights:  84%|████████▍ | 177/211 [00:00<00:00, 17019.53it/s, Materializing param=encoder.layers.10.layer_norm.bias]        
+Loading weights:  84%|████████▍ | 177/211 [00:00<00:00, 16986.82it/s, Materializing param=encoder.layers.10.layer_norm.bias]
+Loading weights:  84%|████████▍ | 178/211 [00:00<00:00, 17022.42it/s, Materializing param=encoder.layers.10.layer_norm.weight]
+Loading weights:  84%|████████▍ | 178/211 [00:00<00:00, 16991.42it/s, Materializing param=encoder.layers.10.layer_norm.weight]
+Loading weights:  85%|████████▍ | 179/211 [00:00<00:00, 17028.36it/s, Materializing param=encoder.layers.11.attention.k_proj.bias]
+Loading weights:  85%|████████▍ | 179/211 [00:00<00:00, 16996.36it/s, Materializing param=encoder.layers.11.attention.k_proj.bias]
+Loading weights:  85%|████████▌ | 180/211 [00:00<00:00, 17039.24it/s, Materializing param=encoder.layers.11.attention.k_proj.weight]
+Loading weights:  85%|████████▌ | 180/211 [00:00<00:00, 17011.60it/s, Materializing param=encoder.layers.11.attention.k_proj.weight]
+Loading weights:  86%|████████▌ | 181/211 [00:00<00:00, 17054.61it/s, Materializing param=encoder.layers.11.attention.out_proj.bias]
+Loading weights:  86%|████████▌ | 181/211 [00:00<00:00, 17027.45it/s, Materializing param=encoder.layers.11.attention.out_proj.bias]
+Loading weights:  86%|████████▋ | 182/211 [00:00<00:00, 17073.66it/s, Materializing param=encoder.layers.11.attention.out_proj.weight]
+Loading weights:  86%|████████▋ | 182/211 [00:00<00:00, 17044.69it/s, Materializing param=encoder.layers.11.attention.out_proj.weight]
+Loading weights:  87%|████████▋ | 183/211 [00:00<00:00, 17084.17it/s, Materializing param=encoder.layers.11.attention.q_proj.bias]    
+Loading weights:  87%|████████▋ | 183/211 [00:00<00:00, 17055.32it/s, Materializing param=encoder.layers.11.attention.q_proj.bias]
+Loading weights:  87%|████████▋ | 184/211 [00:00<00:00, 17095.72it/s, Materializing param=encoder.layers.11.attention.q_proj.weight]
+Loading weights:  87%|████████▋ | 184/211 [00:00<00:00, 17068.87it/s, Materializing param=encoder.layers.11.attention.q_proj.weight]
+Loading weights:  88%|████████▊ | 185/211 [00:00<00:00, 17112.43it/s, Materializing param=encoder.layers.11.attention.v_proj.bias]  
+Loading weights:  88%|████████▊ | 185/211 [00:00<00:00, 17085.31it/s, Materializing param=encoder.layers.11.attention.v_proj.bias]
+Loading weights:  88%|████████▊ | 186/211 [00:00<00:00, 17126.00it/s, Materializing param=encoder.layers.11.attention.v_proj.weight]
+Loading weights:  88%|████████▊ | 186/211 [00:00<00:00, 17094.10it/s, Materializing param=encoder.layers.11.attention.v_proj.weight]
+Loading weights:  89%|████████▊ | 187/211 [00:00<00:00, 17131.20it/s, Materializing param=encoder.layers.11.feed_forward.intermediate_dense.bias]
+Loading weights:  89%|████████▊ | 187/211 [00:00<00:00, 17098.34it/s, Materializing param=encoder.layers.11.feed_forward.intermediate_dense.bias]
+Loading weights:  89%|████████▉ | 188/211 [00:00<00:00, 17126.67it/s, Materializing param=encoder.layers.11.feed_forward.intermediate_dense.weight]
+Loading weights:  89%|████████▉ | 188/211 [00:00<00:00, 17095.85it/s, Materializing param=encoder.layers.11.feed_forward.intermediate_dense.weight]
+Loading weights:  90%|████████▉ | 189/211 [00:00<00:00, 17125.90it/s, Materializing param=encoder.layers.11.feed_forward.output_dense.bias]        
+Loading weights:  90%|████████▉ | 189/211 [00:00<00:00, 17095.24it/s, Materializing param=encoder.layers.11.feed_forward.output_dense.bias]
+Loading weights:  90%|█████████ | 190/211 [00:00<00:00, 17100.51it/s, Materializing param=encoder.layers.11.feed_forward.output_dense.weight]
+Loading weights:  90%|█████████ | 190/211 [00:00<00:00, 17073.03it/s, Materializing param=encoder.layers.11.feed_forward.output_dense.weight]
+Loading weights:  91%|█████████ | 191/211 [00:00<00:00, 17105.72it/s, Materializing param=encoder.layers.11.final_layer_norm.bias]           
+Loading weights:  91%|█████████ | 191/211 [00:00<00:00, 17075.09it/s, Materializing param=encoder.layers.11.final_layer_norm.bias]
+Loading weights:  91%|█████████ | 192/211 [00:00<00:00, 17082.20it/s, Materializing param=encoder.layers.11.final_layer_norm.weight]
+Loading weights:  91%|█████████ | 192/211 [00:00<00:00, 17056.52it/s, Materializing param=encoder.layers.11.final_layer_norm.weight]
+Loading weights:  91%|█████████▏| 193/211 [00:00<00:00, 17078.43it/s, Materializing param=encoder.layers.11.layer_norm.bias]        
+Loading weights:  91%|█████████▏| 193/211 [00:00<00:00, 17052.53it/s, Materializing param=encoder.layers.11.layer_norm.bias]
+Loading weights:  92%|█████████▏| 194/211 [00:00<00:00, 17082.23it/s, Materializing param=encoder.layers.11.layer_norm.weight]
+Loading weights:  92%|█████████▏| 194/211 [00:00<00:00, 17055.38it/s, Materializing param=encoder.layers.11.layer_norm.weight]
+Loading weights:  92%|█████████▏| 195/211 [00:00<00:00, 17067.81it/s, Materializing param=encoder.pos_conv_embed.conv.bias]   
+Loading weights:  92%|█████████▏| 195/211 [00:00<00:00, 17042.56it/s, Materializing param=encoder.pos_conv_embed.conv.bias]
+Loading weights:  93%|█████████▎| 196/211 [00:00<00:00, 17046.48it/s, Materializing param=encoder.pos_conv_embed.conv.parametrizations.weight.original0]
+Loading weights:  93%|█████████▎| 196/211 [00:00<00:00, 17018.60it/s, Materializing param=encoder.pos_conv_embed.conv.parametrizations.weight.original0]
+Loading weights:  93%|█████████▎| 197/211 [00:00<00:00, 17038.77it/s, Materializing param=encoder.pos_conv_embed.conv.parametrizations.weight.original1]
+Loading weights:  93%|█████████▎| 197/211 [00:00<00:00, 17010.70it/s, Materializing param=encoder.pos_conv_embed.conv.parametrizations.weight.original1]
+Loading weights:  94%|█████████▍| 198/211 [00:00<00:00, 17026.94it/s, Materializing param=feature_extractor.conv_layers.0.conv.weight]                  
+Loading weights:  94%|█████████▍| 198/211 [00:00<00:00, 16996.28it/s, Materializing param=feature_extractor.conv_layers.0.conv.weight]
+Loading weights:  94%|█████████▍| 199/211 [00:00<00:00, 17020.12it/s, Materializing param=feature_extractor.conv_layers.0.layer_norm.bias]
+Loading weights:  94%|█████████▍| 199/211 [00:00<00:00, 16994.13it/s, Materializing param=feature_extractor.conv_layers.0.layer_norm.bias]
+Loading weights:  95%|█████████▍| 200/211 [00:00<00:00, 17019.92it/s, Materializing param=feature_extractor.conv_layers.0.layer_norm.weight]
+Loading weights:  95%|█████████▍| 200/211 [00:00<00:00, 16992.68it/s, Materializing param=feature_extractor.conv_layers.0.layer_norm.weight]
+Loading weights:  95%|█████████▌| 201/211 [00:00<00:00, 17006.68it/s, Materializing param=feature_extractor.conv_layers.1.conv.weight]      
+Loading weights:  95%|█████████▌| 201/211 [00:00<00:00, 16979.28it/s, Materializing param=feature_extractor.conv_layers.1.conv.weight]
+Loading weights:  96%|█████████▌| 202/211 [00:00<00:00, 17007.92it/s, Materializing param=feature_extractor.conv_layers.2.conv.weight]
+Loading weights:  96%|█████████▌| 202/211 [00:00<00:00, 16980.99it/s, Materializing param=feature_extractor.conv_layers.2.conv.weight]
+Loading weights:  96%|█████████▌| 203/211 [00:00<00:00, 17014.92it/s, Materializing param=feature_extractor.conv_layers.3.conv.weight]
+Loading weights:  96%|█████████▌| 203/211 [00:00<00:00, 16986.41it/s, Materializing param=feature_extractor.conv_layers.3.conv.weight]
+Loading weights:  97%|█████████▋| 204/211 [00:00<00:00, 17015.77it/s, Materializing param=feature_extractor.conv_layers.4.conv.weight]
+Loading weights:  97%|█████████▋| 204/211 [00:00<00:00, 16988.74it/s, Materializing param=feature_extractor.conv_layers.4.conv.weight]
+Loading weights:  97%|█████████▋| 205/211 [00:00<00:00, 17002.81it/s, Materializing param=feature_extractor.conv_layers.5.conv.weight]
+Loading weights:  97%|█████████▋| 205/211 [00:00<00:00, 16978.64it/s, Materializing param=feature_extractor.conv_layers.5.conv.weight]
+Loading weights:  98%|█████████▊| 206/211 [00:00<00:00, 17012.42it/s, Materializing param=feature_extractor.conv_layers.6.conv.weight]
+Loading weights:  98%|█████████▊| 206/211 [00:00<00:00, 16985.66it/s, Materializing param=feature_extractor.conv_layers.6.conv.weight]
+Loading weights:  98%|█████████▊| 207/211 [00:00<00:00, 17016.27it/s, Materializing param=feature_projection.layer_norm.bias]         
+Loading weights:  98%|█████████▊| 207/211 [00:00<00:00, 16992.29it/s, Materializing param=feature_projection.layer_norm.bias]
+Loading weights:  99%|█████████▊| 208/211 [00:00<00:00, 17025.73it/s, Materializing param=feature_projection.layer_norm.weight]
+Loading weights:  99%|█████████▊| 208/211 [00:00<00:00, 16998.19it/s, Materializing param=feature_projection.layer_norm.weight]
+Loading weights:  99%|█████████▉| 209/211 [00:00<00:00, 17033.78it/s, Materializing param=feature_projection.projection.bias]  
+Loading weights:  99%|█████████▉| 209/211 [00:00<00:00, 17006.02it/s, Materializing param=feature_projection.projection.bias]
+Loading weights: 100%|█████████▉| 210/211 [00:00<00:00, 17040.12it/s, Materializing param=feature_projection.projection.weight]
+Loading weights: 100%|█████████▉| 210/211 [00:00<00:00, 17012.80it/s, Materializing param=feature_projection.projection.weight]
+Loading weights: 100%|██████████| 211/211 [00:00<00:00, 17050.67it/s, Materializing param=masked_spec_embed]                   
+Loading weights: 100%|██████████| 211/211 [00:00<00:00, 17021.81it/s, Materializing param=masked_spec_embed]
+Loading weights: 100%|██████████| 211/211 [00:00<00:00, 16953.34it/s, Materializing param=masked_spec_embed]
+[2026-02-01 14:47:13,707][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/microsoft/wavlm-base-plus "HTTP/1.1 200 OK"
+Wav2Vec2Model LOAD REPORT from: microsoft/wavlm-base-plus
+Key                                                         | Status     |  | 
+------------------------------------------------------------+------------+--+-
+encoder.layers.{0...11}.attention.gru_rel_pos_const         | UNEXPECTED |  | 
+encoder.layers.{0...11}.attention.gru_rel_pos_linear.bias   | UNEXPECTED |  | 
+encoder.layers.{0...11}.attention.gru_rel_pos_linear.weight | UNEXPECTED |  | 
+encoder.layers.0.attention.rel_attn_embed.weight            | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (mps), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+LORA applied: 94,402,472 -> 589,824 trainable params
+Trainable params reduced to 0.62%
+[2026-02-01 14:47:13,826][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/microsoft/wavlm-base-plus/commits/main "HTTP/1.1 200 OK"
+[2026-02-01 14:47:13,965][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/microsoft/wavlm-base-plus/discussions?p=0 "HTTP/1.1 200 OK"
+[2026-02-01 14:47:14,059][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/microsoft/wavlm-base-plus/commits/refs%2Fpr%2F2 "HTTP/1.1 200 OK"
+[2026-02-01 14:47:14,146][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/microsoft/wavlm-base-plus/resolve/refs%2Fpr%2F2/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+wandb: WARNING The anonymous setting has no effect and will be removed in a future version.
+[2026-02-01 14:47:14,223][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/microsoft/wavlm-base-plus/resolve/refs%2Fpr%2F2/model.safetensors "HTTP/1.1 302 Found"
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id 0n1jpr37.
+wandb: Tracking run with wandb version 0.24.1
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in wandb/offline-run-20260201_144714-0n1jpr37
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/utilities/model_summary/model_summary.py:242: Precision 16-mixed is not supported by the model summary.  Estimated model size in MB will not be accurate. Using 32 bits instead.
+
+  | Name              | Type                          | Params | Mode  | FLOPs
+------------------------------------------------------------------------------------
+0 | model             | PeftModelForFeatureExtraction | 95.0 M | train | 0    
+1 | train_acc         | MulticlassAccuracy            | 0      | train | 0    
+2 | val_acc           | MulticlassAccuracy            | 0      | train | 0    
+3 | test_acc          | MulticlassAccuracy            | 0      | train | 0    
+4 | val_f1            | MulticlassF1Score             | 0      | train | 0    
+5 | val_f1_per_class  | MulticlassF1Score             | 0      | train | 0    
+6 | val_confusion     | MulticlassConfusionMatrix     | 0      | train | 0    
+7 | test_f1           | MulticlassF1Score             | 0      | train | 0    
+8 | test_f1_per_class | MulticlassF1Score             | 0      | train | 0    
+9 | test_confusion    | MulticlassConfusionMatrix     | 0      | train | 0    
+------------------------------------------------------------------------------------
+589 K     Trainable params
+94.4 M    Non-trainable params
+95.0 M    Total params
+379.969   Total estimated model params size (MB)
+493       Modules in train mode
+220       Modules in eval mode
+0         Total Flops
+
+Sanity Checking: |          | 0/? [00:00<?, ?it/s]/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/utilities/_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:429: Consider setting `persistent_workers=True` in 'val_dataloader' to speed up the dataloader worker initialization.
+
+Sanity Checking: |          | 0/? [00:00<?, ?it/s]
+Sanity Checking DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s]
+Sanity Checking DataLoader 0: 100%|██████████| 1/1 [00:00<00:00,  4.45it/s]
+                                                                           /Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/utilities/_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:429: Consider setting `persistent_workers=True` in 'train_dataloader' to speed up the dataloader worker initialization.
+
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/loops/fit_loop.py:317: The number of training batches (3) is smaller than the logging interval Trainer(log_every_n_steps=50). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/loops/fit_loop.py:534: Found 220 module(s) in eval mode at the start of training. This may lead to unexpected behavior during training. If this is intentional, you can ignore this warning.
+
+Training: |          | 0/? [00:00<?, ?it/s]
+Training: |          | 0/? [00:00<?, ?it/s]
+Epoch 0:   0%|          | 0/3 [00:00<?, ?it/s]
+Epoch 0:  33%|███▎      | 1/3 [00:03<00:06,  0.30it/s]
+Epoch 0:  33%|███▎      | 1/3 [00:03<00:06,  0.30it/s, v_num=pr37, train/loss=3.810]
+Epoch 0:  67%|██████▋   | 2/3 [00:03<00:01,  0.55it/s, v_num=pr37, train/loss=3.810]
+Epoch 0:  67%|██████▋   | 2/3 [00:03<00:01,  0.55it/s, v_num=pr37, train/loss=3.820]
+Epoch 0: 100%|██████████| 3/3 [00:03<00:00,  0.77it/s, v_num=pr37, train/loss=3.820]
+Epoch 0: 100%|██████████| 3/3 [00:03<00:00,  0.77it/s, v_num=pr37, train/loss=3.800]
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Validation DataLoader 0: 100%|██████████| 1/1 [00:00<00:00,  6.77it/s][A
+
+                                                                      [A
+Epoch 0: 100%|██████████| 3/3 [00:09<00:00,  0.32it/s, v_num=pr37, train/loss=3.800, val/loss=3.800]
+Epoch 0: 100%|██████████| 3/3 [00:09<00:00,  0.32it/s, v_num=pr37, train/loss=3.800, val/loss=3.800]
+Epoch 0:   0%|          | 0/3 [00:00<?, ?it/s, v_num=pr37, train/loss=3.800, val/loss=3.800]        
+Epoch 1:   0%|          | 0/3 [00:00<?, ?it/s, v_num=pr37, train/loss=3.800, val/loss=3.800]
+Epoch 1:  33%|███▎      | 1/3 [00:15<00:30,  0.06it/s, v_num=pr37, train/loss=3.800, val/loss=3.800]
+Epoch 1:  33%|███▎      | 1/3 [00:15<00:30,  0.06it/s, v_num=pr37, train/loss=3.800, val/loss=3.800]
+Epoch 1:  67%|██████▋   | 2/3 [00:15<00:07,  0.13it/s, v_num=pr37, train/loss=3.800, val/loss=3.800]
+Epoch 1:  67%|██████▋   | 2/3 [00:15<00:07,  0.13it/s, v_num=pr37, train/loss=3.800, val/loss=3.800]
+Epoch 1: 100%|██████████| 3/3 [00:15<00:00,  0.19it/s, v_num=pr37, train/loss=3.800, val/loss=3.800]
+Epoch 1: 100%|██████████| 3/3 [00:15<00:00,  0.19it/s, v_num=pr37, train/loss=3.800, val/loss=3.800]
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Validation DataLoader 0: 100%|██████████| 1/1 [00:00<00:00,  7.05it/s][A
+
+                                                                      [A
+Epoch 1: 100%|██████████| 3/3 [00:21<00:00,  0.14it/s, v_num=pr37, train/loss=3.800, val/loss=3.790]
+Epoch 1: 100%|██████████| 3/3 [00:21<00:00,  0.14it/s, v_num=pr37, train/loss=3.800, val/loss=3.790]
+Epoch 1:   0%|          | 0/3 [00:00<?, ?it/s, v_num=pr37, train/loss=3.800, val/loss=3.790]        
+Epoch 2:   0%|          | 0/3 [00:00<?, ?it/s, v_num=pr37, train/loss=3.800, val/loss=3.790]
+Epoch 2:  33%|███▎      | 1/3 [00:15<00:30,  0.06it/s, v_num=pr37, train/loss=3.800, val/loss=3.790]
+Epoch 2:  33%|███▎      | 1/3 [00:15<00:30,  0.06it/s, v_num=pr37, train/loss=3.800, val/loss=3.790]
+Epoch 2:  67%|██████▋   | 2/3 [00:15<00:07,  0.13it/s, v_num=pr37, train/loss=3.800, val/loss=3.790]
+Epoch 2:  67%|██████▋   | 2/3 [00:15<00:07,  0.13it/s, v_num=pr37, train/loss=3.790, val/loss=3.790]
+Epoch 2: 100%|██████████| 3/3 [00:15<00:00,  0.19it/s, v_num=pr37, train/loss=3.790, val/loss=3.790]
+Epoch 2: 100%|██████████| 3/3 [00:15<00:00,  0.19it/s, v_num=pr37, train/loss=3.780, val/loss=3.790]
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Validation DataLoader 0: 100%|██████████| 1/1 [00:00<00:00,  7.01it/s][A
+
+                                                                      [A
+Epoch 2: 100%|██████████| 3/3 [00:21<00:00,  0.14it/s, v_num=pr37, train/loss=3.780, val/loss=3.780]
+Epoch 2: 100%|██████████| 3/3 [00:21<00:00,  0.14it/s, v_num=pr37, train/loss=3.780, val/loss=3.780]
+Epoch 2:   0%|          | 0/3 [00:00<?, ?it/s, v_num=pr37, train/loss=3.780, val/loss=3.780]        
+Epoch 3:   0%|          | 0/3 [00:00<?, ?it/s, v_num=pr37, train/loss=3.780, val/loss=3.780]
+Epoch 3:  33%|███▎      | 1/3 [00:15<00:30,  0.06it/s, v_num=pr37, train/loss=3.780, val/loss=3.780]
+Epoch 3:  33%|███▎      | 1/3 [00:15<00:30,  0.06it/s, v_num=pr37, train/loss=3.780, val/loss=3.780]
+Epoch 3:  67%|██████▋   | 2/3 [00:15<00:07,  0.13it/s, v_num=pr37, train/loss=3.780, val/loss=3.780]
+Epoch 3:  67%|██████▋   | 2/3 [00:15<00:07,  0.13it/s, v_num=pr37, train/loss=3.770, val/loss=3.780]
+Epoch 3: 100%|██████████| 3/3 [00:15<00:00,  0.19it/s, v_num=pr37, train/loss=3.770, val/loss=3.780]
+Epoch 3: 100%|██████████| 3/3 [00:15<00:00,  0.19it/s, v_num=pr37, train/loss=3.760, val/loss=3.780]
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Validation DataLoader 0: 100%|██████████| 1/1 [00:00<00:00,  7.06it/s][A
+
+                                                                      [A
+Epoch 3: 100%|██████████| 3/3 [00:21<00:00,  0.14it/s, v_num=pr37, train/loss=3.760, val/loss=3.760]
+Epoch 3: 100%|██████████| 3/3 [00:21<00:00,  0.14it/s, v_num=pr37, train/loss=3.760, val/loss=3.760]
+Epoch 3:   0%|          | 0/3 [00:00<?, ?it/s, v_num=pr37, train/loss=3.760, val/loss=3.760]        
+Epoch 4:   0%|          | 0/3 [00:00<?, ?it/s, v_num=pr37, train/loss=3.760, val/loss=3.760]
+Epoch 4:  33%|███▎      | 1/3 [00:15<00:30,  0.06it/s, v_num=pr37, train/loss=3.760, val/loss=3.760]
+Epoch 4:  33%|███▎      | 1/3 [00:15<00:30,  0.06it/s, v_num=pr37, train/loss=3.760, val/loss=3.760]
+Epoch 4:  67%|██████▋   | 2/3 [00:15<00:07,  0.13it/s, v_num=pr37, train/loss=3.760, val/loss=3.760]
+Epoch 4:  67%|██████▋   | 2/3 [00:15<00:07,  0.13it/s, v_num=pr37, train/loss=3.750, val/loss=3.760]
+Epoch 4: 100%|██████████| 3/3 [00:15<00:00,  0.19it/s, v_num=pr37, train/loss=3.750, val/loss=3.760]
+Epoch 4: 100%|██████████| 3/3 [00:15<00:00,  0.19it/s, v_num=pr37, train/loss=3.750, val/loss=3.760]
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation: |          | 0/? [00:00<?, ?it/s][A
+
+Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Validation DataLoader 0: 100%|██████████| 1/1 [00:00<00:00,  7.14it/s][A
+
+                                                                      [A
+Epoch 4: 100%|██████████| 3/3 [00:21<00:00,  0.14it/s, v_num=pr37, train/loss=3.750, val/loss=3.740]
+Epoch 4: 100%|██████████| 3/3 [00:21<00:00,  0.14it/s, v_num=pr37, train/loss=3.750, val/loss=3.740]`Trainer.fit` stopped: `max_epochs=5` reached.
+
+Epoch 4: 100%|██████████| 3/3 [00:21<00:00,  0.14it/s, v_num=pr37, train/loss=3.750, val/loss=3.740]/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/utilities/_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+/Users/zakkeown/.pyenv/versions/3.11.14/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:429: Consider setting `persistent_workers=True` in 'test_dataloader' to speed up the dataloader worker initialization.
+
+
+Testing: |          | 0/? [00:00<?, ?it/s]
+Testing: |          | 0/? [00:00<?, ?it/s]
+Testing DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s]
+Testing DataLoader 0: 100%|██████████| 1/1 [00:00<00:00,  5.90it/s]
+Testing DataLoader 0: 100%|██████████| 1/1 [00:00<00:00,  2.37it/s]
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+             Test metric                         DataLoader 0
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+              test/acc                                0.0
+    test/f1_best/ten-stroke-roll                      0.0
+  test/f1_best/thirteen-stroke-roll                   0.0
+   test/f1_best/triple-paradiddle                     0.0
+    test/f1_best/triple-ratamacue                     0.0
+   test/f1_best/triple-stroke-roll                    0.0
+            test/f1_macro                             0.0
+    test/f1_worst/double-drag-tap                     0.0
+   test/f1_worst/double-paradiddle                    0.0
+   test/f1_worst/double-ratamacue                     0.0
+test/f1_worst/double-stroke-open-roll                 0.0
+         test/f1_worst/drag                           0.0
+              test/loss                       3.7750000953674316
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[1;34mwandb[0m: 
+[1;34mwandb[0m: You can sync this run to the cloud by running:
+[1;34mwandb[0m: [1mwandb sync wandb/offline-run-20260201_144714-0n1jpr37[0m

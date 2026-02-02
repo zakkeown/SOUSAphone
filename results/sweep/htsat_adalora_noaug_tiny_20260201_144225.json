@@ -1,0 +1,24 @@
+{
+  "config": {
+    "model": "htsat",
+    "strategy": "adalora",
+    "augmentation": false,
+    "data": "tiny",
+    "max_epochs": 5
+  },
+  "metrics": {
+    "trainable_params": 689616,
+    "total_params": 27565248,
+    "test_acc": 0.0,
+    "test_f1_macro": 0.0
+  },
+  "efficiency": {
+    "training_time_seconds": 50.54533410072327,
+    "avg_epoch_time": 10.109046030044556
+  },
+  "status": "completed",
+  "error": null,
+  "timestamp": "2026-02-01T14:42:25.953710",
+  "git_commit": "ce38d15ee120e048138800f80fa590c439213bfd",
+  "experiment_id": "htsat_adalora_noaug_tiny_20260201_144225"
+}
