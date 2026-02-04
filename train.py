@@ -67,8 +67,8 @@ def main(cfg: DictConfig):
             'max_length': cfg.model.max_length,
         }
 
-    # Determine if using tiny dataset
-    use_tiny = (cfg.data.name == "tiny")
+    # Get max samples from data config (None = use all)
+    max_samples = getattr(cfg.data, 'num_samples', None)
 
     datamodule = SOUSADataModule(
         dataset_path=str(dataset_path),
@@ -77,7 +77,7 @@ def main(cfg: DictConfig):
         use_spectrogram=model_needs_spectrogram,
         use_specaugment=use_specaugment,
         specaugment_params=specaugment_params,
-        use_tiny=use_tiny,
+        max_samples=max_samples,
         **audio_params,
     )
 

@@ -53,25 +53,20 @@ class SOUSADataset(Dataset):
         sample_rate: int = 16000,
         max_duration: float = 5.0,
         transform: Optional[Callable] = None,
-        use_tiny: bool = False,
+        max_samples: int = None,
     ):
         self.dataset_path = Path(dataset_path)
         self.split = split
         self.sample_rate = sample_rate
         self.max_duration = max_duration
-        self.max_samples = int(max_duration * sample_rate)
+        self.max_audio_samples = int(max_duration * sample_rate)
         self.transform = transform
 
         # Load rudiment mapping
         self.rudiment_to_id = get_rudiment_mapping()
 
-        # Load metadata based on use_tiny parameter
-        if use_tiny:
-            metadata_file = "metadata_tiny.csv"
-        else:
-            metadata_file = "metadata.csv"
-
-        metadata_path = self.dataset_path / metadata_file
+        # Always load full metadata
+        metadata_path = self.dataset_path / "metadata.csv"
 
         if not metadata_path.exists():
             raise FileNotFoundError(f"Metadata file not found: {metadata_path}")
@@ -83,6 +78,15 @@ class SOUSADataset(Dataset):
 
         if len(self.metadata) == 0:
             raise ValueError(f"No samples found for split '{split}'")
+
+        # Limit samples if max_samples specified
+        # Use 80/10/10 split ratio to determine per-split limits
+        if max_samples is not None:
+            split_ratios = {"train": 0.8, "val": 0.1, "test": 0.1}
+            max_for_split = int(max_samples * split_ratios.get(split, 0.1))
+            if len(self.metadata) > max_for_split:
+                # Randomly sample to get diverse subset (with fixed seed for reproducibility)
+                self.metadata = self.metadata.sample(n=max_for_split, random_state=42).reset_index(drop=True)
 
     def __len__(self) -> int:
         """Return number of samples in the dataset."""
@@ -123,7 +127,7 @@ class SOUSADataset(Dataset):
         audio = load_audio(
             audio_path=audio_path,
             sample_rate=self.sample_rate,
-            max_samples=self.max_samples,
+            max_samples=self.max_audio_samples,
         )
 
         # Apply optional transform

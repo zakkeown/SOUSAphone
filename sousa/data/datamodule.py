@@ -29,7 +29,7 @@ class SOUSADataModule(pl.LightningDataModule):
         n_fft: int = 400,
         hop_length: int = 160,
         max_length: int = 1024,
-        use_tiny: bool = False,
+        max_samples: int = None,
     ):
         """
         Initialize DataModule.
@@ -47,6 +47,7 @@ class SOUSADataModule(pl.LightningDataModule):
             n_fft: FFT window size
             hop_length: Hop length for STFT
             max_length: Target time frames for spectrograms
+            max_samples: Maximum total samples to use (None = use all)
         """
         super().__init__()
         self.dataset_path = dataset_path
@@ -56,7 +57,7 @@ class SOUSADataModule(pl.LightningDataModule):
         self.max_duration = max_duration
         self.use_spectrogram = use_spectrogram
         self.use_specaugment = use_specaugment
-        self.use_tiny = use_tiny
+        self.max_samples = max_samples
         self.pin_memory = torch.cuda.is_available()
 
         # Create base transform if needed
@@ -94,7 +95,7 @@ class SOUSADataModule(pl.LightningDataModule):
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
                 transform=self.train_transform,
-                use_tiny=self.use_tiny,
+                max_samples=self.max_samples,
             )
             self.val_dataset = SOUSADataset(
                 dataset_path=self.dataset_path,
@@ -102,7 +103,7 @@ class SOUSADataModule(pl.LightningDataModule):
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
                 transform=self.val_transform,
-                use_tiny=self.use_tiny,
+                max_samples=self.max_samples,
             )
 
         if stage == "test":
@@ -111,7 +112,7 @@ class SOUSADataModule(pl.LightningDataModule):
                 split="test",
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
-                use_tiny=self.use_tiny,
+                max_samples=self.max_samples,
                 transform=self.val_transform,
             )
 

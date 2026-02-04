@@ -1,0 +1,3 @@
+name: full
+# No num_samples = use entire dataset (~100,000 samples)
+# splits will be determined by the metadata.csv
