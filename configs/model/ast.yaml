@@ -8,9 +8,16 @@ pretrained: true
 input_type: spectrogram
 sample_rate: 16000
 n_mels: 128
-n_fft: 400
+n_fft: 1024  # Use 1024 to avoid zero mel filterbanks
 hop_length: 160
 max_length: 1024
+
+# Spectrogram normalization - USE SOUSA-SPECIFIC STATS!
+# AudioSet stats (mean=-4.27, std=4.57) are completely wrong for SOUSA
+# SOUSA drum spectrograms have mean=+1.94, std=4.37
+normalize_spec: true
+norm_mean: 1.9421
+norm_std: 4.3660
 
 # PEFT target modules for AST (Transformer architecture)
 # PEFT will match these patterns across all encoder layers
@@ -20,3 +27,8 @@ peft_target_modules:
   - key
   - value
   - output.dense
+
+# Classifier head must stay fully trainable (not frozen by PEFT)
+# AST classifier is inside the HuggingFace model at self.model.classifier
+peft_modules_to_save:
+  - model.classifier

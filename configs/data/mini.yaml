@@ -1,0 +1,6 @@
+name: mini
+num_samples: 3000
+splits:
+  train: 2400
+  val: 300
+  test: 300

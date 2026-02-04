@@ -1,9 +1,15 @@
 """Audio transforms for preprocessing."""
 
-from typing import Callable, List, Optional
+from typing import Callable, List, Optional, Tuple
 
 import torch
 import torchaudio
+
+
+# AST's official normalization statistics from ASTFeatureExtractor
+# These match the pretrained model's expected input distribution
+AST_NORM_MEAN = -4.2677393
+AST_NORM_STD = 4.5689974
 
 
 class MelSpectrogramTransform:
@@ -11,11 +17,14 @@ class MelSpectrogramTransform:
 
     def __init__(
         self,
-        sample_rate=16000,
-        n_mels=128,
-        n_fft=400,
-        hop_length=160,
-        target_length=1024,
+        sample_rate: int = 16000,
+        n_mels: int = 128,
+        n_fft: int = 1024,  # Changed from 400 to avoid zero filterbanks
+        hop_length: int = 160,
+        target_length: int = 1024,
+        normalize: bool = True,
+        norm_mean: float = AST_NORM_MEAN,
+        norm_std: float = AST_NORM_STD,
     ):
         """
         Initialize mel-spectrogram transform.
@@ -23,9 +32,12 @@ class MelSpectrogramTransform:
         Args:
             sample_rate: Audio sample rate
             n_mels: Number of mel filterbanks
-            n_fft: FFT window size
+            n_fft: FFT window size (use 1024+ to avoid zero filterbanks with 128 mels)
             hop_length: Number of samples between successive frames
             target_length: Target number of time frames (for AST: 1024)
+            normalize: Whether to normalize the spectrogram
+            norm_mean: Mean for normalization (AST default: -4.2677)
+            norm_std: Std for normalization (AST default: 4.5690)
         """
         self.mel_transform = torchaudio.transforms.MelSpectrogram(
             sample_rate=sample_rate,
@@ -34,6 +46,9 @@ class MelSpectrogramTransform:
             hop_length=hop_length,
         )
         self.target_length = target_length
+        self.normalize = normalize
+        self.norm_mean = norm_mean
+        self.norm_std = norm_std
 
     def __call__(self, waveform: torch.Tensor) -> torch.Tensor:
         """
@@ -43,7 +58,7 @@ class MelSpectrogramTransform:
             waveform: Input waveform tensor (1D)
 
         Returns:
-            Mel-spectrogram in log scale, transposed to (time, mels) for AST
+            Mel-spectrogram in log scale, normalized, transposed to (time, mels) for AST
             Shape: (target_length, n_mels)
         """
         # Ensure waveform is 2D (channels, samples)
@@ -53,8 +68,12 @@ class MelSpectrogramTransform:
         # Convert to mel-spectrogram
         mel_spec = self.mel_transform(waveform)
 
-        # Convert to log scale
+        # Convert to log scale (matching AST's preprocessing)
         mel_spec = torch.log(mel_spec + 1e-9)
+
+        # Normalize to match AST's expected input distribution
+        if self.normalize:
+            mel_spec = (mel_spec - self.norm_mean) / self.norm_std
 
         # Remove channel dimension and transpose to (time, mels) for AST
         mel_spec = mel_spec.squeeze(0).T  # Shape: (time, n_mels)
@@ -62,7 +81,7 @@ class MelSpectrogramTransform:
         # Pad or crop to target length
         current_length = mel_spec.size(0)
         if current_length < self.target_length:
-            # Pad with zeros
+            # Pad with zeros (after normalization, 0 represents mean)
             padding = self.target_length - current_length
             mel_spec = torch.nn.functional.pad(mel_spec, (0, 0, 0, padding))
         elif current_length > self.target_length:

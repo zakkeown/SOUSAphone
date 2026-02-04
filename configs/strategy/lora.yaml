@@ -10,5 +10,6 @@ target_modules:
   - "attention.key"
   - "attention.value"
 
-# Adjusted learning rate for PEFT
-learning_rate: 1e-4
+# LoRA needs higher LR than full fine-tuning (B matrix inits to zero)
+# Published AST+LoRA research (Cappellazzo et al.) uses 5e-3
+learning_rate: 1e-3

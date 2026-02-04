@@ -8,8 +8,8 @@ defaults:
 training:
   max_epochs: 50
   learning_rate: 5e-5
-  batch_size: 8  # Reduced from 16 to prevent memory overflow
-  gradient_accumulation_steps: 4  # Increased to maintain effective batch size of 32
+  batch_size: 4  # Reduced to prevent memory overflow on 36GB machine
+  gradient_accumulation_steps: 8  # Increased to maintain effective batch size of 32
   warmup_ratio: 0.1
   weight_decay: 0.01
   label_smoothing: 0.1
@@ -26,11 +26,15 @@ augmentation:
   mixup: true
   mixup_alpha: 0.2
 
+  time_stretch: false
+  time_stretch_min: 0.8
+  time_stretch_max: 1.25
+
 # System
 seed: 42
 precision: "16-mixed"
 accelerator: "auto"
-num_workers: 2  # Reduced from 4 to prevent memory overflow from prefetching
+num_workers: 0  # Use main process only to minimize memory (workers duplicate memory)
 
 # Experiment tracking
 wandb:

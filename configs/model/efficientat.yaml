@@ -13,11 +13,19 @@ n_fft: 1024
 hop_length: 320
 max_length: 1000  # Time frames
 
+# Spectrogram normalization - USE SOUSA-SPECIFIC STATS
+normalize_spec: true
+norm_mean: 1.9421
+norm_std: 4.3660
+
 # PEFT target modules for EfficientAT (MobileNetV3-based CNN)
 # LoRA doesn't work well with Conv2d layers, so we target only Linear layers:
 # - Attention pooling layers (key component of EfficientAT)
-# - Final classifier
+# Note: classifier is NOT a LoRA target — it's in modules_to_save for full training
 peft_target_modules:
   - attention_pool.0           # First linear in attention pooling
   - attention_pool.2           # Second linear in attention pooling
-  - classifier.1               # Final classification layer
+
+# Classifier head must stay fully trainable (not frozen by PEFT)
+peft_modules_to_save:
+  - classifier

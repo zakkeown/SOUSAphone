@@ -37,10 +37,21 @@ def main(cfg: DictConfig):
     model_class = getattr(module, class_name)
 
     # Instantiate model with config parameters
-    model = model_class(
-        num_classes=cfg.model.num_classes,
-        pretrained=cfg.model.pretrained,
-    )
+    model_kwargs = {
+        "num_classes": cfg.model.num_classes,
+        "pretrained": cfg.model.pretrained,
+    }
+    # Add optional model-specific parameters (only if model accepts them)
+    import inspect
+    model_sig = inspect.signature(model_class.__init__)
+    model_params = set(model_sig.parameters.keys())
+
+    if hasattr(cfg.model, 'model_name') and 'model_name' in model_params:
+        model_kwargs['model_name'] = cfg.model.model_name
+    if hasattr(cfg.model, 'sample_rate') and 'sample_rate' in model_params:
+        model_kwargs['sample_rate'] = cfg.model.sample_rate
+
+    model = model_class(**model_kwargs)
 
     # Create data module with appropriate input type
     model_needs_spectrogram = (cfg.model.input_type == "spectrogram")
@@ -57,18 +68,50 @@ def main(cfg: DictConfig):
             'n_time_masks': cfg.augmentation.specaugment_n_time_masks,
         }
 
-    # Get model-specific audio parameters (if using spectrograms)
+    # Get model-specific audio parameters
     audio_params = {}
+
+    # Sample rate (for both spectrogram and waveform models)
+    if hasattr(cfg.model, 'sample_rate'):
+        audio_params['sample_rate'] = cfg.model.sample_rate
+
     if model_needs_spectrogram and hasattr(cfg.model, 'n_mels'):
-        audio_params = {
+        audio_params.update({
             'n_mels': cfg.model.n_mels,
             'n_fft': cfg.model.n_fft,
             'hop_length': cfg.model.hop_length,
             'max_length': cfg.model.max_length,
-        }
+        })
+        # Add normalization params if specified
+        if hasattr(cfg.model, 'normalize_spec'):
+            audio_params['normalize_spec'] = cfg.model.normalize_spec
+        if hasattr(cfg.model, 'norm_mean'):
+            audio_params['norm_mean'] = cfg.model.norm_mean
+        if hasattr(cfg.model, 'norm_std'):
+            audio_params['norm_std'] = cfg.model.norm_std
 
-    # Determine if using tiny dataset
-    use_tiny = (cfg.data.name == "tiny")
+    # Get max samples from data config (None = use all)
+    max_samples = getattr(cfg.data, 'num_samples', None)
+
+    # Get curriculum learning filters from data config
+    curriculum_filters = {}
+    if hasattr(cfg.data, 'soundfonts') and cfg.data.soundfonts is not None:
+        curriculum_filters['soundfonts'] = list(cfg.data.soundfonts)
+    if hasattr(cfg.data, 'augmentation_presets') and cfg.data.augmentation_presets is not None:
+        curriculum_filters['augmentation_presets'] = list(cfg.data.augmentation_presets)
+    if hasattr(cfg.data, 'tempo_range') and cfg.data.tempo_range is not None:
+        curriculum_filters['tempo_range'] = tuple(cfg.data.tempo_range)
+    if hasattr(cfg.data, 'reference_tempo') and cfg.data.reference_tempo is not None:
+        curriculum_filters['reference_tempo'] = float(cfg.data.reference_tempo)
+
+    # Time-stretch augmentation
+    time_stretch_params = {}
+    if hasattr(cfg, 'augmentation') and hasattr(cfg.augmentation, 'time_stretch') and cfg.augmentation.time_stretch:
+        time_stretch_params['use_time_stretch'] = True
+        if hasattr(cfg.augmentation, 'time_stretch_min'):
+            time_stretch_params['time_stretch_min'] = cfg.augmentation.time_stretch_min
+        if hasattr(cfg.augmentation, 'time_stretch_max'):
+            time_stretch_params['time_stretch_max'] = cfg.augmentation.time_stretch_max
 
     datamodule = SOUSADataModule(
         dataset_path=str(dataset_path),
@@ -77,8 +120,10 @@ def main(cfg: DictConfig):
         use_spectrogram=model_needs_spectrogram,
         use_specaugment=use_specaugment,
         specaugment_params=specaugment_params,
-        use_tiny=use_tiny,
+        max_samples=max_samples,
         **audio_params,
+        **curriculum_filters,
+        **time_stretch_params,
     )
 
     # Create Lightning module
@@ -106,6 +151,7 @@ def main(cfg: DictConfig):
         logger=wandb_logger,
         callbacks=[checkpoint_callback, early_stop_callback],
         gradient_clip_val=1.0,
+        accumulate_grad_batches=cfg.training.gradient_accumulation_steps,
     )
 
     # Train

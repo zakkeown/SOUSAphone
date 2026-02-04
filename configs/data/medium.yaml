@@ -1,0 +1,6 @@
+name: medium
+num_samples: 25000
+# splits (80/10/10):
+#   train: 20000
+#   val: 2500
+#   test: 2500

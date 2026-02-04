@@ -7,6 +7,66 @@ import torch
 import torch.nn as nn
 
 
+class TimeStretch(nn.Module):
+    """Random time-stretch augmentation for waveforms.
+
+    Randomly speeds up or slows down the audio, then pads/crops to the
+    original length. This teaches tempo invariance. Works on raw waveforms
+    before spectrogram computation.
+
+    For percussion, simple resampling (which changes pitch) is acceptable
+    since drum timbre is noise-like and pitch changes are minimal.
+    """
+
+    def __init__(self, min_rate: float = 0.8, max_rate: float = 1.2):
+        """
+        Args:
+            min_rate: Minimum stretch rate (0.8 = 20% slower)
+            max_rate: Maximum stretch rate (1.2 = 20% faster)
+        """
+        super().__init__()
+        self.min_rate = min_rate
+        self.max_rate = max_rate
+
+    def forward(self, waveform: torch.Tensor) -> torch.Tensor:
+        """Apply random time-stretch to waveform.
+
+        Args:
+            waveform: 1D waveform tensor (num_samples,)
+
+        Returns:
+            Time-stretched waveform, padded/cropped to original length
+        """
+        if not self.training:
+            return waveform
+
+        original_length = waveform.shape[0]
+        rate = random.uniform(self.min_rate, self.max_rate)
+
+        if abs(rate - 1.0) < 0.01:
+            return waveform
+
+        # rate > 1 means faster playback -> fewer output samples
+        new_length = max(1, int(original_length / rate))
+
+        # Resample via interpolation
+        stretched = torch.nn.functional.interpolate(
+            waveform.unsqueeze(0).unsqueeze(0),
+            size=new_length,
+            mode="linear",
+            align_corners=False,
+        ).squeeze()
+
+        # Pad or crop to original length
+        if stretched.shape[0] < original_length:
+            padding = original_length - stretched.shape[0]
+            stretched = torch.nn.functional.pad(stretched, (0, padding))
+        elif stretched.shape[0] > original_length:
+            stretched = stretched[:original_length]
+
+        return stretched
+
+
 class SpecAugment(nn.Module):
     """SpecAugment augmentation for spectrograms.
 
