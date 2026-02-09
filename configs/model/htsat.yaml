@@ -5,12 +5,18 @@ num_classes: 40
 pretrained: true
 
 # Input requirements
+# Pretrained laion/clap-htsat-unfused uses num_mel_bins=64
 input_type: spectrogram
-sample_rate: 32000  # HTS-AT uses 32kHz
-n_mels: 128
-n_fft: 1024
-hop_length: 320
-max_length: 1024
+sample_rate: 16000
+n_mels: 64
+n_fft: 1024  # Use 1024 to avoid zero mel filterbanks
+hop_length: 160
+max_length: 256  # Matches CLAP spec_size
+
+# Spectrogram normalization - USE SOUSA-SPECIFIC STATS
+normalize_spec: true
+norm_mean: 1.9421
+norm_std: 4.3660
 
 # PEFT target modules for HTS-AT (Swin Transformer variant)
 # Despite being called "Swin", this implementation uses separate Q/K/V layers
@@ -22,3 +28,7 @@ peft_target_modules:
   - attention.output.dense
   - intermediate.dense
   - output.dense
+
+# Classifier head must stay fully trainable (not frozen by PEFT)
+peft_modules_to_save:
+  - classifier

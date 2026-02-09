@@ -13,8 +13,8 @@ import torch.nn as nn
 class AudioClassificationModel(nn.Module, ABC):
     """Abstract base class for all audio classification models.
 
-    All model adapters (AST, HTS-AT, BEATs, EfficientAT) must inherit from this
-    class and implement the required abstract methods.
+    Model adapters must inherit from this class and implement the required
+    abstract methods.
     """
 
     @abstractmethod

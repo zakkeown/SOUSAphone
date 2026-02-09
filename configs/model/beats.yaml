@@ -19,3 +19,7 @@ peft_target_modules:
   - attention.out_proj
   - feed_forward.intermediate_dense
   - feed_forward.output_dense
+
+# Classifier head must stay fully trainable (not frozen by PEFT)
+peft_modules_to_save:
+  - classifier

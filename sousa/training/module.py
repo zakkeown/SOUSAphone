@@ -8,7 +8,7 @@ import pytorch_lightning as pl
 from omegaconf import DictConfig
 from torch.optim import Optimizer
 from torchmetrics import Accuracy, ConfusionMatrix, F1Score
-from peft import LoraConfig, AdaLoraConfig, IA3Config, get_peft_model
+from peft import LoraConfig, get_peft_model
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -37,48 +37,26 @@ class SOUSAClassifier(pl.LightningModule):
         self.config = config
 
         # Apply PEFT if configured
-        if hasattr(config, 'strategy') and config.strategy.type in ["lora", "adalora", "ia3"]:
+        if hasattr(config, 'strategy') and config.strategy.type == "lora":
             # Log original trainable params
             original_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
 
             # Get model-specific target modules
             target_modules = list(config.model.peft_target_modules)
 
-            # Create PEFT config based on strategy type
-            if config.strategy.type == "lora":
-                peft_config = LoraConfig(
-                    r=config.strategy.rank,
-                    lora_alpha=config.strategy.alpha,
-                    lora_dropout=config.strategy.dropout,
-                    target_modules=target_modules,
-                    bias="none",
-                    task_type="FEATURE_EXTRACTION",
-                )
-            elif config.strategy.type == "adalora":
-                peft_config = AdaLoraConfig(
-                    r=config.strategy.rank,
-                    lora_alpha=config.strategy.alpha,
-                    lora_dropout=config.strategy.dropout,
-                    target_modules=target_modules,
-                    init_r=config.strategy.init_r,
-                    target_r=config.strategy.target_r,
-                    tinit=config.strategy.tinit,
-                    tfinal=config.strategy.tfinal,
-                    deltaT=config.strategy.deltaT,
-                    total_step=config.strategy.total_step,
-                    bias="none",
-                    task_type="FEATURE_EXTRACTION",
-                )
-            elif config.strategy.type == "ia3":
-                # For IA3, feedforward_modules must be a subset of target_modules
-                # We identify which target modules are feedforward layers
-                feedforward_modules = [m for m in target_modules if "feed_forward" in m or "dense" in m or "out_proj" in m or "classifier" in m]
+            # Get modules_to_save (classifier head must remain trainable)
+            modules_to_save = None
+            if hasattr(config.model, 'peft_modules_to_save'):
+                modules_to_save = list(config.model.peft_modules_to_save)
 
-                peft_config = IA3Config(
-                    target_modules=target_modules,
-                    feedforward_modules=feedforward_modules if feedforward_modules else None,
-                    task_type="FEATURE_EXTRACTION",
-                )
+            peft_config = LoraConfig(
+                r=config.strategy.rank,
+                lora_alpha=config.strategy.alpha,
+                lora_dropout=config.strategy.dropout,
+                target_modules=target_modules,
+                modules_to_save=modules_to_save,
+                bias="none",
+            )
 
             # Apply PEFT
             self.model = get_peft_model(self.model, peft_config)
@@ -87,6 +65,8 @@ class SOUSAClassifier(pl.LightningModule):
             peft_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
             print(f"{config.strategy.type.upper()} applied: {original_params:,} -> {peft_params:,} trainable params")
             print(f"Trainable params reduced to {100 * peft_params / original_params:.2f}%")
+            if modules_to_save:
+                print(f"Modules kept fully trainable: {modules_to_save}")
 
         # Save hyperparameters
         self.save_hyperparameters(ignore=['model'])
@@ -139,16 +119,10 @@ class SOUSAClassifier(pl.LightningModule):
         """
         Forward pass through model.
 
-        When using PEFT, we need to access the base model directly because
-        PeftModel.forward() expects language model arguments (input_ids, attention_mask)
-        that our audio models don't accept.
+        With task_type=None, PEFT uses the base PeftModel wrapper which
+        accepts *args and passes them through to our model's forward().
         """
-        # Check if model is wrapped with PEFT
-        if hasattr(self.model, 'base_model'):
-            # Access the base model directly to bypass PEFT's forward signature
-            return self.model.base_model.model(audio)
-        else:
-            return self.model(audio)
+        return self.model(audio)
 
     def training_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) -> torch.Tensor:
         """Training step."""
@@ -326,9 +300,15 @@ class SOUSAClassifier(pl.LightningModule):
 
     def configure_optimizers(self) -> Optimizer:
         """Configure optimizer and scheduler."""
+        # Use strategy-specific learning rate when PEFT is active
+        lr = self.config.training.learning_rate
+        if hasattr(self.config, 'strategy') and hasattr(self.config.strategy, 'learning_rate'):
+            lr = self.config.strategy.learning_rate
+            print(f"Using strategy learning rate: {lr}")
+
         optimizer = torch.optim.AdamW(
             self.parameters(),
-            lr=self.config.training.learning_rate,
+            lr=lr,
             weight_decay=self.config.training.weight_decay,
         )
         return optimizer

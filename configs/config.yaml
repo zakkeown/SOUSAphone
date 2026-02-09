@@ -26,6 +26,10 @@ augmentation:
   mixup: true
   mixup_alpha: 0.2
 
+  time_stretch: false
+  time_stretch_min: 0.8
+  time_stretch_max: 1.25
+
 # System
 seed: 42
 precision: "16-mixed"

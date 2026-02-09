@@ -35,9 +35,9 @@ class HTSATModel(AudioClassificationModel):
             self.hidden_size = clap_model.config.audio_config.hidden_size
             self.num_mel_bins = clap_model.config.audio_config.num_mel_bins
         else:
-            # Random initialization for testing with 128 mel bins
+            # Random initialization for testing (64 mel bins matches pretrained)
             from transformers import ClapAudioConfig
-            audio_config = ClapAudioConfig(num_mel_bins=128)
+            audio_config = ClapAudioConfig(num_mel_bins=64)
             config = ClapConfig(audio_config=audio_config)
             clap_model = ClapModel(config)
             self.audio_encoder = clap_model.audio_model.audio_encoder
