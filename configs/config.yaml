@@ -45,3 +45,4 @@ wandb:
 
 # Paths
 dataset_path: "~/Code/SOUSA/output/dataset"
+ckpt_path: null  # Set to checkpoint path to resume training

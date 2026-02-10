@@ -154,8 +154,15 @@ def main(cfg: DictConfig):
         accumulate_grad_batches=cfg.training.gradient_accumulation_steps,
     )
 
+    # Resume from checkpoint if provided
+    ckpt_path = getattr(cfg, 'ckpt_path', None)
+
     # Train
-    trainer.fit(classifier, datamodule)
+    trainer.fit(
+        classifier, datamodule,
+        ckpt_path=ckpt_path,
+        weights_only=False if ckpt_path else True,
+    )
 
     # Test
     trainer.test(classifier, datamodule)
