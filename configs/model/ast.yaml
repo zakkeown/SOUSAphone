@@ -9,7 +9,7 @@ input_type: spectrogram
 sample_rate: 16000
 n_mels: 128
 n_fft: 1024  # Use 1024 to avoid zero mel filterbanks
-hop_length: 160
+hop_length: 80
 max_length: 1024
 
 # Spectrogram normalization - USE SOUSA-SPECIFIC STATS!

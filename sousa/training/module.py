@@ -231,12 +231,13 @@ class SOUSAClassifier(pl.LightningModule):
         plt.yticks(rotation=0)
         plt.tight_layout()
 
-        # Log to W&B
-        import wandb
-        self.logger.experiment.log({
-            "val/confusion_matrix": wandb.Image(fig),
-            "epoch": self.current_epoch
-        })
+        # Log to W&B if available
+        if self.logger is not None:
+            import wandb
+            self.logger.experiment.log({
+                "val/confusion_matrix": wandb.Image(fig),
+                "epoch": self.current_epoch
+            })
         plt.close(fig)
 
         # Reset metrics
@@ -285,12 +286,13 @@ class SOUSAClassifier(pl.LightningModule):
         plt.yticks(rotation=0)
         plt.tight_layout()
 
-        # Log to W&B
-        import wandb
-        self.logger.experiment.log({
-            "test/confusion_matrix": wandb.Image(fig),
-            "epoch": self.current_epoch
-        })
+        # Log to W&B if available
+        if self.logger is not None:
+            import wandb
+            self.logger.experiment.log({
+                "test/confusion_matrix": wandb.Image(fig),
+                "epoch": self.current_epoch
+            })
         plt.close(fig)
 
         # Reset metrics
