@@ -58,3 +58,15 @@ checkpoints/
 
 # Data cache
 .cache/
+
+# Test coverage
+.coverage
+
+# Training logs
+*_nohup.log
+
+# W&B / training run artifacts
+sousa-rudiment-classification/
+
+# HuggingFace upload staging
+hf_upload/

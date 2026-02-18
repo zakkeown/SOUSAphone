@@ -8,6 +8,17 @@ version = "0.1.0"
 description = "Training pipeline for drum rudiment classification using PyTorch Lightning and Transformers"
 readme = "README.md"
 requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Zak Keown"},
+]
+keywords = [
+    "drum-rudiments",
+    "audio-classification",
+    "pytorch-lightning",
+    "transformers",
+    "sousa",
+]
 dependencies = [
     "torch>=2.2.0",
     "torchaudio>=2.2.0",
@@ -53,3 +64,6 @@ python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
 addopts = "-v --cov=sousa --cov-report=term-missing"
+
+[project.urls]
+Repository = "https://github.com/zakkeown/SOUSAphone"

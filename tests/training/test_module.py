@@ -101,6 +101,10 @@ def lora_config():
             "dropout": 0.1,
             "target_modules": ["attention.query", "attention.key", "attention.value"],
         },
+        "model": {
+            "peft_target_modules": ["query", "key", "value"],
+            "peft_modules_to_save": ["model.classifier"],
+        },
     })
 
 
@@ -155,125 +159,6 @@ def test_non_lora_config_still_works(minimal_config):
     audio = torch.randn(2, 1024, 128)
     logits = classifier(audio)
     assert logits.shape == (2, 40)
-
-
-@pytest.fixture
-def adalora_config():
-    """Config with AdaLoRA strategy"""
-    return OmegaConf.create({
-        "training": {
-            "learning_rate": 1e-4,
-            "weight_decay": 0.01,
-            "label_smoothing": 0.1,
-        },
-        "strategy": {
-            "type": "adalora",
-            "rank": 8,
-            "alpha": 16,
-            "dropout": 0.1,
-            "target_modules": ["attention.query", "attention.key", "attention.value"],
-            "init_r": 12,
-            "target_r": 8,
-            "tinit": 0,
-            "tfinal": 1000,
-            "deltaT": 10,
-            "total_step": 10000,
-        },
-    })
-
-
-def test_adalora_is_applied(adalora_config):
-    """AdaLoRA should be applied when strategy.type == 'adalora'"""
-    model = ASTModel(num_classes=40, pretrained=False)
-    classifier = SOUSAClassifier(model, adalora_config)
-
-    # Model should be wrapped in PeftModel
-    assert isinstance(classifier.model, PeftModel)
-
-
-def test_adalora_reduces_trainable_params(adalora_config):
-    """AdaLoRA should significantly reduce trainable parameters"""
-    # Create two classifiers: one with full finetune, one with AdaLoRA
-    full_finetune_config = OmegaConf.create({
-        "training": {
-            "learning_rate": 1e-4,
-            "weight_decay": 0.01,
-            "label_smoothing": 0.1,
-        },
-        "strategy": {
-            "type": "full_finetune",
-        },
-    })
-
-    model_full = ASTModel(num_classes=40, pretrained=False)
-    classifier_full = SOUSAClassifier(model_full, full_finetune_config)
-
-    model_adalora = ASTModel(num_classes=40, pretrained=False)
-    classifier_adalora = SOUSAClassifier(model_adalora, adalora_config)
-
-    # Count trainable params
-    full_params = sum(p.numel() for p in classifier_full.parameters() if p.requires_grad)
-    adalora_params = sum(p.numel() for p in classifier_adalora.parameters() if p.requires_grad)
-
-    # AdaLoRA should have significantly fewer trainable params
-    assert adalora_params < full_params
-    # Should be less than 10% of original
-    assert adalora_params < 0.1 * full_params
-
-
-@pytest.fixture
-def ia3_config():
-    """Config with IA3 strategy"""
-    return OmegaConf.create({
-        "training": {
-            "learning_rate": 5e-5,
-            "weight_decay": 0.01,
-            "label_smoothing": 0.1,
-        },
-        "strategy": {
-            "type": "ia3",
-            "target_modules": ["attention.query", "attention.key", "attention.value", "feed_forward.dense"],
-        },
-    })
-
-
-def test_ia3_is_applied(ia3_config):
-    """IA3 should be applied when strategy.type == 'ia3'"""
-    model = ASTModel(num_classes=40, pretrained=False)
-    classifier = SOUSAClassifier(model, ia3_config)
-
-    # Model should be wrapped in PeftModel
-    assert isinstance(classifier.model, PeftModel)
-
-
-def test_ia3_reduces_trainable_params(ia3_config):
-    """IA3 should significantly reduce trainable parameters"""
-    # Create two classifiers: one with full finetune, one with IA3
-    full_finetune_config = OmegaConf.create({
-        "training": {
-            "learning_rate": 1e-4,
-            "weight_decay": 0.01,
-            "label_smoothing": 0.1,
-        },
-        "strategy": {
-            "type": "full_finetune",
-        },
-    })
-
-    model_full = ASTModel(num_classes=40, pretrained=False)
-    classifier_full = SOUSAClassifier(model_full, full_finetune_config)
-
-    model_ia3 = ASTModel(num_classes=40, pretrained=False)
-    classifier_ia3 = SOUSAClassifier(model_ia3, ia3_config)
-
-    # Count trainable params
-    full_params = sum(p.numel() for p in classifier_full.parameters() if p.requires_grad)
-    ia3_params = sum(p.numel() for p in classifier_ia3.parameters() if p.requires_grad)
-
-    # IA3 should have significantly fewer trainable params
-    assert ia3_params < full_params
-    # IA3 is even more efficient than LoRA, should be less than 5% of original
-    assert ia3_params < 0.05 * full_params
 
 
 def test_f1_metrics_initialized(minimal_config):

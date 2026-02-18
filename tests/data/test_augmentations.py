@@ -144,10 +144,8 @@ class TestMixup:
 
         # Should have soft labels (2D)
         assert mixed_batch['label'].dim() == 2
-        # Number of classes is inferred from max label + 1
-        expected_num_classes = batch['label'].max().item() + 1
         assert mixed_batch['label'].shape[0] == 8
-        assert mixed_batch['label'].shape[1] == expected_num_classes
+        assert mixed_batch['label'].shape[1] == num_classes
 
         # Soft labels should sum to 1
         assert torch.allclose(
@@ -225,8 +223,7 @@ class TestMixup:
             assert mixed_batch['audio'].shape == batch['audio'].shape
 
             # Soft labels should have correct shape
-            expected_num_classes = batch['label'].max().item() + 1
-            assert mixed_batch['label'].shape == (shape[0], expected_num_classes)
+            assert mixed_batch['label'].shape == (shape[0], num_classes)
 
     def test_mixup_device_handling(self):
         """Test that Mixup works with different devices."""

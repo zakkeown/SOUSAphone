@@ -106,8 +106,8 @@ class TestDynamicModelLoading:
                 # Use n_mels and max_length from config
                 n_mels = cfg.model.get('n_mels', 128)
                 max_length = cfg.model.get('max_length', 1024)
-                # (batch, mels, time)
-                audio = torch.randn(batch_size, n_mels, max_length)
+                # (batch, time, mels) — matches model convention
+                audio = torch.randn(batch_size, max_length, n_mels)
             else:  # waveform
                 # (batch, samples)
                 audio = torch.randn(batch_size, 16000 * 5)  # 5 seconds

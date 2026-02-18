@@ -44,5 +44,5 @@ wandb:
   tags: ["${model.name}", "${strategy.type}"]
 
 # Paths
-dataset_path: "~/Code/SOUSA/output/dataset"
+dataset_path: "./data/sousa-dataset"  # Override with your local path or set SOUSA_DATASET_PATH
 ckpt_path: null  # Set to checkpoint path to resume training
