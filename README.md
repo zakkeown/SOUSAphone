@@ -1,5 +1,11 @@
 # SOUSAphone
 
+[![CI](https://github.com/zakkeown/SOUSAphone/actions/workflows/ci.yml/badge.svg)](https://github.com/zakkeown/SOUSAphone/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Model on HF](https://img.shields.io/badge/%F0%9F%A4%97-Model-yellow)](https://huggingface.co/zkeown/sousaphone)
+[![Dataset on HF](https://img.shields.io/badge/%F0%9F%A4%97-Dataset-blue)](https://huggingface.co/datasets/zkeown/sousa)
+
 Training infrastructure for 40-class drum rudiment classification using PyTorch Lightning, Hydra, and state-of-the-art audio models.
 
 ## Overview
