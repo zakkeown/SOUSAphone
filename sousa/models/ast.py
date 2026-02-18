@@ -48,7 +48,8 @@ class ASTModel(AudioClassificationModel):
             logits: (batch_size, num_classes)
         """
         outputs = self.model(audio)
-        return outputs.logits
+        logits: torch.Tensor = outputs.logits
+        return logits
 
     def get_feature_extractor(self) -> dict:
         """Get AST preprocessing config."""

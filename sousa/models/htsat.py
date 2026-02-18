@@ -69,7 +69,7 @@ class HTSATModel(AudioClassificationModel):
         pooled_output = encoder_outputs.pooler_output
 
         # Apply classification head
-        logits = self.classifier(pooled_output)
+        logits: torch.Tensor = self.classifier(pooled_output)
 
         return logits
 

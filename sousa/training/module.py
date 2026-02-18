@@ -1,19 +1,19 @@
 """Lightning module for SOUSA training."""
 
-from typing import Dict
+from typing import Dict, Optional
 
+import matplotlib.pyplot as plt
+import pytorch_lightning as pl
+import seaborn as sns
 import torch
 import torch.nn.functional as F
-import pytorch_lightning as pl
 from omegaconf import DictConfig
+from peft import LoraConfig, get_peft_model
 from torch.optim import Optimizer
 from torchmetrics import Accuracy, ConfusionMatrix, F1Score
-from peft import LoraConfig, get_peft_model
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-from sousa.models.base import AudioClassificationModel
 from sousa.data.augmentations import Mixup
+from sousa.models.base import AudioClassificationModel
 
 
 class SOUSAClassifier(pl.LightningModule):
@@ -59,7 +59,7 @@ class SOUSAClassifier(pl.LightningModule):
             )
 
             # Apply PEFT
-            self.model = get_peft_model(self.model, peft_config)
+            self.model = get_peft_model(self.model, peft_config)  # type: ignore[assignment,arg-type]
 
             # Log reduced trainable params
             peft_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
@@ -72,13 +72,12 @@ class SOUSAClassifier(pl.LightningModule):
         self.save_hyperparameters(ignore=['model'])
 
         # Metrics
-        num_classes = model.num_classes
+        num_classes: int = model.num_classes
 
         # Initialize Mixup if configured (after num_classes is set)
+        self.mixup: Optional[Mixup] = None
         if hasattr(config, 'augmentation') and config.augmentation.mixup:
             self.mixup = Mixup(alpha=config.augmentation.mixup_alpha, num_classes=num_classes)
-        else:
-            self.mixup = None
         self.train_acc = Accuracy(task="multiclass", num_classes=num_classes)
         self.val_acc = Accuracy(task="multiclass", num_classes=num_classes)
         self.test_acc = Accuracy(task="multiclass", num_classes=num_classes)
@@ -124,7 +123,7 @@ class SOUSAClassifier(pl.LightningModule):
             return batch['onset_features'], batch['attention_mask']
         return batch['audio'], None
 
-    def forward(self, x: torch.Tensor, attention_mask: torch.Tensor = None) -> torch.Tensor:
+    def forward(self, x: torch.Tensor, attention_mask: Optional[torch.Tensor] = None) -> torch.Tensor:
         """
         Forward pass through model.
 
@@ -132,8 +131,10 @@ class SOUSAClassifier(pl.LightningModule):
         accepts *args and passes them through to our model's forward().
         """
         if attention_mask is not None:
-            return self.model(x, attention_mask=attention_mask)
-        return self.model(x)
+            result: torch.Tensor = self.model(x, attention_mask=attention_mask)
+            return result
+        result = self.model(x)
+        return result
 
     def training_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) -> torch.Tensor:
         """Training step."""

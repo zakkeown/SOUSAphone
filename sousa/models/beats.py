@@ -59,7 +59,7 @@ class BEATsModel(AudioClassificationModel):
         pooled_output = outputs.last_hidden_state.mean(dim=1)
 
         # Apply classification head
-        logits = self.classifier(pooled_output)
+        logits: torch.Tensor = self.classifier(pooled_output)
 
         return logits
 

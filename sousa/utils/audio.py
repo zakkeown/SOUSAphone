@@ -79,4 +79,5 @@ def load_audio(
             # Crop to max_samples
             waveform = waveform[:max_samples]
 
-    return waveform
+    result: torch.Tensor = waveform
+    return result

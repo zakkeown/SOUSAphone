@@ -1,5 +1,7 @@
 """Lightning DataModule for SOUSA dataset."""
 
+from typing import Any, Callable, Optional
+
 import torch
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
@@ -25,21 +27,21 @@ class SOUSADataModule(pl.LightningDataModule):
         max_duration: float = 5.0,
         use_spectrogram: bool = True,
         use_specaugment: bool = False,
-        specaugment_params: dict = None,
+        specaugment_params: Optional[dict[str, Any]] = None,
         n_mels: int = 128,
         n_fft: int = 1024,
         hop_length: int = 160,
         max_length: int = 1024,
-        max_samples: int = None,
+        max_samples: Optional[int] = None,
         normalize_spec: bool = True,
         norm_mean: float = -4.2677393,
         norm_std: float = 4.5689974,
         # Curriculum learning filters
-        soundfonts: list[str] = None,
-        augmentation_presets: list[str] = None,
-        tempo_range: tuple[int, int] = None,
+        soundfonts: Optional[list[str]] = None,
+        augmentation_presets: Optional[list[str]] = None,
+        tempo_range: Optional[tuple[int, int]] = None,
         # Tempo normalization
-        reference_tempo: float = None,
+        reference_tempo: Optional[float] = None,
         # Waveform augmentation
         use_time_stretch: bool = False,
         time_stretch_min: float = 0.8,
@@ -109,13 +111,12 @@ class SOUSADataModule(pl.LightningDataModule):
             )
 
         # Create SpecAugment transform if requested
+        self.specaugment: Optional[SpecAugment] = None
         if use_specaugment and specaugment_params:
             self.specaugment = SpecAugment(**specaugment_params)
-        else:
-            self.specaugment = None
 
         # Build train transform chain: [time_stretch] -> [spectrogram] -> [specaugment]
-        train_transforms = []
+        train_transforms: list[Callable[..., Any]] = []
         if self.time_stretch:
             train_transforms.append(self.time_stretch)
         if self.base_transform:
@@ -123,24 +124,15 @@ class SOUSADataModule(pl.LightningDataModule):
         if self.specaugment:
             train_transforms.append(self.specaugment)
 
+        self.train_transform: Optional[ComposeTransforms] = None
         if train_transforms:
             self.train_transform = ComposeTransforms(train_transforms)
-        else:
-            self.train_transform = None
 
         # Validation/test uses only base transform (no augmentation)
         self.val_transform = self.base_transform
 
     def setup(self, stage: str) -> None:
         """Create datasets for each split."""
-        # Common filter kwargs for curriculum learning
-        filter_kwargs = {
-            "soundfonts": self.soundfonts,
-            "augmentation_presets": self.augmentation_presets,
-            "tempo_range": self.tempo_range,
-            "reference_tempo": self.reference_tempo,
-        }
-
         if stage == "fit":
             self.train_dataset = SOUSADataset(
                 dataset_path=self.dataset_path,
@@ -149,7 +141,10 @@ class SOUSADataModule(pl.LightningDataModule):
                 max_duration=self.max_duration,
                 transform=self.train_transform,
                 max_samples=self.max_samples,
-                **filter_kwargs,
+                soundfonts=self.soundfonts,
+                augmentation_presets=self.augmentation_presets,
+                tempo_range=self.tempo_range,
+                reference_tempo=self.reference_tempo,
             )
             self.val_dataset = SOUSADataset(
                 dataset_path=self.dataset_path,
@@ -158,7 +153,10 @@ class SOUSADataModule(pl.LightningDataModule):
                 max_duration=self.max_duration,
                 transform=self.val_transform,
                 max_samples=self.max_samples,
-                **filter_kwargs,
+                soundfonts=self.soundfonts,
+                augmentation_presets=self.augmentation_presets,
+                tempo_range=self.tempo_range,
+                reference_tempo=self.reference_tempo,
             )
 
         if stage == "test":
@@ -167,9 +165,12 @@ class SOUSADataModule(pl.LightningDataModule):
                 split="test",
                 sample_rate=self.sample_rate,
                 max_duration=self.max_duration,
-                max_samples=self.max_samples,
                 transform=self.val_transform,
-                **filter_kwargs,
+                max_samples=self.max_samples,
+                soundfonts=self.soundfonts,
+                augmentation_presets=self.augmentation_presets,
+                tempo_range=self.tempo_range,
+                reference_tempo=self.reference_tempo,
             )
 
     def train_dataloader(self) -> DataLoader:

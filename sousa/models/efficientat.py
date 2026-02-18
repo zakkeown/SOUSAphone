@@ -89,7 +89,7 @@ class EfficientATModel(AudioClassificationModel):
         # In a full EfficientAT implementation, you'd apply attention over spatial features
 
         # Apply classification head
-        logits = self.classifier(features)
+        logits: torch.Tensor = self.classifier(features)
 
         return logits
 

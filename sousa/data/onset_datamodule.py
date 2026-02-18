@@ -1,5 +1,7 @@
 """Lightning DataModule for onset-based rudiment classification."""
 
+from typing import Optional
+
 import torch
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
@@ -18,10 +20,10 @@ class OnsetDataModule(pl.LightningDataModule):
         batch_size: int = 64,
         num_workers: int = 4,
         max_seq_len: int = 128,
-        max_samples: int = None,
-        soundfonts: list[str] = None,
-        augmentation_presets: list[str] = None,
-        tempo_range: tuple[int, int] = None,
+        max_samples: Optional[int] = None,
+        soundfonts: Optional[list[str]] = None,
+        augmentation_presets: Optional[list[str]] = None,
+        tempo_range: Optional[tuple[int, int]] = None,
     ):
         super().__init__()
         self.dataset_path = dataset_path

@@ -17,6 +17,8 @@ class AudioClassificationModel(nn.Module, ABC):
     abstract methods.
     """
 
+    num_classes: int
+
     @abstractmethod
     def forward(self, audio: torch.Tensor) -> torch.Tensor:
         """Forward pass through the model.

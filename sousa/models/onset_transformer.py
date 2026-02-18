@@ -1,5 +1,6 @@
 """Onset Transformer model for stroke-level rudiment classification."""
 
+from typing import Optional
 
 import torch
 import torch.nn as nn
@@ -57,7 +58,7 @@ class OnsetTransformerModel(AudioClassificationModel):
             if p.dim() > 1:
                 nn.init.xavier_uniform_(p)
 
-    def forward(self, onset_features: torch.Tensor, attention_mask: torch.Tensor = None) -> torch.Tensor:
+    def forward(self, onset_features: torch.Tensor, attention_mask: Optional[torch.Tensor] = None) -> torch.Tensor:
         """
         Forward pass.
 
@@ -89,7 +90,7 @@ class OnsetTransformerModel(AudioClassificationModel):
             x = x.mean(dim=1)
 
         x = self.layer_norm(x)
-        logits = self.classifier(x)
+        logits: torch.Tensor = self.classifier(x)
         return logits
 
     def get_feature_extractor(self) -> dict:

@@ -99,7 +99,7 @@ class SOUSADataset(Dataset):
         sample_rate: int = 16000,
         max_duration: float = 5.0,
         transform: Optional[Callable] = None,
-        max_samples: int = None,
+        max_samples: Optional[int] = None,
         soundfonts: Optional[list[str]] = None,
         augmentation_presets: Optional[list[str]] = None,
         tempo_range: Optional[tuple[int, int]] = None,
