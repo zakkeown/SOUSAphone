@@ -1,6 +1,5 @@
 """Onset Transformer model for stroke-level rudiment classification."""
 
-import math
 
 import torch
 import torch.nn as nn

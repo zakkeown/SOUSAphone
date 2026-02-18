@@ -1,6 +1,5 @@
 """Tests for data augmentation techniques."""
 
-import pytest
 import torch
 import numpy as np
 

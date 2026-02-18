@@ -1,6 +1,6 @@
 """Lightning module for SOUSA training."""
 
-from typing import Any, Dict, Optional
+from typing import Dict
 
 import torch
 import torch.nn.functional as F

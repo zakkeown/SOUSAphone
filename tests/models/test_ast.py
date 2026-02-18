@@ -1,5 +1,4 @@
 # tests/models/test_ast.py
-import pytest
 import torch
 from sousa.models.ast import ASTModel
 

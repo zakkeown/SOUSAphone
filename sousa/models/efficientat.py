@@ -71,8 +71,6 @@ class EfficientATModel(AudioClassificationModel):
         Returns:
             logits: (batch_size, num_classes)
         """
-        batch_size = audio.size(0)
-
         # MobileNetV2 expects images: (batch_size, channels, height, width)
         # Convert spectrogram (batch, time, mels) -> (batch, 1, time, mels)
         # Then expand to 3 channels for ImageNet compatibility

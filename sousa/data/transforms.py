@@ -1,6 +1,6 @@
 """Audio transforms for preprocessing."""
 
-from typing import Callable, List, Optional, Tuple
+from typing import Callable, List
 
 import torch
 import torchaudio
