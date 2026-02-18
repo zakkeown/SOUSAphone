@@ -1,5 +1,6 @@
 """PyTorch Dataset for SOUSA drum rudiment classification."""
 
+import json
 from pathlib import Path
 from typing import Any, Callable, Dict, Optional
 
@@ -31,6 +32,37 @@ def normalize_rudiment_slug(slug: str) -> str:
         canonical = "single-paradiddle-diddle"
 
     return canonical
+
+
+def load_split_metadata(dataset_path: Path, split: str) -> pd.DataFrame:
+    """Load sample metadata filtered by split.
+
+    Supports both legacy (metadata.csv with split column) and new
+    (samples.parquet + splits.json with profile-based splits) formats.
+
+    Returns:
+        DataFrame of samples for the requested split.
+    """
+    legacy_path = dataset_path / "metadata.csv"
+    if legacy_path.exists():
+        df = pd.read_csv(legacy_path)
+        return df[df["split"] == split].reset_index(drop=True)
+
+    # New format: samples.parquet + splits.json
+    samples_path = dataset_path / "labels" / "samples.parquet"
+    splits_path = dataset_path / "splits.json"
+
+    if not samples_path.exists():
+        raise FileNotFoundError(f"Neither metadata.csv nor labels/samples.parquet found in {dataset_path}")
+    if not splits_path.exists():
+        raise FileNotFoundError(f"splits.json not found in {dataset_path}")
+
+    df = pd.read_parquet(samples_path)
+    with open(splits_path) as f:
+        splits = json.load(f)
+
+    profile_ids = set(splits[f"{split}_profile_ids"])
+    return df[df["profile_id"].isin(profile_ids)].reset_index(drop=True)
 
 
 class SOUSADataset(Dataset):
@@ -84,16 +116,8 @@ class SOUSADataset(Dataset):
         # Load rudiment mapping
         self.rudiment_to_id = get_rudiment_mapping()
 
-        # Always load full metadata
-        metadata_path = self.dataset_path / "metadata.csv"
-
-        if not metadata_path.exists():
-            raise FileNotFoundError(f"Metadata file not found: {metadata_path}")
-
-        df = pd.read_csv(metadata_path)
-
-        # Filter by split
-        self.metadata = df[df["split"] == split].reset_index(drop=True)
+        # Load metadata filtered by split
+        self.metadata = load_split_metadata(self.dataset_path, split)
 
         if len(self.metadata) == 0:
             raise ValueError(f"No samples found for split '{split}'")

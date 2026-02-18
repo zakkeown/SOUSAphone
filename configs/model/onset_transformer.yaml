@@ -1,0 +1,14 @@
+name: onset_transformer
+class_path: sousa.models.onset_transformer.OnsetTransformerModel
+num_classes: 40
+pretrained: false
+input_type: onset
+
+# Model architecture
+feature_dim: 12
+d_model: 64
+nhead: 4
+num_layers: 3
+dim_feedforward: 128
+dropout: 0.1
+max_seq_len: 256

@@ -115,14 +115,25 @@ class SOUSAClassifier(pl.LightningModule):
             num_classes=num_classes,
         )
 
-    def forward(self, audio: torch.Tensor) -> torch.Tensor:
+    def _get_input_and_mask(self, batch):
+        """Extract model input and optional attention mask from batch.
+
+        Returns (input_tensor, attention_mask_or_None).
+        """
+        if 'onset_features' in batch:
+            return batch['onset_features'], batch['attention_mask']
+        return batch['audio'], None
+
+    def forward(self, x: torch.Tensor, attention_mask: torch.Tensor = None) -> torch.Tensor:
         """
         Forward pass through model.
 
         With task_type=None, PEFT uses the base PeftModel wrapper which
         accepts *args and passes them through to our model's forward().
         """
-        return self.model(audio)
+        if attention_mask is not None:
+            return self.model(x, attention_mask=attention_mask)
+        return self.model(x)
 
     def training_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) -> torch.Tensor:
         """Training step."""
@@ -130,9 +141,9 @@ class SOUSAClassifier(pl.LightningModule):
         if self.mixup and self.training:
             batch = self.mixup(batch)
 
-        audio = batch['audio']
+        x, mask = self._get_input_and_mask(batch)
         labels = batch['label']
-        logits = self(audio)
+        logits = self(x, attention_mask=mask)
 
         # Handle soft labels from Mixup
         if labels.dim() > 1:  # Soft labels
@@ -156,8 +167,9 @@ class SOUSAClassifier(pl.LightningModule):
 
     def validation_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) -> torch.Tensor:
         """Validation step."""
-        audio, labels = batch['audio'], batch['label']
-        logits = self(audio)
+        x, mask = self._get_input_and_mask(batch)
+        labels = batch['label']
+        logits = self(x, attention_mask=mask)
 
         loss = F.cross_entropy(logits, labels)
 
@@ -174,8 +186,9 @@ class SOUSAClassifier(pl.LightningModule):
 
     def test_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) -> torch.Tensor:
         """Test step."""
-        audio, labels = batch['audio'], batch['label']
-        logits = self(audio)
+        x, mask = self._get_input_and_mask(batch)
+        labels = batch['label']
+        logits = self(x, attention_mask=mask)
 
         loss = F.cross_entropy(logits, labels)
 
