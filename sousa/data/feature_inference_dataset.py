@@ -104,19 +104,15 @@ class FeatureInferenceDataset(Dataset):
         velocities = strokes_df["actual_velocity"].values.copy().astype(np.float64)
 
         if self.augment:
-            # Timing jitter: Gaussian noise on actual_time_ms
+            # Timing jitter: Gaussian noise on onset times.
+            # Don't re-sort — preserves stroke alignment with target_features
+            # so raw_onsets[i] always corresponds to target_features[i].
             times = times + np.random.normal(0, self.timing_jitter_std_ms, size=len(times))
             times = np.clip(times, 0, None)
-            # Re-sort by time after jitter
-            sort_idx = np.argsort(times)
-            times = times[sort_idx]
 
             # Strength noise: Gaussian multiplicative noise on velocity
             noise_factor = 1.0 + np.random.normal(0, self.strength_noise_std, size=len(velocities))
-            velocities = velocities * noise_factor
-            velocities = np.clip(velocities, 0, 127)
-            # Apply same sort order from timing jitter
-            velocities = velocities[sort_idx]
+            velocities = np.clip(velocities * noise_factor, 0, 127)
 
         # Compute raw onset features
         n = len(times)
