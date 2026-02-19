@@ -16,9 +16,9 @@ def mock_dataset_path(tmp_path):
     metadata = dataset_dir / "metadata.csv"
     metadata.write_text(
         "sample_id,rudiment_slug,split,audio_path,duration\n"
-        "sample_001,flam,train,audio/sample_001.flac,2.5\n"
-        "sample_002,paradiddle,train,audio/sample_002.flac,3.0\n"
-        "sample_003,flam,val,audio/sample_003.flac,2.2\n"
+        "sample_001,flam,train,audio/flam/sample_001.flac,2.5\n"
+        "sample_002,paradiddle,train,audio/paradiddle/sample_002.flac,3.0\n"
+        "sample_003,flam,val,audio/flam/sample_003.flac,2.2\n"
     )
 
     return dataset_dir
@@ -81,13 +81,18 @@ def mock_dataset_with_audio(tmp_path):
     audio_dir = dataset_dir / "audio"
     audio_dir.mkdir()
 
+    # Create rudiment subdirectories
+    (audio_dir / "flam").mkdir()
+    (audio_dir / "paradiddle").mkdir()
+
     # Create mock audio files
     sample_rate = 16000
     duration = 2.0
     samples = int(sample_rate * duration)
 
-    for sample_id in ["sample_001", "sample_002"]:
-        audio_path = audio_dir / f"{sample_id}.flac"
+    rudiment_for_sample = {"sample_001": "flam", "sample_002": "paradiddle"}
+    for sample_id, rudiment in rudiment_for_sample.items():
+        audio_path = audio_dir / rudiment / f"{sample_id}.flac"
         # Create random audio
         audio_data = np.random.randn(samples).astype(np.float32) * 0.1
         sf.write(audio_path, audio_data, sample_rate)
@@ -96,8 +101,8 @@ def mock_dataset_with_audio(tmp_path):
     metadata = dataset_dir / "metadata.csv"
     metadata.write_text(
         "sample_id,rudiment_slug,split,audio_path,duration\n"
-        f"sample_001,flam,train,audio/sample_001.flac,{duration}\n"
-        f"sample_002,paradiddle,train,audio/sample_002.flac,{duration}\n"
+        f"sample_001,flam,train,audio/flam/sample_001.flac,{duration}\n"
+        f"sample_002,paradiddle,train,audio/paradiddle/sample_002.flac,{duration}\n"
     )
 
     return dataset_dir
@@ -145,20 +150,21 @@ def test_dataset_converts_stereo_to_mono(tmp_path):
     dataset_dir.mkdir()
     audio_dir = dataset_dir / "audio"
     audio_dir.mkdir()
+    (audio_dir / "flam").mkdir()
 
     # Create stereo audio file
     sample_rate = 16000
     duration = 1.0
     samples = int(sample_rate * duration)
     stereo_audio = np.random.randn(samples, 2).astype(np.float32) * 0.1  # 2 channels
-    audio_path = audio_dir / "stereo.flac"
+    audio_path = audio_dir / "flam" / "stereo.flac"
     sf.write(audio_path, stereo_audio, sample_rate)
 
     # Create metadata
     metadata = dataset_dir / "metadata.csv"
     metadata.write_text(
         "sample_id,rudiment_slug,split,audio_path,duration\n"
-        f"stereo,flam,train,audio/stereo.flac,{duration}\n"
+        f"stereo,flam,train,audio/flam/stereo.flac,{duration}\n"
     )
 
     dataset = SOUSADataset(dataset_path=str(dataset_dir), split="train", max_duration=1.0)
@@ -174,19 +180,20 @@ def test_dataset_crops_long_audio(tmp_path):
     dataset_dir.mkdir()
     audio_dir = dataset_dir / "audio"
     audio_dir.mkdir()
+    (audio_dir / "flam").mkdir()
 
     # Create 10-second audio
     sample_rate = 16000
     duration = 10.0
     samples = int(sample_rate * duration)
     long_audio = np.random.randn(samples).astype(np.float32) * 0.1
-    audio_path = audio_dir / "long.flac"
+    audio_path = audio_dir / "flam" / "long.flac"
     sf.write(audio_path, long_audio, sample_rate)
 
     metadata = dataset_dir / "metadata.csv"
     metadata.write_text(
         "sample_id,rudiment_slug,split,audio_path,duration\n"
-        f"long,flam,train,audio/long.flac,{duration}\n"
+        f"long,flam,train,audio/flam/long.flac,{duration}\n"
     )
 
     # Max duration 5 seconds

@@ -15,22 +15,31 @@ def mock_dataset_path(tmp_path):
     metadata = dataset_dir / "metadata.csv"
     metadata.write_text(
         "sample_id,rudiment_slug,split,audio_path,duration\n"
-        "sample_001,flam,train,audio/sample_001.flac,2.5\n"
-        "sample_002,single-paradiddle,train,audio/sample_002.flac,3.0\n"
-        "sample_003,flam,val,audio/sample_003.flac,2.2\n"
-        "sample_004,drag,test,audio/sample_004.flac,2.0\n"
+        "sample_001,flam,train,audio/flam/sample_001.flac,2.5\n"
+        "sample_002,single-paradiddle,train,audio/single-paradiddle/sample_002.flac,3.0\n"
+        "sample_003,flam,val,audio/flam/sample_003.flac,2.2\n"
+        "sample_004,drag,test,audio/drag/sample_004.flac,2.0\n"
     )
 
-    # Create audio directory and files for dataloader tests
+    # Create audio directory and rudiment subdirectories for dataloader tests
     audio_dir = dataset_dir / "audio"
     audio_dir.mkdir()
+    (audio_dir / "flam").mkdir()
+    (audio_dir / "single-paradiddle").mkdir()
+    (audio_dir / "drag").mkdir()
 
     sample_rate = 16000
     duration = 2.0
     samples = int(sample_rate * duration)
 
-    for sample_id in ["sample_001", "sample_002", "sample_003", "sample_004"]:
-        audio_path = audio_dir / f"{sample_id}.flac"
+    rudiment_for_sample = {
+        "sample_001": "flam",
+        "sample_002": "single-paradiddle",
+        "sample_003": "flam",
+        "sample_004": "drag",
+    }
+    for sample_id, rudiment in rudiment_for_sample.items():
+        audio_path = audio_dir / rudiment / f"{sample_id}.flac"
         # Create random audio
         audio_data = np.random.randn(samples).astype(np.float32) * 0.1
         sf.write(audio_path, audio_data, sample_rate)
