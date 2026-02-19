@@ -62,3 +62,11 @@ def test_gradients_flow():
     loss = output.sum()
     loss.backward()
     assert raw_onsets.grad is not None
+
+
+def test_exceeds_max_seq_len():
+    """Model should raise ValueError when sequence exceeds max_seq_len."""
+    model = FeatureInferenceModel(max_seq_len=32)
+    raw_onsets = torch.randn(1, 64, 3)
+    with pytest.raises(ValueError, match="exceeds max_seq_len"):
+        model(raw_onsets)

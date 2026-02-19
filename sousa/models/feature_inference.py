@@ -56,6 +56,7 @@ class FeatureInferenceModel(nn.Module):
         )
         self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
 
+        self.layer_norm = nn.LayerNorm(d_model)
         self.output_proj = nn.Linear(d_model, output_dim)
 
         self._init_weights()
@@ -80,6 +81,12 @@ class FeatureInferenceModel(nn.Module):
         """
         batch_size, seq_len, _ = raw_onsets.shape
 
+        if seq_len > self.pos_embedding.num_embeddings:
+            raise ValueError(
+                f"Sequence length {seq_len} exceeds max_seq_len "
+                f"{self.pos_embedding.num_embeddings}"
+            )
+
         # Project features and add positional encoding
         positions = torch.arange(seq_len, device=raw_onsets.device)
         x = self.input_proj(raw_onsets) + self.pos_embedding(positions)
@@ -90,4 +97,6 @@ class FeatureInferenceModel(nn.Module):
             padding_mask = attention_mask == 0
 
         x = self.encoder(x, src_key_padding_mask=padding_mask)
-        return self.output_proj(x)
+        x = self.layer_norm(x)
+        output: torch.Tensor = self.output_proj(x)
+        return output
