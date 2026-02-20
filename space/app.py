@@ -22,7 +22,7 @@ from space.visualizations import (
 def load_pipeline() -> RudimentPipeline:
     """Download models from HF Hub and initialize pipeline."""
     feature_model_path = hf_hub_download(
-        repo_id="zkeown/sousaphone-feature-model", filename="pytorch_model.bin"
+        repo_id="zkeown/sousaphone", filename="feature_inference_model.bin"
     )
     classifier_model_path = hf_hub_download(
         repo_id="zkeown/sousaphone", filename="pytorch_model.bin"
