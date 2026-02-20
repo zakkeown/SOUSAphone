@@ -48,7 +48,7 @@ dev = [
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["sousa*"]
+include = ["sousa*", "space*"]
 
 [tool.black]
 line-length = 100
