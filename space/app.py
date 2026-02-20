@@ -81,7 +81,7 @@ def classify(audio_input):
 
 demo = gr.Interface(
     fn=classify,
-    inputs=gr.Audio(label="Upload or record a drum rudiment"),
+    inputs=gr.Audio(sources=["microphone", "upload"], label="Upload or record a drum rudiment"),
     outputs=[
         gr.Label(num_top_classes=5, label="Prediction"),
         gr.Markdown(label="Rudiment Notation"),
