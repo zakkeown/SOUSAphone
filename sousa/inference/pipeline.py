@@ -128,6 +128,9 @@ class RudimentPipeline:
         """
         assert self.feature_model is not None and self.classifier is not None
 
+        # Determine device from model parameters
+        device = next(self.feature_model.parameters()).device
+
         # Stage 1: Onset detection
         onset_times, onset_strengths = self.detector.detect(audio, sr=sr)
         tempo_bpm = self.detector.estimate_tempo(audio, sr=sr)
@@ -139,6 +142,8 @@ class RudimentPipeline:
         raw_onsets, mask = self.prepare_raw_onsets(
             onset_times, onset_strengths, tempo_bpm
         )
+        raw_onsets = raw_onsets.to(device)
+        mask = mask.to(device)
 
         # Stage 3: Feature inference
         features = self.feature_model(raw_onsets, attention_mask=mask)
@@ -167,6 +172,6 @@ class RudimentPipeline:
             "onset_times": onset_times,
             "onset_strengths": onset_strengths,
             "tempo_bpm": tempo_bpm,
-            "predicted_features": features_processed.squeeze(0).numpy(),
-            "attention_mask": mask.squeeze(0).numpy(),
+            "predicted_features": features_processed.squeeze(0).cpu().numpy(),
+            "attention_mask": mask.squeeze(0).cpu().numpy(),
         }
