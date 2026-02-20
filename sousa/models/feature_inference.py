@@ -42,6 +42,16 @@ class FeatureInferenceModel(nn.Module):
         max_seq_len: int = 256,
     ):
         super().__init__()
+        self._config = {
+            "input_dim": input_dim,
+            "output_dim": output_dim,
+            "d_model": d_model,
+            "nhead": nhead,
+            "num_layers": num_layers,
+            "dim_feedforward": dim_feedforward,
+            "dropout": dropout,
+            "max_seq_len": max_seq_len,
+        }
         self.output_dim = output_dim
 
         self.input_proj = nn.Linear(input_dim, d_model)
@@ -66,6 +76,15 @@ class FeatureInferenceModel(nn.Module):
         for p in self.parameters():
             if p.dim() > 1:
                 nn.init.xavier_uniform_(p)
+
+    def get_config(self) -> dict:
+        """Return architecture config needed to reconstruct this model."""
+        return dict(self._config)
+
+    @classmethod
+    def from_config(cls, config: dict) -> "FeatureInferenceModel":
+        """Create a model from a config dict."""
+        return cls(**config)
 
     def forward(
         self, raw_onsets: torch.Tensor, attention_mask: Optional[torch.Tensor] = None

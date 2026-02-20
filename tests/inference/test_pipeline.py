@@ -1,10 +1,16 @@
 """Tests for inference pipeline."""
 
+import json
+import tempfile
+from pathlib import Path
+
 import pytest
 import numpy as np
 import torch
 
 from sousa.inference.pipeline import OnsetDetector, RudimentPipeline
+from sousa.models.feature_inference import FeatureInferenceModel
+from sousa.models.onset_transformer import OnsetTransformerModel
 
 
 class TestOnsetDetector:
@@ -60,3 +66,75 @@ class TestRudimentPipeline:
         assert raw_onsets.shape[0] == 1  # batch dim
         assert raw_onsets.shape[2] == 3  # (ioi_ms, strength, tempo)
         assert mask.shape[0] == 1
+
+    def test_load_config_found(self):
+        """_load_config should return dict when config file exists."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            config = {"input_dim": 3, "output_dim": 12}
+            config_path = Path(tmpdir) / "feature_inference_config.json"
+            config_path.write_text(json.dumps(config))
+            model_path = Path(tmpdir) / "model.bin"
+            model_path.touch()
+
+            result = RudimentPipeline._load_config(
+                str(model_path), "feature_inference_config.json"
+            )
+            assert result == config
+
+    def test_load_config_missing(self):
+        """_load_config should return None when config file is absent."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            model_path = Path(tmpdir) / "model.bin"
+            model_path.touch()
+
+            result = RudimentPipeline._load_config(
+                str(model_path), "feature_inference_config.json"
+            )
+            assert result is None
+
+    def test_pipeline_loads_from_config(self):
+        """Pipeline should load models using config files when present."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmpdir = Path(tmpdir)
+
+            # Save feature inference model + config
+            feat_model = FeatureInferenceModel()
+            feat_weights = tmpdir / "feature_inference_model.bin"
+            torch.save(feat_model.state_dict(), feat_weights)
+            feat_config = tmpdir / "feature_inference_config.json"
+            feat_config.write_text(json.dumps(feat_model.get_config()))
+
+            # Save classifier model + config
+            cls_model = OnsetTransformerModel()
+            cls_weights = tmpdir / "pytorch_model.bin"
+            torch.save(cls_model.state_dict(), cls_weights)
+            cls_config = tmpdir / "onset_transformer_config.json"
+            cls_config.write_text(json.dumps(cls_model.get_config()))
+
+            # Load via pipeline
+            pipeline = RudimentPipeline(
+                feature_model_path=str(feat_weights),
+                classifier_model_path=str(cls_weights),
+            )
+            assert pipeline.feature_model is not None
+            assert pipeline.classifier is not None
+
+    def test_pipeline_loads_without_config(self):
+        """Pipeline should fall back to default constructors without config files."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmpdir = Path(tmpdir)
+
+            feat_model = FeatureInferenceModel()
+            feat_weights = tmpdir / "feature_inference_model.bin"
+            torch.save(feat_model.state_dict(), feat_weights)
+
+            cls_model = OnsetTransformerModel()
+            cls_weights = tmpdir / "pytorch_model.bin"
+            torch.save(cls_model.state_dict(), cls_weights)
+
+            pipeline = RudimentPipeline(
+                feature_model_path=str(feat_weights),
+                classifier_model_path=str(cls_weights),
+            )
+            assert pipeline.feature_model is not None
+            assert pipeline.classifier is not None

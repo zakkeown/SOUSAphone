@@ -19,15 +19,25 @@ class OnsetTransformerModel(AudioClassificationModel):
         self,
         num_classes: int = 40,
         pretrained: bool = False,
-        feature_dim: int = 10,
+        feature_dim: int = 12,
         d_model: int = 64,
         nhead: int = 4,
         num_layers: int = 3,
         dim_feedforward: int = 128,
         dropout: float = 0.1,
-        max_seq_len: int = 128,
+        max_seq_len: int = 256,
     ):
         super().__init__()
+        self._config = {
+            "num_classes": num_classes,
+            "feature_dim": feature_dim,
+            "d_model": d_model,
+            "nhead": nhead,
+            "num_layers": num_layers,
+            "dim_feedforward": dim_feedforward,
+            "dropout": dropout,
+            "max_seq_len": max_seq_len,
+        }
         self.num_classes = num_classes
 
         # Project per-stroke features to model dimension
@@ -92,6 +102,15 @@ class OnsetTransformerModel(AudioClassificationModel):
         x = self.layer_norm(x)
         logits: torch.Tensor = self.classifier(x)
         return logits
+
+    def get_config(self) -> dict:
+        """Return architecture config needed to reconstruct this model."""
+        return dict(self._config)
+
+    @classmethod
+    def from_config(cls, config: dict) -> "OnsetTransformerModel":
+        """Create a model from a config dict."""
+        return cls(**config)
 
     def get_feature_extractor(self) -> dict:
         return {}

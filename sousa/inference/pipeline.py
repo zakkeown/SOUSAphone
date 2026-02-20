@@ -1,5 +1,7 @@
 """End-to-end audio → rudiment prediction pipeline."""
 
+import json
+from pathlib import Path
 from typing import Optional, Tuple
 
 import numpy as np
@@ -13,38 +15,53 @@ from sousa.utils.rudiments import get_inverse_mapping
 class OnsetDetector:
     """Detect onsets and estimate tempo from audio using librosa."""
 
-    def detect(
+    def detect_all(
         self, audio: np.ndarray, sr: int = 22050
-    ) -> Tuple[np.ndarray, np.ndarray]:
-        """Detect onset times and strengths.
+    ) -> Tuple[np.ndarray, np.ndarray, float]:
+        """Detect onsets and estimate tempo in a single pass.
+
+        Computes the onset envelope once and reuses it for both onset
+        detection and beat tracking, avoiding a redundant STFT.
 
         Returns:
             times: onset times in seconds
             strengths: onset strengths (0-1 normalized)
+            tempo_bpm: estimated tempo in BPM
         """
         import librosa
 
+        # Compute onset envelope once (the expensive mel-spectrogram step)
         onset_env = librosa.onset.onset_strength(y=audio, sr=sr)
+
+        # Onset detection — peak picking on precomputed envelope
         onset_frames = librosa.onset.onset_detect(
-            y=audio, sr=sr, onset_envelope=onset_env, backtrack=True
+            onset_envelope=onset_env, sr=sr, backtrack=True
         )
         onset_times = librosa.frames_to_time(onset_frames, sr=sr)
 
-        # Get strengths at onset frames
+        # Strengths at onset frames
         strengths = onset_env[onset_frames] if len(onset_frames) > 0 else np.array([])
         if len(strengths) > 0 and strengths.max() > 0:
-            strengths = strengths / strengths.max()  # normalize to [0, 1]
+            strengths = strengths / strengths.max()
 
-        return onset_times, strengths
+        # Beat tracking — reuse onset envelope (skips second STFT)
+        tempo, _ = librosa.beat.beat_track(onset_envelope=onset_env, sr=sr)
+        if isinstance(tempo, np.ndarray):
+            tempo = float(tempo[0])
+
+        return onset_times, strengths, float(tempo)
+
+    def detect(
+        self, audio: np.ndarray, sr: int = 22050
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        """Detect onset times and strengths."""
+        times, strengths, _ = self.detect_all(audio, sr=sr)
+        return times, strengths
 
     def estimate_tempo(self, audio: np.ndarray, sr: int = 22050) -> float:
         """Estimate tempo in BPM."""
-        import librosa
-
-        tempo, _ = librosa.beat.beat_track(y=audio, sr=sr)
-        if isinstance(tempo, np.ndarray):
-            tempo = float(tempo[0])
-        return float(tempo)
+        _, _, tempo = self.detect_all(audio, sr=sr)
+        return tempo
 
 
 class RudimentPipeline:
@@ -68,19 +85,42 @@ class RudimentPipeline:
         self.classifier: Optional[OnsetTransformerModel] = None
 
         if feature_model_path is not None:
-            self.feature_model = FeatureInferenceModel()
+            config = self._load_config(
+                feature_model_path, "feature_inference_config.json"
+            )
+            if config is not None:
+                self.feature_model = FeatureInferenceModel.from_config(config)
+            else:
+                self.feature_model = FeatureInferenceModel()
             state = torch.load(feature_model_path, map_location="cpu", weights_only=True)
             self.feature_model.load_state_dict(state)
             self.feature_model.eval()
 
         if classifier_model_path is not None:
-            self.classifier = OnsetTransformerModel(
-                num_classes=40, feature_dim=12, d_model=64, nhead=4,
-                num_layers=3, dim_feedforward=128, dropout=0.0, max_seq_len=256,
+            config = self._load_config(
+                classifier_model_path, "onset_transformer_config.json"
             )
+            if config is not None:
+                self.classifier = OnsetTransformerModel.from_config(config)
+            else:
+                self.classifier = OnsetTransformerModel()
             state = torch.load(classifier_model_path, map_location="cpu", weights_only=True)
             self.classifier.load_state_dict(state)
             self.classifier.eval()
+
+    @staticmethod
+    def _load_config(
+        model_path: str, config_filename: str
+    ) -> Optional[dict]:
+        """Load a JSON config from the same directory as the weights file.
+
+        Returns None if the config file doesn't exist.
+        """
+        config_path = Path(model_path).parent / config_filename
+        if config_path.is_file():
+            with open(config_path) as f:
+                return json.load(f)
+        return None
 
     def prepare_raw_onsets(
         self,
@@ -131,9 +171,10 @@ class RudimentPipeline:
         # Determine device from model parameters
         device = next(self.feature_model.parameters()).device
 
-        # Stage 1: Onset detection
-        onset_times, onset_strengths = self.detector.detect(audio, sr=sr)
-        tempo_bpm = self.detector.estimate_tempo(audio, sr=sr)
+        # Stage 1: Onset detection + tempo (single STFT pass)
+        onset_times, onset_strengths, tempo_bpm = self.detector.detect_all(
+            audio, sr=sr
+        )
 
         if len(onset_times) == 0:
             return {"error": "No onsets detected in audio"}

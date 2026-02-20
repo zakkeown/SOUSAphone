@@ -20,13 +20,13 @@ from space.visualizations import (
 
 
 def load_pipeline() -> RudimentPipeline:
-    """Download models from HF Hub and initialize pipeline."""
-    feature_model_path = hf_hub_download(
-        repo_id="zkeown/sousaphone", filename="feature_inference_model.bin"
-    )
-    classifier_model_path = hf_hub_download(
-        repo_id="zkeown/sousaphone", filename="pytorch_model.bin"
-    )
+    """Download models and configs from HF Hub and initialize pipeline."""
+    repo_id = "zkeown/sousaphone"
+    feature_model_path = hf_hub_download(repo_id=repo_id, filename="feature_inference_model.bin")
+    classifier_model_path = hf_hub_download(repo_id=repo_id, filename="pytorch_model.bin")
+    # Download config files so _load_config finds them next to the weights
+    hf_hub_download(repo_id=repo_id, filename="feature_inference_config.json")
+    hf_hub_download(repo_id=repo_id, filename="onset_transformer_config.json")
     return RudimentPipeline(
         feature_model_path=feature_model_path,
         classifier_model_path=classifier_model_path,
